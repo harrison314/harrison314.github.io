@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Domou</title>
+    <title>Ako použ&#237;vať var a dynamic v C#</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,6 +23,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+        <link rel="stylesheet" href="css/Highiler/vs.css" />
+        <script src="js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     <style>
         img {
             max-width: 100%;
@@ -65,10 +68,92 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                
-<h1>harrison314 blog</h1>
+                <h1>Ako používať var a dynamic v C#</h1>
 
-<p class="lead">Blog jedného skpetického programátora.</p>
+<p>V poslednej dobe som si všimol, že vývojári píšu var úplne všade a potom C# vyzerá ako JavaScript.</p>
+
+<h2>Kedy <em>var</em> použiť:</h2>
+
+<p>Anonymné triedy, tam ani iná možnosť nie je.</p>
+
+<p>Ak máte šialený generický typ 
+<em>Dictionary&lt;string, List&lt;Func&lt;NUllable&lt;int&gt;, string&gt;&gt;&gt;</em>, 
+no tu je asi na mieste podotknúť, že ľudom , ktorý niečo takéto napíšu treba zlámať prsty. 
+Pretože daný typ je absolútne nesémantický (hlavne <em>Func&lt;NUllable&lt;int&gt;, string&gt;</em>) a bolo by ho lepšie nahradiť implementáciou rozumnej triedy alebo tried.</p>
+
+<h2>Takže kedy a prečo nepoužívať var:</h2>
+
+<p>Nesprehľadnenie kódu, pretože na mnohých miestach nie je človeku jasné čo v tej premennej vlastne je. </p>
+
+<pre>
+<code class="cs">
+var lastItem = this.FindLastItem();
+</code>
+</pre>
+
+<p>Je tam číslo, string, objekt? Aký ? ... To nie je na prvý pohľad jasné.</p>
+
+<p>Znižuje sémantiku kódu. Pretože je rozdiel v tom, čo chce vývojár povedať týmito dvoma riadkami. </p>
+
+<pre>
+<code class="cs">
+FooStruct foo =new FooStruct();
+IFoo foo = new FooStruct();
+    </code>
+</pre>
+
+<p>Na var nefunguje vo Visual Studiu  <em>„Find all references“</em> a <em>„Find usages“</em>.</p>
+
+<h2>Kedy používať dynamic</h2>
+
+<p>Všade tam, kde mapujeme dynamicky svet na statický, to znamená interakcia z JSON-om, JavaScriptom, databázami, NoSql databázami... Poprípade interakcia s COM objektami, kde nechceme pevne zviazať vytváraný softvér s konkrétnou verziou COM knižnice (tu má dynamic výhodu oproti reflexii v tom, že interne používa cache).</p>
+
+<p>Perfektný príklad je volanie JavaScriptovských funkcií v 
+<a href="http://www.asp.net/signalr/overview/guide-to-the-api/hubs-api-guide-net-client">SignalR</a>.</p>
+
+<p>Ďalším častým prípadom je mapovanie JSON resultu v ASP.NET MVC binderoch.</p>
+
+<pre>
+<code class="cs">
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace Harrison314.ExamplexAsp.Binders
+{
+    public class DocumentModelBinder : IModelBinder
+    {
+        public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        {
+
+            NameValueCollection query = controllerContext.HttpContext.Request.Params;
+            string jsonData = query.Get(&quot;data&quot;);
+
+            DocumentViewModel model = new DocumentViewModel ();
+
+            dynamic data = JsonConvert.DeserializeObject(jsonData);
+            model.ProfileId = data.profileId;
+            model.DocumentId = data.documentId;
+            model.GroupRoleId = data.groupRoleId;
+            model.FormDocumentData = new Dictionary&lt;string, string&gt;();
+
+            foreach (dynamic constructionData in data.formData)
+            {
+                model. FormDocumentData.Add((string)constructionData.id, (string)constructionData.value);
+            }
+
+            return model;
+        }
+    }
+}
+    </code>
+</pre>
+
+<p>Takéto použitie je čisté, pretože dynamic sa používa len interne a vracia sa typový objekt.</p>
 
             </div>
             <div class="col-md-4">

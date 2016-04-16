@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Katal&#243;g produktov v relačnej datab&#225;ze</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/blog-post.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href=".">harrison314 blog</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="DevelopingAll.html">Programovanie</a>
+                </li>
+                <li>
+                    <a href="GeneralAll.html">Všeobecné</a>
+                </li>
+                <li>
+                    <a href="OMne.html">O mne</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>Katalóg produktov v relačnej databáze</h1>
+
+<p>Tvorba katalógov produktov a služieb je veľmi časté, či už na webe alebo v podnikovej sfére. Požiadavkou na takýto systém je aby umožňoval ukladať tovar s rôznymi atribútmi ako rozmery, cena, pri niektorých typoch produktov farba, pri iných výkon. Predstavte si e-shop s elektronikou, pri reproduktoroch je uvedený výkon, rozmery, dostupná farba, no pri stolných počítačoch je tam procesor, veľkosť pamäte, zas pri monitore uhlopriečka...</p>
+
+<p>V tomto článku chcem v krátkosti predstaviť možné riešenia.</p>
+
+<h2>Naivné riešenie</h2>
+
+<p>Pre každý typ tovaru sa vytvorí osobitná tabuľka. Zvrátenosť tohto riešenia sa ukáže pri 18-tich druhoch tovaru a vo väzbách na 18 ďalších tabuliek (žiaľ reálna skúsenosť). Toto riešenie je absolútne nevhodné z hľadiska normalizácie a neschopnosti meniť typy produktov počas „behu“.</p>
+
+<h2>Použitie ORM</h2>
+
+<p>Bavíme sa o použití ORM podporujúceho dedenie a polymorfizmus entít (napr. <em>Entity Framework</em> alebo <em>Hibernate</em> ), žiadne trápne <em>active record</em>. Tovar je reprezentovaný ako abstraktná entita, samotné druhy tovaru sú vytvorené dedením. Toto riešenie je pekné v tom, že ORM a polymorfizmus spraví za nás všetku špinavú prácu, no stále nie je možné po nasadení aplikácie meniť typ tovaru.</p>
+
+<h2>Použitie NoSQL databázy</h2>
+
+<p>Bezschémové databázy (napr. <em>MongoDB</em>, <a href="http://docs.mongodb.org/ecosystem/use-cases/product-catalog/">katalóg v MongoDB</a> ) umožňujú vkladať a vyťahovať tovar do a z databázy s rôznymi atribútmi. Dokonca je možné danú schému meniť po nasadení aplikácie, pridávať nové druhy tovaru.  Toto je jeden z  argumentov priaznivcov NoSQL databáz. Jednoducho navrhnete „schému“ tak ako vyzerajú najčastejšie „dopyty“.  Praktickej ukážke sa môžem  povenovať niekedy nabudúce, no v tomto článku chcem ukázať ako daný problém riešiť pomocou relačnej databázy.</p>
+
+<h2>Riešenie z múdrej knihy</h2>
+
+<p>Návrhové vzory sú všeobecné riešenia problémov v danom kontexte.  Niečo podobné jestvuje aj pre návrh databázových schém a volá sa to analytické vzory.  V múdrej knihe (1) som narazil na vzor <em>Predmet zmluvy</em>, ktorý spĺňa všetko to čo potrebujeme a vzory pre cenníky produktov.</p>
+
+<p>Výsledok je takáto databázová schéma:</p>
+
+<p><img src="http://debug.sk/download/118-katalog-v1.jpg#800x249" alt="katalog v1.jpg" /></p>
+
+<p>Ide naozaj o abstraktný návrh, ktorý treba trochu ohnúť pre každé konkrétne použitie.</p>
+
+<p><em>Katalog</em> – táto entita predstavuje konkrétny katalóg, pravdepodobne bude mať svoje meno ( <strong>„Katalóg jeseň-zima 2013“</strong> ) a svoju časovú pôsobnosť. S produktom má reláciu N ku N, pretože predpokladám, že ten istý produkt sa môže vyskytovať v rôznych katalógoch.</p>
+
+<p><em>Produkt</em> – obsahuje len meno produktu. Je otázne, či má obsahovať aj atribúty, ktoré sú pre všetky produkty spoločné (napríklad cena).</p>
+
+<p><em>TypProduktu</em> – reprezentuje typy produktov. Produktu určuje typ a tým aj to aké má vlastnosti. (Typ môže byť: PC, televízor, mixér,....).</p>
+
+<p><em>TypVlastnostiProduktu</em> – entita určuje typ vlastnosti produktu, môže ísť o cenu, farbu tovaru, hmotnosť... Má reláciu k <em>TypProduktu</em> typu N ku N, pretože rôzny typy produktov môžu byť opísané rovnakými vlastnosťami. Pravdepodobne každý typ produktu bude mať cenu, pri chladničkách a televízoroch to môže byť hmotnosť.</p>
+
+<p><em>TypHodnoty</em> – reprezentuje akého typu je vlastnosť produktu. Napríklad ak ide o hmotnosť televízora, tak typ je číselný atribút, a uvádza sa v kilogramoch. Spolu s týmito informáciami je možné do tejto entity ukladať aj ohraničenia pre hodnoty vlastností produktov ako napr. číselný rozsah. Za istých okolností je vhodnejšie entitu <em>TypHodnoty</em> a <em>TypVlastnosťiPruktu</em> zlúčiť, no to záleží už od konkrétneho návrhu.</p>
+
+<p>Entity <em>TypProduktu</em>, <em>TypVlastnostiProduktu</em> a <em>TypHodnoty</em>, tvoria metaúroveň produktov. Pomocou nej je možné automaticky generovať formuláre pre zadávanie nových produktov. Typ produktu je možné považovať súčasne aj za kategóriu produktu a vytvoriť z neho menu, alebo pridaním rekurzívnej relácie stromovú štruktúru typov/kategórií produktov.</p>
+
+<p><em>VlastnostProduktu</em> – táto entita obsahuje už hodnoty vlastností produktu.</p>
+
+<h2>Záver</h2>
+
+<p>Posledné uvedené riešenie umožňuje do relačnej databázy uložiť takmer čokoľvek, čo sa aspoň trochu podobá na zadanie v úvode.  No je potrebné viac premyslieť selkty, tiež odporúčam nejaké to cachovanie.</p>
+
+<h2>Zdroje</h2>
+
+<ol>
+<li>Šešera Ľubor RNDr. PhD., Aplikačné architektúry softvérových systémov, ISBN 978-227-3652-7</li>
+<li><a href="http://docs.mongodb.org/ecosystem/use-cases/product-catalog/">http://docs.mongodb.org/ecosystem/use-cases/product-catalog/</a></li>
+</ol>
+
+            </div>
+            <div class="col-md-4">
+                
+<div class="well">
+    <h4>Vývoj</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                    <li><a href="VarAndDynamic.html">var a dynamic v C#</a></li>
+                    <li><a href="CatalogProduktov.html">Katal&#243;g produktov v relačnej DB</a></li>
+                    <li><a href="ContetFilter.html">Content filter</a></li>
+                    <li><a href="CoRobiProgramator.html">Čo rob&#237; program&#225;tor</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <h4>Všeobecné</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <h4>O mne</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                <li><a href="OMne.html">O mne</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; harrison314 2013</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
