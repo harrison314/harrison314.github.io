@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="O seri&#225;ly Votrelci d&#225;vnoveku, argumentoch z ignor&#225;cie a nevedomosti.">
+    <meta name="description" content="Stručn&#233; vysvtlenie mon&#225;d. Defin&#253;cia mon&#225;d.">
     <meta name="author" content="">
 
-    <title>Votrelci d&#225;vnoveku</title>
+    <title>Mon&#225;dy</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -63,40 +63,27 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <h1>Votrelci d&#225;vnoveku</h1>
+                
+<h1>Monády</h1>
+<p>
+    Monáda je trojica <i>(M, return, then)</i> pozostávajúca z typového konštruktora <i>M</i>
+    a&nbsp;dvojice polymorfných funkcií.
+</p>
+<blockquote>
+    <i>return</i> :: a &rarr; M a<br />
+    <i>then</i> :: M a &rarr; (a &rarr; M b) &rarr; M b
+</blockquote>
 
-<p>Je úsmevné sledovať <em>Prima ZOOM</em>, napríklad, ráno ide dokument 
-o starodávnych vodných kanáloch postavených tak,
-že kamene na seba dolíhajú tak, že medzi ne nezmesti list papiera (podobne ako majú Inkovia v Machu Picchu).
-Stačilo na to troch chlapov, dva kamene, niekoľko kusov dreva, lana a trochu piesku. </p>
+<p>
+    Tieto funkcie musia spĺňať nasledujúce pravidlá:
+</p>
 
-<p>Potom dajú <em>Votrelcov dávnoveku</em>, kde tvrdia, že to veda nedokáže ani najmodernejšou technikou a s toho vyplýva, že sú dielom mimozemšťanov.</p>
-
-<p>Vlastne v tom "dokumentárnom seriály" z čohokoľvek vyplýva,
-že nás navštevovali mimozemské civilizácie. Nejde ani tak o to,
-či mimozemšťania existujú, alebo nie, ale o ich dôkazy a tvrdenia,
-ktoré sú len <a href="http://www.pouzimerozum.sk/2011/07/22/uvod-do-sebaklamov-a-chyb-argumentacie/">logické klamy</a>.</p>
-
-<p>Zoberme si napríklad stavbu pyramíd alebo <em>Stonehenge</em>, pri veľkých stavbách sa nám vynárajú dve otázky - Prečo by to niekto staval a ako.</p>
-
-<p>Pri odpovedaní na otázku "Prečo" ľudia zabúdajú na niečo čo je tu s nami už veľmi dávno a to obyčajné ľudské nafúknuté ego, túžba po moci a sláve. Vládca, faraón, ... chcel po sebe zanechať niečo veľké, čo mu počas života upevní moc (spolu s náboženským aspektom týchto stavieb),
-zabezpečí obdiv ako doma, tak aj za hranicami svojej ríše.
-A po smrti mu zaistí nesmrteľnosť.</p>
-
-<p>Otázku ako treba riešiť od prípadu ku prípadu. No keď neviem, ako to postavili, neznamená to,
-že tie bloky kameňa premiestnili mimozemšťania antigravitaćným lúčom 
-z orbitu. Znamená to, len že momentálne nevieme, ako to postavili.
-Respektíve tvorcovia <em>Votrelcov dávnoveku</em> to nevedia. 
-No treba si uvedomiť, že aj v staroveku žili inteligentný ľudia, s inžinierskym prístupom,
-ktorí z dobovými poznatkami dokázali veľké veci.
-Preto tvrdenia tohto seriálu dehonestujú ľudstvo a našich predkov.
-Ďalšou vecou je, že veľkú stavbu nemuseli postaviť za rok, ako dnes halu supermarketu,
-pokojne to mohlo trvať 20 - 25 rokov, a to sa kľukne dá aj bez vynálezu kolesa. </p>
-
-<p>Na záver ešte <em>Giorgio A. Tsoukalos</em> zo svojim nezameniteľným účesom.</p>
-
-<p><img src="images/Generall/VotrelciDavnoveku/vd.jpg" alt="Giorgio A. Tsoukalos vs. Neil deGrasse Tyson" /></p>
-
+<blockquote>
+    <i>then</i> (<i>return</i> a) k = k a<br />
+    <i>then</i> m <i>return</i> = m<br />
+    <i>then</i> (&lambda; a &sdot; <i>then</i> (k a) (&lambda; b &sdot; k b ))
+    = <i>then</i> (<i>then</i> m (&lambda; a &sdot; k a))(&lambda; b &sdot; k b)<br />
+</blockquote>
             </div>
             <div class="col-md-4">
                 

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Prehľad r&#244;znych implement&#225;cii a pohľadov na Servise loc&#225;tor a IoC kontajnery.">
+    <meta name="author" content="">
+
+    <title>Stupne zla Service lok&#225;toru</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/blog-post.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+        <link rel="stylesheet" href="css/Highiler/vs.css" />
+        <script src="js/highlight.pack.js"></script>
+        <script type="text/javascript">
+            hljs.initHighlightingOnLoad();
+        </script>
+    <style>
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href=".">harrison314 blog</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="DevelopingAll.html">Programovanie</a>
+                </li>
+                <li>
+                    <a href="GeneralAll.html">Všeobecné</a>
+                </li>
+                <li>
+                    <a href="OMne.html">O mne</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>Stupne zla Service lokátoru</h1>
+
+<p>O <a href="http://www.martinfowler.com/articles/injection.html">servise lokátore</a> ako antipatterne bolo toho už popísane veľa,
+ale v skratke, čo to je.</p>
+
+<p>Service lokátor vracia inštanciu služby podľa nejakého
+parametru, no na rozdiel od <a href="http://voho.cz/wiki/factory-method/">Factory method</a>, tá istá metóda vracia rôzne typy služieb.</p>
+
+<p>Medzi hlavné námietky voči nemu patrí poučovanie princípu <a href="http://www.martinfowler.com/articles/injection.html">Dependency injection (DI)</a>,
+teda to, že trieda sa navonok neprizná k svojim závislostiam a má prístup ku všetkému, 
+k čomu chce. To má niekoľko praktických dôsledkov:</p>
+
+<ul>
+<li>znemožníte testovanie vášho kódu, hlavne mockovanie závislostí,</li>
+<li>vaša trieda môže hodiť neočakávané výnimky, teda spadnúť lebo v servise lokátore chýba závislosť,</li>
+<li>ak sa jedná o extrenú závislosť, človek je nútený hľadať dekompilátorom, čo vlastne treba pridať do referencií a ako to nakonfigurovať, </li>
+<li>nemôžete si byť istý, či sa požadovaná služba v servise lokátore bola už registrovaná,</li>
+<li>miešanie infraštruktúrneho kódu s aplikačným</li>
+</ul>
+
+<p>Najmenej zlý je inštančný servise lokátor, ktorý má rozhranie a resolvuje inštancie 
+len podľa typu. V malých aplikáciách to nemusí byť problém, hlavne pri jedinom 
+vývojárovi, no aplikácie sa zvyknú rozrastať.  </p>
+
+<pre>
+ <code class="cs">
+    public interface IServiceLocator
+    {
+        T Resolve&lt;T&gt;();
+    }
+
+    public class Locator : IServiceLocator
+    {
+        private readonly Dictionary&lt;Type, Func&lt;object&gt;&gt; services;
+
+        public Locator()
+        {
+            this.services = new Dictionary&lt;Type, Func&lt;object&gt;&gt;();
+        }
+
+        public void Register&lt;T&gt;(Func&lt;T&gt; resolver)
+        {
+           this.services[typeof(T)] = () =&gt; resolver();
+        }
+
+        public T Resolve&lt;T&gt;()
+        {
+            return (T)this.services[typeof(T)].Invoke();
+        }
+    }
+ </code>
+</pre>
+
+<p>O dosť horší je servise lokátor, ktorý je súčasne Singlton.
+Ten prerastie kódom ako rakovina a už nikdy sa ho nezbavíte (pamätáte si ešte,
+že globálne premenné sú zlo). Testovateľnosť sa tým znížila takmer na nulu,
+a znovu-použiteľnosť tiež, pretože ľubovoľná trieda môže byť závislá na vašom servise lokátore.</p>
+
+<p>Najhoršie je, keď servise lokátor resolvuje inštancie podľa stringu (textového parametru).
+ Tu sa k tomu všetkému pridávajú preklepy v textových kľúčoch, nesprávne pretypovanie služieb 
+a nemožnosť aspoň akej takej typovej kontroly počas kompilácie alebo v kompozitnom roote.</p>
+
+<h2>Ako sa s tým vysporiadať?</h2>
+
+<p>Najlepšie je sa rozumne držať <a href="https://www.zdrojak.cz/clanky/navrhove-principy-solid/">SOLID princípov</a>, neskrývať závislosti.</p>
+
+<p>Keď už treba vytvárať inštancie podľa nejakých parametrov, treba použiť <a href="http://voho.cz/wiki/factory-method/">factory</a>, alebo factory na factory, no aj samotnú factory treba injektovať.</p>
+
+<p>Zatiaľ najlepším riešením správy závislostí a inštancií je použiť kvalitný IoC kontajner.
+Kvalitný pre mňa znamená, že okrem poskladania objektového grafu podporuje nenúti programátora meniť aplikačný kód
+(teda žiadne atribúty a anotácie, aplikačný kód by ani nemal vedieť, že používate IoC kontajner)
+a mal by vedieť zverifikovať a zvalidovať objektový graf a jeho nastavenia. Tým si človek ušetrí veľa nepríjemných prekvapení.</p>
+
+<p>Veci ako podpora dekorátorov, dynamických proxy sú len bonus k tomu (napr. <a href="https://github.com/castleproject/Windsor/blob/master/docs/README.md">Castle Windsor</a>, a <a href="https://simpleinjector.org/index.html">Simple inejctor</a>).</p>
+
+<h2>IoC v JavaScripre?</h2>
+
+<p>V poslednej dobe sa na fórach stretávam s tým, že v JavaScripte chcú vývojári používať IoC kontajner, dokonca jestvuje plno implementácií.</p>
+
+<p>Až na to, že JavaScript ako taký nemá typy parametrov (duck typing), nemá rozhrania, a objekty môžu meniť metódy, môžu ich pridávať aj prepisovať.</p>
+
+<p>Jediné čoho sa môže „IoC“ kontajner v čistom JavaScripte chytiť sú názvy parametrov konštruktora. No ale to už nie je IoC kontajner,
+ale najhoršia forma servise lokátora. Dokonca nejde ani rozumne validovať objektový graf.
+Preto to podľa mňa prináša viac problémov ako úžitku. </p>
+
+            </div>
+            <div class="col-md-4">
+                
+<div class="well">
+    <h4>Vývoj</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                    <li><a href="ServiceLocator.html">Stupne zla Service lok&#225;toru</a></li>
+                    <li><a href="Monads.html">Mon&#225;dy</a></li>
+                    <li><a href="VarAndDynamic.html">var a dynamic v C#</a></li>
+                    <li><a href="CatalogProduktov.html">Katal&#243;g produktov v relačnej DB</a></li>
+                    <li><a href="ContetFilter.html">Content filter</a></li>
+                    <li><a href="CoRobiProgramator.html">Čo rob&#237; program&#225;tor</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <h4>Všeobecné</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                <li><a href="VotrelciDavnoveku.html">Votrelci d&#225;vnoveku</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <h4>O mne</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                <li><a href="OMne.html">O mne</a></li>
+                <li><a href="OMneOdkazy.html">Moja tvorba inde</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; harrison314 2013</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -70,20 +70,20 @@
             <div class="col-lg-8">
                 <h1>Ako používať var a dynamic v C#</h1>
 
-<p>V poslednej dobe som si všimol, že vývojári píšu var úplne všade a potom C# vyzerá ako JavaScript.</p>
+<p>V poslednej dobe som si všimol, že vývojári píšu <em>var</em> úplne všade a potom C# vyzerá ako JavaScript.</p>
 
 <h2>Kedy <em>var</em> použiť:</h2>
 
 <p>Anonymné triedy, tam ani iná možnosť nie je.</p>
 
 <p>Ak máte šialený generický typ 
-<em>Dictionary&lt;string, List&lt;Func&lt;NUllable&lt;int&gt;, string&gt;&gt;&gt;</em>, 
+<em>Dictionary&lt;string, List&lt;Func&lt;Nullable&lt;int&gt;, string&gt;&gt;&gt;</em>, 
 no tu je asi na mieste podotknúť, že ľudom , ktorý niečo takéto napíšu treba zlámať prsty. 
-Pretože daný typ je absolútne nesémantický (hlavne <em>Func&lt;NUllable&lt;int&gt;, string&gt;</em>) a bolo by ho lepšie nahradiť implementáciou rozumnej triedy alebo tried.</p>
+Pretože daný typ je absolútne nesémantický (hlavne <em>Func&lt;Nullable&lt;int&gt;, string&gt;</em>) a bolo by ho lepšie nahradiť implementáciou rozumnej triedy alebo tried.</p>
 
 <h2>Takže kedy a prečo nepoužívať var:</h2>
 
-<p>Nesprehľadnenie kódu, pretože na mnohých miestach nie je človeku jasné čo v tej premennej vlastne je. </p>
+<p>Znesprehľadnenie kódu, pretože na mnohých miestach nie je človeku jasné čo v tej premennej vlastne je. </p>
 
 <pre>
 <code class="cs">
@@ -91,18 +91,18 @@ var lastItem = this.FindLastItem();
 </code>
 </pre>
 
-<p>Je tam číslo, string, objekt? Aký ? ... To nie je na prvý pohľad jasné.</p>
+<p>Je tam číslo, reťazec, objekt? aký ? ... To nie je na prvý pohľad jasné.</p>
 
 <p>Znižuje sémantiku kódu. Pretože je rozdiel v tom, čo chce vývojár povedať týmito dvoma riadkami. </p>
 
 <pre>
-<code class="cs">
+   <code class="cs">
 FooStruct foo =new FooStruct();
 IFoo foo = new FooStruct();
     </code>
 </pre>
 
-<p>Na var nefunguje vo Visual Studiu  <em>„Find all references“</em> a <em>„Find usages“</em>.</p>
+<p>Na <em>var</em> nefunguje vo Visual Studiu  <em>„Find all references“</em> a <em>„Find usages“</em>.</p>
 
 <h2>Kedy používať dynamic</h2>
 
@@ -163,6 +163,8 @@ namespace Harrison314.ExamplexAsp.Binders
     <div class="row">
         <div class="col-lg-12">
             <ul class="list-unstyled">
+                    <li><a href="ServiceLocator.html">Stupne zla Service lok&#225;toru</a></li>
+                    <li><a href="Monads.html">Mon&#225;dy</a></li>
                     <li><a href="VarAndDynamic.html">var a dynamic v C#</a></li>
                     <li><a href="CatalogProduktov.html">Katal&#243;g produktov v relačnej DB</a></li>
                     <li><a href="ContetFilter.html">Content filter</a></li>
