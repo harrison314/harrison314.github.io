@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="O seri&#225;ly Votrelci d&#225;vnoveku, argumentoch z ignor&#225;cie a nevedomosti.">
+    <meta name="description" content="Kr&#225;tky n&#225;vod ako nastaviť &#250;pravu č&#237;sla verzie assembly pomocou TFS-ka 2015 pre automatick&#233; buildy.">
     <meta name="author" content="">
 
-    <title>Votrelci d&#225;vnoveku</title>
+    <title>TFS 2015 a č&#237;slo verzie assembly</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +21,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+        <link rel="stylesheet" href="css/Highiler/vs.css" />
+        <script src="js/highlight.pack.js"></script>
+        <script type="text/javascript">
+            hljs.initHighlightingOnLoad();
+        </script>
     <style>
         img {
             max-width: 100%;
@@ -63,39 +68,66 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <h1>Votrelci d&#225;vnoveku</h1>
+                <h1>TFS 2015 a číslo verzie assembly</h1>
 
-<p>Je úsmevné sledovať <em>Prima ZOOM</em>, napríklad, ráno ide dokument 
-o starodávnych vodných kanáloch postavených tak,
-že kamene na seba dolíhajú tak, že medzi ne nezmesti list papiera (podobne ako majú Inkovia v Machu Picchu).
-Stačilo na to troch chlapov, dva kamene, niekoľko kusov dreva, lana a trochu piesku. </p>
+<p>Krátky návod ako nastaviť automatickú úpravu čísla verzie assembly pomocou TFS-ka 2015 pre automatické buildy.
+Skript upravuje posledné dve čisla, kde <em>Build Number</em> je počet dní od zadaného dátumu
+a <em>Revision</em> sekunda buildu vrámci dňa, ide to samozrejme upraviť.</p>
 
-<p>Potom dajú <em>Votrelcov dávnoveku</em>, kde tvrdia, že to veda nedokáže ani najmodernejšou technikou a s toho vyplýva, že sú dielom mimozemšťanov.</p>
+<p>Do sourse controlu treba pridať do koreňového priečinku PowerShell script nazvaný <em>UpdateSourceVersion.ps1</em> :</p>
 
-<p>Vlastne v tom "dokumentárnom seriály" z čohokoľvek vyplýva,
-že nás navštevovali mimozemské civilizácie. Nejde ani tak o to,
-či mimozemšťania existujú, alebo nie, ale o ich dôkazy a tvrdenia,
-ktoré sú len <a href="http://www.pouzimerozum.sk/2011/07/22/uvod-do-sebaklamov-a-chyb-argumentacie/">logické klamy</a>.</p>
+<pre>
+ <code class="ps">
+param([string] $BaseDir="")
 
-<p>Zoberme si napríklad stavbu pyramíd alebo <em>Stonehenge</em>, pri veľkých stavbách sa nám vynárajú dve otázky - Prečo by to niekto staval a ako.</p>
+if([string]::IsNullOrEmpty($BaseDir))
+{
+    $BaseDir = split-path -parent $MyInvocation.MyCommand.Definition
+}
 
-<p>Pri odpovedaní na otázku "Prečo" ľudia zabúdajú na niečo čo je tu s nami už veľmi dávno a to obyčajné ľudské nafúknuté ego, túžba po moci a sláve. Vládca, faraón, ... chcel po sebe zanechať niečo veľké, čo mu počas života upevní moc (spolu s náboženským aspektom týchto stavieb),
-zabezpečí obdiv ako doma, tak aj za hranicami svojej ríše.
-A po smrti mu zaistí nesmrteľnosť.</p>
+$re = [regex] 'Assembly[a-zA-Z]+\("\d\.\d\.\*"\)'
+[int]$buildNumberDay = ((Get-Date) - (Get-Date '2013-06-30')).Days
+[int]$buildNumberSec = ((Get-Date) - [DateTime]::Now.Date).TotalSeconds
+[string] $replacment = "{0}.{1}" -f $buildNumberDay, $buildNumberSec
 
-<p>Otázku ako treba riešiť od prípadu ku prípadu. No keď neviem, ako to postavili, neznamená to,
-že tie bloky kameňa premiestnili mimozemšťania antigravitaćným lúčom 
-z orbitu. Znamená to, len že momentálne nevieme, ako to postavili.
-Respektíve tvorcovia <em>Votrelcov dávnoveku</em> to nevedia. 
-No treba si uvedomiť, že aj v staroveku žili inteligentný ľudia, s inžinierskym prístupom,
-ktorí z dobovými poznatkami dokázali veľké veci.
-Preto tvrdenia tohto seriálu dehonestujú ľudstvo a našich predkov.
-Ďalšou vecou je, že veľkú stavbu nemuseli postaviť za rok, ako dnes halu supermarketu,
-pokojne to mohlo trvať 20 - 25 rokov, a to sa kľukne dá aj bez vynálezu kolesa. </p>
+$reCallback = {
+    $args[0].Value -replace "\*", $replacment
+};
 
-<p>Na záver ešte <em>Giorgio A. Tsoukalos</em> zo svojim nezameniteľným účesom.</p>
+Write-Host "Scan AssemblyInfo.cs in " $baseDir
+$files = Get-ChildItem $BaseDir -Recurse -Filter "AssemblyInfo.cs" 
+foreach ($file in $files)
+{
+    $content = [IO.File]::ReadAllText($file.FullName, [Text.Encoding]::UTF8)
+    if($re.IsMatch($content))
+    {
+        $content = $re.Replace($content, $reCallback)
+        Set-Content -Path  $file.FullName -Value $content
+        "Write vesion : * {0}.{1} to file '{2}'." -f $buildNumberDay, $buildNumberSec, $file.FullName | Write-Host
+    }
+}
+ </code>
+</pre>
 
-<p><img src="images/Generall/VotrelciDavnoveku/vd.jpg" alt="Giorgio A. Tsoukalos vs. Neil deGrasse Tyson" /></p>
+<p>Všetky súbory <em>AssemblyInfo.cs</em> sa upravia tak aby v obsahovali:</p>
+
+<pre>
+ <code class="cs">
+ // You can specify all the values or you can default the Build and Revision Numbers 
+ // by using the '*' as shown below:
+ // [assembly: AssemblyVersion("1.0.*")]
+ [assembly: AssemblyVersion("1.0.*")]
+ [assembly: AssemblyFileVersion("1.0.0.0")]
+ [assembly: AssemblyInformationalVersion("1.0.*")]
+ </code>
+</pre>
+
+<p>Potom sa v nastaveniach buildu v  <em>Team Foundation Server 2015</em> sa pridá PowerShell script <em>UpdateSourceVersion.ps1</em> 
+predradený pred samotnú kompiláciu a testy.</p>
+
+<p><img src="images/Programing/Tfs15AsmVersion/1.png" alt="Team Foundation Server 2015" /></p>
+
+<p>A veselo buildujeme.</p>
 
             </div>
             <div class="col-md-4">
