@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Odkazy na moju tvorbu.">
+    <meta name="description" content="Moje portf&#243;lio.">
     <meta name="author" content="">
 
-    <title>Odkazy na moju tvorbu</title>
+    <title>Portf&#243;lio</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -63,23 +63,71 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                
-<h1>Odkazy na moju tvorbu</h1>
-<p>
-    Tu uvádzam odkazy na moju tvorbu na iných stránkach a blogoch.
-</p>
+                <h1>Portfólio</h1>
 
-<dl class="dl-horizontal">
-    
-    <dt><a href="http://www.lovcisarlatanov.sk/kategorizacia-sarlatanskych-clankov/" target="_blank">Lovci šarlatánov</a></dt>
-    <dd>
-        Kategorizácia šarlatánskych článkov
-        <i>(článok vznikol ako vedlajší produkt <a href="ContetFilter.html">exprimentu s rozlišovaním hodnovernosti obsahu</a>)</i>
-    </dd>
+<h2>FileUtils</h2>
 
-    <dt><a href="http://invivomagazin.sk/umela-inteligencia-inteligentne-spravanie-nemusi-znamenat-inteligenciu_255.html" target="_blank">In Vivo magazín</a></dt>
-    <dd>Umelá inteligencia: Inteligentné správanie nemusí znamenať inteligenciu</dd>
-</dl>
+<p><em>FileUtils</em> je jednoduchá aplikácia, ktorej hlavnou funkcionalitou je hľadanie duplicitných súborov
+na disku podľa ich obsahu. Je vhodná pri veľkom množstve PDF-iek alebo fotiek na disku. Medzi ďalšie 
+funkcie a vlastnosti patrí:</p>
+
+<ul>
+<li>spájanie a rozdeľovanie súborov,</li>
+<li>skartovača súborov,</li>
+<li>lokalizácia aplikácie,</li>
+<li>systém pluginov.</li>
+</ul>
+
+<p>Zaujímavosťou tohto programu je spôsob hľadania duplicitných súborov,
+využíva sa na to <em>HashSet</em> objektov reprezentujúcich súbor.
+Tieto objekty si uchovávajú cestu k súboru a jeho veľkosť. Veľkosť súboru sa používa v metóde <em>GetHashCode</em> , 
+metóda <em>Equals</em> najskôr porovná veľkosti súborov, ak sa zhodujú prečíta ich a vypočíta ich MD5 hashe,
+ktoré následne porovná. Vďaka tomu je hľadanie duplicitných súborov rýchle (na bežnom notebooku cca 1GB priemerne 300-500KB súborov,
+prehľadá za 30 sekúnd) a pamäťovo nenáročné.</p>
+
+<p><strong>Použité technológie</strong></p>
+
+<p>C# 4.0, WPF, lokalizácia pomocou T4 generátora resx súborov a vlastný WPF MarkupExtension pre dynamické načítavanie lokalizácie.</p>
+
+<p><img src="images/About/Portfolio/1.png" alt="Hľadanie zhodných súborov" /></p>
+
+<p><img src="images/About/Portfolio/2.png" alt="Nastavenia" /></p>
+
+<h2>UnitologyIs</h2>
+
+<p>Medicínsky informačný systém. </p>
+
+<p>Kompletná dokumentáciu s popisom nájdete 
+<a href="images/About/Portfolio/UnitologyIs.pdf" target="_blank">tu - UnitologyIs</a></p>
+
+<p><img src="images/About/Portfolio/3.png" alt="UnitologyIs obrázok 1" /></p>
+
+<p><img src="images/About/Portfolio/4.png" alt="UnitologyIs obrázok 2" /></p>
+
+<h2>PerDia2012</h2>
+
+<p>PerDia2012 je jednoduchá webová aplikácia, ktorá ma slúžiť 
+ako denník a organizátor pre poznámky a pripomienky s možnosťou fulltextového vyhľadávania,
+anotácií záznamov v denníku, súkromnou časovou osou a iných. </p>
+
+<p>Ide o single page aplikáciu postavenú na OWIN-e (server Nowin), Web Api,
+SimpleInjector, MS SQL. Na klientskej strane TypeScript 
+prekladaný do ES6, knockout.js, Director.js a Bootstrap.</p>
+
+<p>Šlo mi o to postaviť veľmi ľahkú a rýchlu aplikáciu,
+pomocou technológií používaných v SPA aplikáciách,
+a triku používanému v <a href="http://www.augi.cz/programovani/architektura-skalovatelnych-aplikaci/">CQRS</a> architektúre – tam,
+kde by dopyt do databázy používal <em>JOIN</em> sa nahradí databázovým
+pohľadom, použitie interného event publisher-a 
+pre asynchrónnu aktualizáciu nepriamo súvisiacich dát 
+(napríklad tabuliek pre používaných pre fulltext vyhľadávanie). </p>
+
+<p><strong>Použité technológie</strong></p>
+
+<p>C# 4.6, Owin, ASP.NET Web Api, SimpleInjector, Data reader a MS SQL 2014 (stored procedúry, Fulltext index, CTE, pôvodne aj SQL Service Brooker), TypeScript, knockout.js, Director.js a Bootstrap.</p>
+
+<p>Pre unit testovanie: knižnice Sould, a Moq.</p>
+
             </div>
             <div class="col-md-4">
                 
