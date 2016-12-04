@@ -118,7 +118,7 @@ prehľadá za 30 sekúnd) a pamäťovo nenáročné.</p>
 
 <p>PerDia2012 je jednoduchá webová aplikácia, ktorá ma slúžiť 
 ako denník a organizátor pre poznámky a pripomienky s možnosťou fulltextového vyhľadávania,
-anotácií záznamov v denníku, súkromnou časovou osou a iných. </p>
+anotácií záznamov v denníku, súkromnou časovou osou, možnosťou exportu do "offline" html balíčka a iných. </p>
 
 <p>Ide o single page aplikáciu postavenú na OWIN-e (server Nowin), Web Api,
 SimpleInjector, MS SQL. Na klientskej strane TypeScript 
@@ -146,6 +146,27 @@ Entity Framework (manuálne mapovanie), Entity Framework s projekciou pomocou Au
 a iné (Tiny Mapper, Value injector, ...).</p>
 
 <p>Odkaz na zdrojové kódy <a href="https://github.com/harrison314/MapperPerformace">MapperPerformace</a>.</p>
+
+<h2>MassiveDynamic Proxy Generator</h2>
+
+<p><em>MassiveDynamicProxyGenerator</em> je miniatúrna a ľahká knižnica pre dynamické generovanie proxy objektov a dekorátorov.</p>
+
+<p>Generovanie proxy objektov ide využiť napríklad na vytváranie NULL implementácii rozhraní (vzor <em>Null object</em>), zakrytie prístupu ku vzdialenej službe (rovnako to robí WCF-ko) napríklad cez JSON-RPC, alebo RESTOM. Alebo pre inú automatickú implementáciu rozhraní (logovanie volania, správanie určené mennou konvenciou metód,....).</p>
+
+<p>Dynamické dekorátory sa dajú výhodne použiť ako interceptory, oddelenie infraštruktúrneho kódu od doménového (verifikácia prístupových práv, logovanie, sledovanie perfomace),...</p>
+
+<p>Knižnica umožňuje vytvárať:</p>
+
+<ul>
+<li>Dynamické proxy objekty s interceptorom,</li>
+<li>Inštancie dekorátorov s interceptorom,</li>
+<li>Dynamické proxy objekty pre riadenie vytvárania inštancií reálneho objektu.</li>
+</ul>
+
+<p>Vytvorený Nuget balíček sa nachádza na adrese <a href="https://www.nuget.org/packages/MassiveDynamicProxyGenerator/">https://www.nuget.org/packages/MassiveDynamicProxyGenerator/</a>,
+je určený pre .Net 4.0, 4.5, 4.6, 4.6.1 a .NetStandart 1.6.</p>
+
+<p>Odkaz na zdrojové kódy spolu s ukážkami použitia <a href="https://github.com/harrison314/MassiveDynamicProxyGenerator">MassiveDynamicProxyGenerator</a>.</p>
 
             </div>
             <div class="col-md-4">
