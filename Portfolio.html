@@ -164,9 +164,32 @@ a iné (Tiny Mapper, Value injector, ...).</p>
 </ul>
 
 <p>Vytvorený Nuget balíček sa nachádza na adrese <a href="https://www.nuget.org/packages/MassiveDynamicProxyGenerator/">https://www.nuget.org/packages/MassiveDynamicProxyGenerator/</a>,
-je určený pre .Net 4.0, 4.5, 4.6, 4.6.1 a .NetStandart 1.6.</p>
+je určený pre .Net 4.0, 4.5, 4.6, 4.6.1, .NetStandart 1.6 (.Net Core) a .NetStandart 1.4 (UWP aplikácie).</p>
 
 <p>Odkaz na zdrojové kódy spolu s ukážkami použitia <a href="https://github.com/harrison314/MassiveDynamicProxyGenerator">MassiveDynamicProxyGenerator</a>.</p>
+
+<h3>MassiveDynamic Proxy Generator intergrácia pre SimpleInjector</h3>
+
+<p>K MassiveDynamicProxygenerator-u som vytvoril integračnú knižnicu pre <a href="https://simpleinjector.org/index.html">SimpleInjector</a>, ktorá umožňuje do IoC kontainera registrovať:</p>
+
+<ul>
+<li>mock (null implementácia služby),</li>
+<li>proxy implementácie rozhraní,</li>
+<li>dekorátorov pre služby v IoC konatienry,</li>
+<li>inštančných provaiderov.</li>
+</ul>
+
+<p>Táto knižnica má aj „nebezpečné“ registrácie, ktoré nezodpovedajú best practise razených vývojármi SimpleInjector-u ako:</p>
+
+<ul>
+<li>namokovanie všetkých neregistrovaných služieb v IoC kontajnery,</li>
+<li>použitie vlastných inštančných providerov.</li>
+</ul>
+
+<p>Vytvorený Nuget balíček sa nachádza na adrese <a href="https://www.nuget.org/packages/MassiveDynamicProxyGenerator.SimpleInjector/">https://www.nuget.org/packages/MassiveDynamicProxyGenerator.SimpleInjector/</a>,
+je určený pre .Net 4.0, 4.5, 4.6, 4.6.1, .NetStandart 1.6 (.Net Core) a .NetStandart 1.4 (UWP aplikácie).</p>
+
+<p>Ukážky použitia a príklady so zdrojovými kódmi sa nachádzajú na <a href="https://github.com/harrison314/MassiveDynamicProxyGenerator#massivedynamicproxygeneratorsimpleinjector">https://github.com/harrison314/MassiveDynamicProxyGenerator#massivedynamicproxygeneratorsimpleinjector</a>.</p>
 
             </div>
             <div class="col-md-4">
