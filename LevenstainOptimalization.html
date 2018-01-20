@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Optimaliz&#225;cia pomocou unsafe k&#243;du.">
+    <meta name="author" content="">
+
+    <title>Optimaliz&#225;cia v&#253;počtu Levenstainovej vzdialenosti</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/blog-post.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+        <link rel="stylesheet" href="css/Highiler/vs.css" />
+        <script src="js/highlight.pack.js"></script>
+        <script type="text/javascript">
+            hljs.initHighlightingOnLoad();
+        </script>
+    <style>
+        img {
+            max-width: 100%;
+        }
+    </style>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-83854587-1', 'auto');
+  ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href=".">harrison314 blog</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="DevelopingAll.html">Programovanie</a>
+                </li>
+                <li>
+                    <a href="GeneralAll.html">Všeobecné</a>
+                </li>
+                <li>
+                    <a href="OMne.html">O mne</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <p></p>
+
+<h1>Optimalizácia výpočtu Levenstainovej vzdialenosti</h1>
+
+<p>V&nbsp;projekte <a href="Portfolio.html">PerDia2012</a> som sa rozhodol pridať do ku mužnostiam 
+fulltext vyhľadávania aj možnosť približného (fuzzy) vyhľadávania, ktoré by bolo odolné 
+aj voči mojim preklepom.</p>
+
+<p>Samotné vyhľadávanie funguje tak, že ku vyhľadávaným zadaným slovám nájdu pomocou 
+stored procedúry v&nbsp;invertovanom indexe trmy,
+ktoré majú menšiu editačnú vzdialenosť ako je prahová hodnota.
+S&nbsp;týchto termov sa vytvorí klasický fulltext dopyt a&nbsp;ten už vráti požadované výsledky.</p>
+
+<p>Výpočet editačnej  vzdialenosti sa musí zavolať pre každý term v&nbsp;invertovanom indexe
+krát každé slovo v&nbsp;dopyte. Invertovaný index je v&nbsp;mojom prípade tvorený cca. 70&nbsp;000 termami.</p>
+
+<p>Pre prvé experimenty som použil základnú implementáciu výpočtu Leventainovej vzdialnosti pomocou 
+dynamického programovania, no odozvy boli neuveriteľné pomalé – rádovo sekundy až 
+desiatky sekúnd pre vyhľadávaný dopyt tvorený dvomi až tromi slovami. Použitý kód sa nachádza nižšie (<a href="https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance">zdroj</a>).</p>
+
+<pre>
+ <code class="cs">
+public int LevenshteinDistance(string source, string target)
+{
+    if (string.IsNullOrEmpty(source))
+    {
+        if (string.IsNullOrEmpty(target))
+        {
+            return 0;
+        }
+        else
+        {
+            return target.Length;
+        }
+    }
+
+    if (string.IsNullOrEmpty(target))
+    {
+        return source.Length;
+    }
+
+    if (source.Length > target.Length)
+    {
+        var temp = target;
+        target = source;
+        source = temp;
+    }
+
+    int m = target.Length;
+    int n = source.Length;
+    int[] distance = new int[2, m + 1];
+
+    for (int j = 1; j <= m; j++)
+    {
+        distance[0, j] = j;
+    }
+
+    int currentRow = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        currentRow = i &amp; 1;
+        distance[currentRow, 0] = i;
+        int previousRow = currentRow ^ 1;
+        for (int j = 1; j <= m; j++)
+        {
+            int cost = (target[j - 1] == source[i - 1] ? 0 : 1);
+            distance[currentRow, j] = Math.Min(Math.Min(
+                        distance[previousRow, j] + 1,
+                        distance[currentRow, j - 1] + 1),
+                        distance[previousRow, j - 1] + cost);
+        }
+    }
+
+    return distance[currentRow, m];
+}
+ </code>
+</pre>
+
+<p>Pre to som sa rozhodol siahnuť po rôznych optimalizáciách na úrovni aplikácie (cache). No výsledky boli stále nedostačujúce, tak som sa rozhodol optimalizovať surový výkon. Výsledný kód sa nachádza nižšie.</p>
+
+<pre>
+ <code class="cs">
+public unsafe bool IsLevenshteinDistanceLessMaxDistUnsafe(string source, string target, int maxDistance)
+{
+    if (maxDistance < 1)
+    {
+        throw new ArgumentOutOfRangeException("Parameter maxDistance is more then 1.", "maxDistance");
+    }
+
+    if (string.IsNullOrEmpty(source))
+    {
+        if (string.IsNullOrEmpty(target))
+        {
+            return true;
+        }
+
+        return target.Length < maxDistance;
+    }
+
+    if (source.Length > target.Length)
+    {
+        string temp = target;
+        target = source;
+        source = temp;
+    }
+
+    int m = target.Length;
+    int n = source.Length;
+
+    int* current = stackalloc int[m + 1];
+    int* previous = stackalloc int[m + 1];
+
+    for (int j = 0; j <= m; j++)
+    {
+        previous[j] = j;
+    }
+
+    fixed (char* sourcePtr = source)
+    {
+        fixed (char* targetPtr = target)
+        {
+            for (int i = 1; i <= n; ++i)
+            {
+                current[0] = i;
+                int minDistance = int.MaxValue;
+                for (int j = 1; j <= m; j++)
+                {
+                    int cost = (targetPtr[j - 1] == sourcePtr[i - 1] ? 0 : 1);
+                    int distanceLocal = Min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + cost);
+                    current[j] = distanceLocal;
+                    if (minDistance > distanceLocal)
+                    {
+                        minDistance = distanceLocal;
+                    }
+                }
+
+                if (minDistance >= maxDistance)
+                {
+                    return false;
+                }
+
+                int* tmp = current;
+                current = previous;
+                previous = tmp;
+            }
+        }
+    }
+
+    return previous[m] < maxDistance;
+}
+ </code>
+</pre>
+
+<p>Prepísaním do <em>unsafe</em> kódu som beh zrýchlil približne trojnásobne.
+To hlavne kvôli odstráneniu alokovania nových polí a&nbsp;priami prístup k&nbsp;nim.
+Na každý prístup to je len pár inštrukcií ale ak kus kódu robí 99% času to,
+že pristupuje k&nbsp;poliam, tak to rozdiel urobí.</p>
+
+<p>V&nbsp;nasledujúcej tabuĺke sú uvedené časy behu (čas behu je súčet časov potrebbných na vyhodnotenie šeistich porovnaní termov rôznej dĺžky a&nbsp;rôzneho prefixu) 
+jednotlivých implementácií  merané pomocou <a href="https://github.com/dotnet/BenchmarkDotNet">BenchmarkDotNet</a> 
+na Windows 10, .Net Framework 4.6.2 a&nbsp;procesore Intel Xeon CPU E3-1246 v3 3.50GHz.</p>
+
+<div class="table-responsive">
+<table class="table table-bordered">
+ <thead>
+  <tr>
+   <th>Metóda</th>
+  <th>Mean</th>
+   <th>Error</th>
+  <th>StdDev</th>
+  </td>
+ </thead>
+ <tbody>
+  <tr>
+    <td>Klasická implementácia</td>
+    <td>2.754 &micro;s</td>
+    <td>0.0562 &micro;s</td>
+    <td>0.0601 &micro;s</td>
+  </tr>
+   <tr>
+    <td>Unsafe implementácia</td>
+    <td>1.074  &micro;s</td>
+    <td>0.0205 &micro;s</td>
+    <td>0.0227 &micro;s</td>
+  </tr>
+ </tbody>
+</table>
+</div>
+
+<h2>Záver</h2>
+
+<p>Optimalizácia pomocou <em>unsafe</em> kódu v&nbsp;C# môže byť veľmi výhodná, v&nbsp;prípade,
+že sa optimalizujú algoritmy/metódy, ktoré často pristupujú k&nbsp;poliam a&nbsp;tento kód sa volá často.
+No na klasickú aplikačnú logiku je to veľmi nevhodné.</p>
+
+            </div>
+            <div class="col-md-4">
+                
+<div class="well">
+    <h4>Vývoj</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                    <li><a href="LevenstainOptimalization.html">Optimaliz&#225;cia v&#253;počtu Levenstainovej vzdialenosti</a></li>
+                    <li><a href="ZabezpecnieAspMvc.html">Zabezpečenie ASP.NET MVC</a></li>
+                    <li><a href="UzitocneProgramy.html">Užitočn&#233; programy</a></li>
+                    <li><a href="CoreStreaming.html">Video straming v ASP.NET Core</a></li>
+                    <li><a href="Tfs15AsmVersion.html">TFS 2015 a č&#237;slo verzie assembly</a></li>
+                    <li><a href="ServiceLocator.html">Stupne zla Service lok&#225;toru</a></li>
+                    <li><a href="Monads.html">Mon&#225;dy</a></li>
+                    <li><a href="VarAndDynamic.html">var a dynamic v C#</a></li>
+                    <li><a href="CatalogProduktov.html">Katal&#243;g produktov v relačnej DB</a></li>
+                    <li><a href="ContetFilter.html">Content filter</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <h4>Všeobecné</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                <li><a href="AlternativnyRecept.html">Propag&#225;cia alternat&#237;vnej medic&#237;ny</a></li>
+                <li><a href="VotrelciDavnoveku.html">Votrelci d&#225;vnoveku</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <h4>O mne</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                <li><a href="OMne.html">O mne</a></li>
+                <li><a href="OMneOdkazy.html">Moja tvorba inde</a></li>
+                <li><a href="Portfolio.html">Portf&#243;lio</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; harrison314 2013</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
