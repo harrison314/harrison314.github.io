@@ -151,7 +151,7 @@ a iné (Tiny Mapper, Value injector, ...).</p>
 
 <p><em>MassiveDynamicProxyGenerator</em> je miniatúrna a ľahká knižnica pre dynamické generovanie proxy objektov a dekorátorov.</p>
 
-<p>Generovanie proxy objektov ide využiť napríklad na vytváranie NULL implementácii rozhraní (vzor <em>Null object</em>), zakrytie prístupu ku vzdialenej službe (rovnako to robí WCF-ko) napríklad cez JSON-RPC, alebo RESTOM. Alebo pre inú automatickú implementáciu rozhraní (logovanie volania, správanie určené mennou konvenciou metód,....).</p>
+<p>Generovanie proxy objektov ide využiť napríklad na vytváranie NULL implementácii rozhraní (vzor <em>Null object</em>), zakrytie prístupu ku vzdialenej službe (rovnako to robí WCF-ko) napríklad cez JSON-RPC, alebo REST-om. Alebo pre inú automatickú implementáciu rozhraní (logovanie volania, správanie určené mennou konvenciou metód,....).</p>
 
 <p>Dynamické dekorátory sa dajú výhodne použiť ako interceptory, oddelenie infraštruktúrneho kódu od doménového (verifikácia prístupových práv, logovanie, sledovanie perfomace),...</p>
 
@@ -163,8 +163,8 @@ a iné (Tiny Mapper, Value injector, ...).</p>
 <li>Dynamické proxy objekty pre riadenie vytvárania inštancií reálneho objektu.</li>
 </ul>
 
-<p>Vytvorený Nuget balíček sa nachádza na adrese <a href="https://www.nuget.org/packages/MassiveDynamicProxyGenerator/">https://www.nuget.org/packages/MassiveDynamicProxyGenerator/</a>,
-je určený pre .Net 4.0, 4.5, 4.6, 4.6.1, .NetStandart 1.6 (.Net Core) a .NetStandart 1.4 (UWP aplikácie).</p>
+<p>Vytvorený  <a href="https://www.nuget.org/packages/MassiveDynamicProxyGenerator/">Nuget balíček</a>,
+ktorý je určený pre .Net 4.0, 4.5, 4.6, 4.6.1, .NetStandart 1.6, 2.0 a .NetStandart 1.4 (UWP aplikácie).</p>
 
 <p>Odkaz na zdrojové kódy spolu s ukážkami použitia <a href="https://github.com/harrison314/MassiveDynamicProxyGenerator">MassiveDynamicProxyGenerator</a>.</p>
 
@@ -179,17 +179,38 @@ je určený pre .Net 4.0, 4.5, 4.6, 4.6.1, .NetStandart 1.6 (.Net Core) a .NetSt
 <li>inštančných provaiderov.</li>
 </ul>
 
-<p>Táto knižnica má aj „nebezpečné“ registrácie, ktoré nezodpovedajú best practise razených vývojármi SimpleInjector-u ako:</p>
+<p>Táto knižnica má aj „nebezpečné“ registrácie, ktoré nezodpovedajú best practise razených vývojármi SimpleInjector-u, nimi sú:</p>
 
 <ul>
 <li>namokovanie všetkých neregistrovaných služieb v IoC kontajnery,</li>
 <li>použitie vlastných inštančných providerov.</li>
 </ul>
 
-<p>Vytvorený Nuget balíček sa nachádza na adrese <a href="https://www.nuget.org/packages/MassiveDynamicProxyGenerator.SimpleInjector/">https://www.nuget.org/packages/MassiveDynamicProxyGenerator.SimpleInjector/</a>,
-je určený pre .Net 4.0, 4.5, 4.6, 4.6.1, .NetStandart 1.6 (.Net Core) a .NetStandart 1.4 (UWP aplikácie).</p>
+<p>Vytvorený <a href="https://www.nuget.org/packages/MassiveDynamicProxyGenerator.SimpleInjector/">Nuget balíček</a>,
+ktorý je určený pre .Net 4.0, 4.5, 4.6, 4.6.1, .NetStandart 1.6, 2.0 a .NetStandart 1.4 (UWP aplikácie).</p>
 
-<p>Ukážky použitia a príklady so zdrojovými kódmi sa nachádzajú na <a href="https://github.com/harrison314/MassiveDynamicProxyGenerator#massivedynamicproxygeneratorsimpleinjector">https://github.com/harrison314/MassiveDynamicProxyGenerator#massivedynamicproxygeneratorsimpleinjector</a>.</p>
+<p>Ukážky použitia a príklady so zdrojovými kódmi sa nachádzajú na <a href="https://github.com/harrison314/MassiveDynamicProxyGenerator#massivedynamicproxygeneratorsimpleinjector">Github stránke projektu</a>.</p>
+
+<h3>MassiveDynamic Proxy Generator intergrácia pre Microsoft.Extensions.DependencyInjection</h3>
+
+<p>K MassiveDynamicProxygenerator-u som vytvoril integračnú knižnicu pre <a href="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/">Microsoft.Extensions.DependencyInjectio</a>,
+je určená pre použitie v štandardných ASP.NET Core 2.0 projektoch.
+Umožňuje do IoC kontainera pridať:</p>
+
+<ul>
+<li>triedu v roli dekorátora (samo o sebe to nesúvisí s MassiveDynamicProxygenerator),</li>
+<li>proxy implementácie rozhraní (pomocou interceptoru),</li>
+<li>dekorátory pre služby v IoC kontainery (pomocou interceptoru),</li>
+<li>inštančných provaiderov.</li>
+</ul>
+
+<p>Táto knižnica podporuje zatiaľ iba <em>.NetStandard 2.0</em>. K tomu použitie Microsoft.Extensions.DependencyInjection prináša svoje obmedzenia,
+napríklad pri použití „otvorenej generiky“ (angl: open generic) - v dekorátoroch ju nie možné použiť, vždy treba dekorovať konkretne typy alebo konkrétne generické typy.</p>
+
+<p>Vytvorený <a href="https://www.nuget.org/packages/MassiveDynamicProxyGenerator.Microsoft.DependencyInjection/">Nuget balíček</a>,
+ktorý je určený pre .NetStandart  2.0.</p>
+
+<p>Ukážky použitia a príklady so zdrojovými kódmi sa nachádzajú na <a href="https://github.com/harrison314/MassiveDynamicProxyGenerator#massivedynamicproxygeneratormicrosoftdependencyinjection">Github stránke projektu</a>.</p>
 
             </div>
             <div class="col-md-4">
