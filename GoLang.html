@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Užitočn&#233; programy, ktor&#233; sa občas hodia.">
+    <meta name="description" content="Golang">
     <meta name="author" content="">
 
-    <title>Užitočn&#233; programy</title>
+    <title>Golang a alternat&#237;vy</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +21,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+        <link rel="stylesheet" href="css/Highiler/vs.css" />
+        <script src="js/highlight.pack.js"></script>
+        <script type="text/javascript">
+            hljs.initHighlightingOnLoad();
+        </script>
     <style>
         img {
             max-width: 100%;
@@ -73,86 +78,95 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <h1>Užitočné programy</h1>
+                <p></p>
 
-<p>V tomto článku uvádzam niekoľko jednoduchých užitočných programov pre dotnet vývojára.</p>
+<h1>Golang a alternatívy</h1>
 
-<h2>IL Spy / dotPeek</h2>
+<p>Haipovaný jazyk, no len na špeciálne použitie. (Blog je písaný k verzii <em>Go 1.10</em> a hodnotí defaultný jazyk a kompilátor.)</p>
 
-<p>Ide o .Net dekompilátory. Dokážu zobraziť kód knižníc alebo programov napísaných v C#. Hodia sa hlavne ako rýchla dokumentácia pri riešení obskúrnych problémov, hľadaní závislostí alebo skontrolovaní výsledku optimalizácie kompilátora, ofluskátoru a podobne.</p>
-
-<ul>
-<li><a href="http://ilspy.net/">IL Spy</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=SharpDevelopTeam.ILSpy">IL Spy Visual Studio Extension</a></li>
-<li><a href="https://www.jetbrains.com/decompiler/">dotPeek</a></li>
-</ul>
-
-<h2>Nuget package Explorer</h2>
-
-<p>Nuget package Explorer je malý program umožňujúci prezeranie obsahu Nuget balíčkov, ich úpravu alebo ručnú tvorbu. Hodí sa pri tvorbe vlastných nuget balíčkov na skontrolovanie zbalených súborov. Navyše je ho možné prepojiť s IL Spy a tým rovno prezerať aj kód vložených knižníc.</p>
+<p><strong>Výhody:</strong></p>
 
 <ul>
-<li><a href="https://github.com/NuGetPackageExplorer/NuGetPackageExplorer">Nuget package Explorer</a></li>
+<li>Výsledkom kompilácie je jeden natívny spustiteľný súbor bez závislostí.</li>
+<li>Má štandardnú knižnica pre moderné použitie (JSON, REST Api, Http klient, certifikáty,...).</li>
+<li>Jednoduchá cross-kompilácia bez nutnosti mať k dispozícii cieľovú platformu (napr. Mac OS).</li>
+<li>Primitívny jazyk so statickým typovaním.</li>
+<li>Jednoduchá správa závislostí.</li>
+<li>Podpora paralelizácie v jazyku.</li>
+<li>Vhodné na mikro (piko) služby ako load balancer, proxy,...</li>
 </ul>
 
-<h2>RoslinPad</h2>
-
-<p>Nástroj na rýchle prototypovanie a skúšanie snippletov kódu, s podporou .Net Core a Nugetov. Ide v podstate o bezplatnú alternatívu k obľúbenému <a href="https://www.linqpad.net/">LinqPad-u</a>. Využívam ho hlavne na testovanie kódu, ktorý sa týka reflexie alebo regulárnych výrazov. No hodí sa napríklad aj na spustenie kódu, ktorý treba vykonať len raz (prekódovanie súboru, zmazanie priečinku <em>node_modules</em> a podobne).</p>
+<p><strong>Nevýhody:</strong></p>
 
 <ul>
-<li><a href="https://roslynpad.net/">RoslinPad</a></li>
-<li><a href="https://www.microsoft.com/sk-sk/store/p/roslynpad/9nctj2cqwxv0?ocid=badge&amp;rtc=1">RoslinPad v Microsoft store</a></li>
+<li>Až moc primitívny jazyk, pre mňa to je kombinácia Pascalu a JavaScriptu.</li>
+<li>Absencia výnimiek, chybu treba vždy vracať a po každej operácii kontrolovať, či nenastala.</li>
+<li>Absencia generík, či makier a overloadov funkcií. To vedie k opakovaniu kódu a vymýšľaniu mien pre overloady a sťažuje implementáciu algoritmov a infraštruktúrneho kódu.</li>
+<li>Absencia resoursov, keď je treba zakompilovať nejaký súbor do binárky je ho tam nutné napastovať ako string alebo bytové pole.</li>
+<li>Nemožnosť kors-kompilácie ak sa použije v kombinácii s C/C++.</li>
+<li>Defaultne chýbajú verzie závislostí a ich automatický restor.</li>
+<li>Na natívne kompilovaný jazyk určený pre vysoký výkon mi chýba možnosť explicitne vytvárať a deštruovať dátové štruktúry.</li>
 </ul>
 
-<h2>Papercut</h2>
+<h2>Alternatívy</h2>
 
-<p>Papercut jednoduchý nástroj pre testovanie odosielania a formátovania mialov z aplikácií. Ide o jednoduchý desktopový SMTP email server.</p>
+<h3>C++ 11 a vyšie</h3>
 
-<ul>
-<li><a href="https://github.com/ChangemakerStudios/Papercut">Papercut</a></li>
-</ul>
+<p>Od C++11 považujem C++ za modrený jazyk, ktorému nechýbajú veci ako lambdy, funkcie vyššieho rádu, immutable, polymorfizmus... Plus má vďaka <em>Opem MP</em> priamo v jazyku podporu paralelizácie.</p>
 
-<h2>ngrok</h2>
+<p>Z neparalného programu:</p>
 
-<p>Ngrok je program a služba umožňujúca vytunelovať lokálny port (tcp, udp) do internetu s verejnou doménou druhého rádu. Hodí sa napríklad na predvedenie webu zákazníkovi, bez nutnosti deplonúť ho na verejne prístupný server, testovanie web hookov, testovanie Microsoft bot frameworku. Navyše po spustení poskytuje Web API, pomocou ktorého je z neho možné zistiť dodatočné informácie alebo meniť nastavenia a tým tento proces automatizovať.</p>
+<pre>
+ <code class="cpp">
+  #include &lt;cmath&gt;
+  int main(int argc, char *argv[])
+  {
+    const int size = 256;
+    double sinTable[size];
 
-<ul>
-<li><a href="https://ngrok.com/">ngrok</a></li>
-<li><a href="https://ngrok.com/download">ngrok - Downloads</a></li>
-</ul>
+    for(int n=0; n&lt;size; ++n)
+      sinTable[n] = std::sin(2 * M_PI * n / size);
 
-<h2>devd</h2>
+    // the table is now initialized
+  }
+ </code>
+ </pre>
 
-<p>Devd veľmi primitívny jednosúborový lokálny http server servírujúci statický obsah.</p>
+<p>Na paralelný:</p>
 
-<ul>
-<li><a href="https://github.com/cortesi/devd">devd na Githube</a></li>
-<li><a href="https://github.com/cortesi/devd/releases/">devd releases</a></li>
-</ul>
+<pre>
+ <code class="cpp">
+  #include &lt;cmath&gt;
+  int main(int argc, char *argv[])
+  {
+    const int size = 256;
+    double sinTable[size];
 
-<h2>DebugView</h2>
+    #pragma omp parallel for
+    for(int n=0; n&lt;size; ++n)
+      sinTable[n] = std::sin(2 * M_PI * n / size);
 
-<p>Utilita monitorujúca debug a trace výstup programov na lokálnom systéme, hodí sa na debugovanie programov, ktoré výstup nezapisujú do súborov.</p>
+    // the table is now initialized
+  }
+ </code>
+ </pre>
 
-<ul>
-<li><a href="https://technet.microsoft.com/en-us/sysinternals/debugview.aspx">DebugView</a></li>
-</ul>
+<p>Viac ukážok na: <a href="https://bisqwit.iki.fi/story/howto/openmp/">https://bisqwit.iki.fi/story/howto/openmp/</a>.</p>
 
-<h2>Process Explorer</h2>
+<h3>Mono</h3>
 
-<p>ProcessExplorer program zobrazujúci bežiace procesy v stromovej štruktúre, využité knižnice a iné veľmi podrobné informácie o bežiacich procesoch v systéme.</p>
+<p>Mono umožňuje cross-kompiláciu do natívneho kódu s tým, že možné všetko zbaliť do jednej binárky pomocou <a href="http://www.mono-project.com/docs/tools+libraries/tools/mkbundle/">mkbundle</a>. Z pokusov, ktoré som robil (konzolové aplikácie s HTTP klientom) mi vyšlo, že výsledný binárny súbor je približne o megabajt väčší ako alternatíva v <em>Go</em>. Navyše je takto možné spraviť programy, ktoré majú jednoduché GUI.</p>
 
-<ul>
-<li><a href="https://technet.microsoft.com/en-us/sysinternals/processexplorer.aspx">Process Explorer</a></li>
-</ul>
+<h3>.Net Core</h3>
 
-<h2>Paint.NET</h2>
+<p>.Net Core umožňuje korss-kompiláciu pre jednotlivé platformy s pribalením všetkých závislostí (nie je potrebné inštalovať runtime). S výkonom sa ide pohrať cez <em>unsafe</em> kód. Nevýhodou je, že aj ku konzolovej aplikácii s HTTP klientom pribalí 30 až 50 MB (podľa výslednej platformy), čo pri serveri nevadí, no pri utilitke pre bežných ľudí hej.</p>
 
-<p>Paint.NET je populárny editor obrázkov, používam ho hlavne pre to, že mi príde použiteľnejší ako Gimp, má dobrú podporu priehľadných obrázkov a vrstiev. </p>
+<h2>Záver</h2>
 
-<ul>
-<li><a href="https://www.getpaint.net/">Paint.NET</a></li>
-</ul>
+<p><em>Go</em> je veľmi primitívny jazyk, jeho syntax a premisy sa človek naučí zvládnuť za niekoľko hodín a za pár dní dokáže v ňom písať programy. Ale z charakteru jazyka, by som v ňom nepísal veľké systémy, skôr sa hodí na malé utilitky, mirkoslužby (ktoré sú ale fakt mikro) alebo pre použitie v <em>Raspberry Pi</em>.</p>
+
+<p>Prosto všade tam, kde je výhodné mať malý procedurálny program (max. niekoľko stoviek riadkov), ktorý je ale pomerne rýchly a je bez závislostí na externom runtime, či knižniciach (netreba nič inštalovať na operačný systém). Pekným príkladom je napríklad utilitka 
+ <a href="https://ngrok.com/">ngrok</a>.</p>
 
             </div>
             <div class="col-md-4">
