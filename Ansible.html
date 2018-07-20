@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="O seri&#225;ly Votrelci d&#225;vnoveku, argumentoch z ignor&#225;cie a nevedomosti.">
+    <meta name="description" content="Inštal&#225;cia prerequiz&#237;t cez Ansible: ASP.NET Core">
     <meta name="author" content="">
 
-    <title>Votrelci d&#225;vnoveku</title>
+    <title>Inštal&#225;cia prerequiz&#237;t cez Ansible</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +21,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+        <link rel="stylesheet" href="css/Highiler/vs.css" />
+        <script src="js/highlight.pack.js"></script>
+        <script type="text/javascript">
+            hljs.initHighlightingOnLoad();
+        </script>
     <style>
         img {
             max-width: 100%;
@@ -73,39 +78,93 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <h1>Votrelci d&#225;vnoveku</h1>
+                <p></p>
 
-<p>Je úsmevné sledovať <em>Prima ZOOM</em>, napríklad, ráno ide dokument 
-o starodávnych vodných kanáloch postavených tak,
-že kamene na seba dolíhajú tak, že medzi ne nezmesti list papiera (podobne ako majú Inkovia v Machu Picchu).
-Stačilo na to troch chlapov, dva kamene, niekoľko kusov dreva, lana a trochu piesku. </p>
+<h1>Inštalácia .Net Core cez Ansible</h1>
 
-<p>Potom dajú <em>Votrelcov dávnoveku</em>, kde tvrdia, že to veda nedokáže ani najmodernejšou technikou a s toho vyplýva, že sú dielom mimozemšťanov.</p>
+<p>Na testovacích serveroch  používame distribúcie založená na Ubuntu a ako človek,
+čo ma rád Windows, administrácia týchto prostredí mi prišla ako monotónna a otravná činnosť.</p>
 
-<p>Vlastne v tom "dokumentárnom seriály" z čohokoľvek vyplýva,
-že nás navštevovali mimozemské civilizácie. Nejde ani tak o to,
-či mimozemšťania existujú, alebo nie, ale o ich dôkazy a tvrdenia,
-ktoré sú len <a href="http://www.pouzimerozum.sk/2011/07/22/uvod-do-sebaklamov-a-chyb-argumentacie/">logické klamy</a>.</p>
+<p>Pri snahe automatizovať činnosti pre vytváranie testovacieho prostredia pre ASP.NET Core aplikácie
+som narážal hlavne na odkazy na <a href="https://www.docker.com/">Docker</a> a <a href="https://kubernetes.io/">Kubernetes</a>,
+no nemohol som ich použiť.
+Našiel som veľa riešení hlavne zo shell skriptami ale po skúsenostiach z <a href="https://cakebuild.net/">Cake</a> a <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview">ARM</a> 
+mi to prišla príliš piplačka a chýbala mi tam indepotencia a deklaratívnosť.</p>
 
-<p>Zoberme si napríklad stavbu pyramíd alebo <em>Stonehenge</em>, pri veľkých stavbách sa nám vynárajú dve otázky - Prečo by to niekto staval a ako.</p>
+<p>Nakoniec som narazil na <a href="https://docs.ansible.com/ansible/2.3/index.html">Ansible</a>, čo je <em>autmation tool</em> hlavne pre unixový svet.
+Ansible nie je úplne deklaratívne ani indepotentné,
+je niekde medzi, ale na inštaláciu prerequizít a počiatočné nastavenie servera bohate stačí. </p>
 
-<p>Pri odpovedaní na otázku "Prečo" ľudia zabúdajú na niečo čo je tu s nami už veľmi dávno a to obyčajné ľudské nafúknuté ego, túžba po moci a sláve. Vládca, faraón, ... chcel po sebe zanechať niečo veľké, čo mu počas života upevní moc (spolu s náboženským aspektom týchto stavieb),
-zabezpečí obdiv ako doma, tak aj za hranicami svojej ríše.
-A po smrti mu zaistí nesmrteľnosť.</p>
+<h2>Inštalácia .Net Core 2.1</h2>
 
-<p>Otázku ako treba riešiť od prípadu ku prípadu. No keď neviem, ako to postavili, neznamená to,
-že tie bloky kameňa premiestnili mimozemšťania antigravitaćným lúčom 
-z orbitu. Znamená to, len že momentálne nevieme, ako to postavili.
-Respektíve tvorcovia <em>Votrelcov dávnoveku</em> to nevedia. 
-No treba si uvedomiť, že aj v staroveku žili inteligentný ľudia, s inžinierskym prístupom,
-ktorí z dobovými poznatkami dokázali veľké veci.
-Preto tvrdenia tohto seriálu dehonestujú ľudstvo a našich predkov.
-Ďalšou vecou je, že veľkú stavbu nemuseli postaviť za rok, ako dnes halu supermarketu,
-pokojne to mohlo trvať 20 - 25 rokov, a to sa kľukne dá aj bez vynálezu kolesa. </p>
+<p>Pre inštaláciu .Net Core sa dá použiť nasledujúci Ansible playbook (je v Yaml formáte).</p>
 
-<p>Na záver ešte <em>Giorgio A. Tsoukalos</em> zo svojim nezameniteľným účesom.</p>
+<pre>
+ <code>&#35 Ensure ASP.NET Core 2.1
+---
+- hosts: local
+  tasks:
+    - name: Register Microsoft key and feed
+      get_url:
+        url: https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb
+        dest: /tmp/packages-microsoft-prod.deb
 
-<p><img src="images/Generall/VotrelciDavnoveku/vd.jpg" alt="Giorgio A. Tsoukalos vs. Neil deGrasse Tyson" /></p>
+    - name: Add feed using packages-microsoft-prod.deb
+      apt:
+        deb: /tmp/packages-microsoft-prod.deb
+      notify:
+        - Apt get update
+
+    - name: Add dotnetdev source for Ubuntu
+      copy: 
+        content: 'deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main'
+        dest: /etc/apt/sources.list.d/dotnetdev.list
+      notify:
+        - Apt get update
+
+    - name: Ensure apt-transport-https
+      apt:
+          name: apt-transport-https
+          state: present
+      notify:
+        - Apt get update
+
+    - meta: flush_handlers
+
+    - name: Ensure Net Core 2.1
+      apt:
+          name: "{{item}}"
+          state: latest
+      with_items:
+       - dotnet-runtime-2.1
+       - aspnetcore-runtime-2.1
+
+  handlers:
+    - name: Apt get update
+      apt:
+          update_cache: yes
+ </code>
+</pre>
+
+<p>V sekcii <em>hosts</em> treba nasatviť ciel na ktorý bude playbook uplatnený.</p>
+
+<p>Spúšťa sa pomocou <code>ansible-playbook aspnetcore.yml</code>.</p>
+
+<p>Rovnakým spôsobom ide nainštalovať aj <em>powershell</em>, stačí zmeniť posledný krok <em>"Ensure Net Core 2.1"</em> na:</p>
+
+<pre>
+ <code>
+    - name: Ensure Powershell
+      apt:
+          name: powershell
+          state: latest
+ </code>
+</pre>
+
+<h2>Záver</h2>
+
+<p>Hlavná výhoda použitia Ansible playbooku je indepotencia, to znamená, že aj po viacnásobnom spustení bude výsledný stav serveru rovnaký.
+Takisto je ním možné prevádzať operácie na viacerých serveroch súčasne.</p>
 
             </div>
             <div class="col-md-4">

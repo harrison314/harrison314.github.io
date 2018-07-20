@@ -161,6 +161,8 @@
 
 <p>.Net Core umožňuje korss-kompiláciu pre jednotlivé platformy s pribalením všetkých závislostí (nie je potrebné inštalovať runtime). S výkonom sa ide pohrať cez <em>unsafe</em> kód. Nevýhodou je, že aj ku konzolovej aplikácii s HTTP klientom pribalí 30 až 50 MB (podľa výslednej platformy), čo pri serveri nevadí, no pri utilitke pre bežných ľudí hej.</p>
 
+<p><strong>Edit</strong>: Aj .Net Core ide kompilovať do natívnej binárky, ktorá má obdobnú veľkosť ako program v <em>Go</em> <a href="https://github.com/dotnet/corert/blob/master/Documentation/how-to-build-and-run-ilcompiler-in-console-shell-prompt.md">pomocou ILCompoler-u</a>.</p>
+
 <h2>Záver</h2>
 
 <p><em>Go</em> je veľmi primitívny jazyk, jeho syntax a premisy sa človek naučí zvládnuť za niekoľko hodín a za pár dní dokáže v ňom písať programy. Ale z charakteru jazyka, by som v ňom nepísal veľké systémy, skôr sa hodí na malé utilitky, mirkoslužby (ktoré sú ale fakt mikro) alebo pre použitie v <em>Raspberry Pi</em>.</p>
@@ -176,6 +178,7 @@
     <div class="row">
         <div class="col-lg-12">
             <ul class="list-unstyled">
+                    <li><a href="Ansible.html">Ansible a .Net Core</a></li>
                     <li><a href="GoLang.html">Golang</a></li>
                     <li><a href="LevenstainOptimalization.html">Optimaliz&#225;cia v&#253;počtu Levenstainovej vzdialenosti</a></li>
                     <li><a href="ZabezpecnieAspMvc.html">Zabezpečenie ASP.NET MVC</a></li>
@@ -185,7 +188,6 @@
                     <li><a href="ServiceLocator.html">Stupne zla Service lok&#225;toru</a></li>
                     <li><a href="Monads.html">Mon&#225;dy</a></li>
                     <li><a href="VarAndDynamic.html">var a dynamic v C#</a></li>
-                    <li><a href="CatalogProduktov.html">Katal&#243;g produktov v relačnej DB</a></li>
             </ul>
         </div>
     </div>
