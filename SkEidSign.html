@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="N&#225;vod ako podpisovať slovensk&#253;m eID PDF-k&#225; v .Net Core" />
+    <meta name="author" content="" />
+
+    <title>Podpisovanie PDF-ka v .Net Core</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="css/blog-post.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        img {
+            max-width: 100%;
+        }
+    </style>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-83854587-1', 'auto');
+  ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href=".">harrison314 blog</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="All.html">Obsah</a>
+                </li>
+                <li>
+                    <a href="DevelopingAll.html">Programovanie</a>
+                </li>
+                <li>
+                    <a href="GeneralAll.html">Všeobecné</a>
+                </li>
+                <li>
+                    <a href="OMne.html">O mne</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <p></p>
+
+<h1>Podpísanie PDF-ka Slovenským eID-čkom</h1>
+
+<p>V tomto článku sa pokúsim v skratke vysvetliť princípy podpisovania dokumentov pomocou 
+<em>PKCS#11</em> a ukážem to a Slovenskom eID-čku, pomocou jednoduchej konzolovej aplikácii v .Net Core.</p>
+
+<p><strong>Disclaimer</strong>: Podpisová aplikácia má slúžiť len na ukážku princípov,
+nevytvára validné podpisy podľa Európskej legislatívy (<em>eIDAS PAdES</em>),
+aj keď mnohé známe firmy posielajú faktúry podpísané rovnakým spôsobom.
+Použitie len na vlastné riziko!</p>
+
+<p>Zdrojové kódy ukážkovej aplikácie sa nachádzajú  na 
+<a href="https://github.com/harrison314/SlovakEidSignTool">https://github.com/harrison314/SlovakEidSignTool</a>.</p>
+
+<h2>PKCS#11</h2>
+
+<p><em>PKCS#11</em> je štandard definujúci C-éčkove API pre komunikáciu z crypto tokenmi ako sú HSM (<em>Hardware security module</em>),
+tokeny a  čipové karty (<em>smart cards</em>). Práve Slovenské eID-čko je takáto čipová karta.</p>
+
+<p>Na obrázku nižšie sa nachádza HSM-ko a slovenské eID. </p>
+
+<p><img src="images/SkEidSign/hsm_200.jpg" alt="HSM (Hardware security module)" />
+<img src="images/SkEidSign/eid_200.jpg" alt="Slovenské eID" /></p>
+
+<p>V projekte využívam knižnicu PKCS#11-interop, ktorá tvorí manažovaný wrapper, nad C-čkovým API.</p>
+
+<h2>Proces podpísania dokumentu</h2>
+
+<p>Na začiatku sa načíta a inicializuje <em>PKCS#11</em> knižnica pre eID, ktorá je súčasťou aplikácie <a href="https://www.slovensko.sk/sk/na-stiahnutie">eID klient</a>.</p>
+
+<p>Vyberie sa slot a token, v tomto prípade je slot čítačka kariet a token samotná čipová karta,
+eID-čko má len jeden slot a jeden token, takže v kóde vyberiem prvý slot.</p>
+
+<p>Načítajú sa informácie o tokene a zistí sa, či je preň potrebná autentifikácia.
+Pre eID-čko je to BOK PIN, ktorý umožní prístup k objektom na karte.</p>
+
+<p>Objekty sú napríklad certifikáty, kľúče, dáta, HW features,... Každý objekt je reprezentovaný
+definovanou množinou atribútov. Knižnice implementujúce štandard <em>PKCS#11</em> izoluje operácie pomocou sessions
+(operácie v rámci jednej otvorenej session nemajú garantované thread-safe spávanie), 
+jeho zvláštnosťou je, že keď je autentifikovaná jedna session, tak sú autentifikované všetky v aplikácii.</p>
+
+<p>Vytvorí sa nová session, ktorá je už autentifikovaná, a vyhľadajú sa všetky certifikáty na karte.
+Vyextrahuje sa certifikát v binárnej podobe (atribút <em>CKA_VALUE</em>) a v C# kóde sa zistí,
+ktorý z certifikátov je určený na podpis dokumentov (certifikát má extension s flagom <em>NonRepudiation</em>).
+Následne sa k nemu vyhľadá privátny kľuč, ten má spravidla rovnaké atribúty <em>CKA_ID</em> a <em>CKA_LABEL</em>
+ako príslušný certifikát. Na eID-čku sa dá ZEP/KEP privátny kľúč a certifikát nájsť aj podľa špecifického labelu,
+ale na to som sa v aplikácii nechcel spoliehať.</p>
+
+<p>Podpísanie PDF-ka má a starosti knižnica <a href="https://www.nuget.org/packages/itext7/">iTextSharp</a>, 
+program implementuje rozhranie <a href="https://github.com/harrison314/SlovakEidSignTool/blob/master/src/SlovakEidSignTool/Pkcs11ExternalSignature.cs">IExternalSignature</a>, 
+v ktorom prebieha samotné podpísanie PDF-dokumentu.
+Na vstup dostane dáta z PDF-ka, z ktorých sa vytvorí SHA-256 hash. 
+Z neho sa vytvorí <em>PKCS#1 digest info</em> (<em>ASN.1</em> dátová štruktúra, ktorá je vhodná na podpísanie RSA kľúčom). </p>
+
+<p>Samotný podpis musí byť v prípade eID-čka autentifikovaný ZEP PIN-om,
+ten sa zadáva po inicializácii podpisovania. Čip v eID-čku podpíše hash a vráti podpis.
+Ten vráti v metóde rozhrania <a href="https://github.com/harrison314/SlovakEidSignTool/blob/master/src/SlovakEidSignTool/Pkcs11ExternalSignature.cs">IExternalSignature</a> a <em>iTextSharp</em> dokončí podpisovanie a uloží PDF-ko na disk.</p>
+
+<h2>Záver</h2>
+
+<p>Princíp realizácie podpisu pomocou slovenského eID je podobný ako podpisovanie inými krypto zariadeniami, ku ktorým sa pristupuje pomocou štandardu <em>PKCS#11</em>.</p>
+
+<p>Ukážkový program využíva knižnice <a href="https://pkcs11interop.net/">PKCS#11 interop</a> na interakciu z <em>PKCS#11</em> knižnicou, 
+<a href="https://www.nuget.org/packages/itext7/">iTextSharp</a> pre manipuláciu s PDF dokumentom
+a <a href="https://github.com/commandlineparser/commandline">CommandLine</a> pre parsovanie CLI parametrov.</p>
+
+<p>Vytvorenie "surového" RSA alebo EC podpisu je ľahké, ťažšie je to robiť dobre (ochrana PIN-ov, certifikácia softvéru pre podpis od NBU, splnenie špecifikácie pre knkrétne druhy podpisov).
+Takto podpísané PDF-ko je v Adobre Readery zelené.</p>
+
+<p><img src="images/SkEidSign/SignedDocument.png" alt="Signed PDF" /></p>
+
+<p>No podpis nie je platným <em>eIDAS PAdES</em> podpisom, chýbajú mu rôzne atribúty, odkaz na podpisovú politiku... </p>
+
+<h2>Zdroje</h2>
+
+<ol>
+<li><a href="https://pkcs11interop.net/">PKCS#11 Interop</a></li>
+<li><a href="https://github.com/Pkcs11Interop/Pkcs11Interop.X509Store/blob/master/src/Pkcs11Interop.X509Store/Pkcs11X509Certificate.cs">PKCS#11 X509Store</a></li>
+<li><a href="https://rahulpnath.com/blog/signing-a-pdf-file-using-azure-key-vault/">Signing a PDF File Using Azure Key Vault</a></li>
+<li><a href="https://www.slovensko.sk/sk/na-stiahnutie">Slovensko.sk</a></li>
+</ol>
+
+            </div>
+            <div class="col-md-4">
+                
+<div class="well">
+    <h4>Vývoj</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                    <li><a href="SkEidSign.html">Podpisovanie PDF v .Net Core</a></li>
+                    <li><a href="Ansible.html">Ansible a .Net Core</a></li>
+                    <li><a href="GoLang.html">Golang</a></li>
+                    <li><a href="LevenstainOptimalization.html">Optimaliz&#225;cia v&#253;počtu Levenstainovej vzdialenosti</a></li>
+                    <li><a href="ZabezpecnieAspMvc.html">Zabezpečenie ASP.NET MVC</a></li>
+                    <li><a href="UzitocneProgramy.html">Užitočn&#233; programy</a></li>
+                    <li><a href="CoreStreaming.html">Video straming v ASP.NET Core</a></li>
+                    <li><a href="Tfs15AsmVersion.html">TFS 2015 a č&#237;slo verzie assembly</a></li>
+                    <li><a href="ServiceLocator.html">Stupne zla Service lok&#225;toru</a></li>
+                    <li><a href="Monads.html">Mon&#225;dy</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <h4>Všeobecné</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                <li><a href="AlternativnyRecept.html">Propag&#225;cia alternat&#237;vnej medic&#237;ny</a></li>
+                <li><a href="VotrelciDavnoveku.html">Votrelci d&#225;vnoveku</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <h4>O mne</h4>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="list-unstyled">
+                <li><a href="OMne.html">O mne</a></li>
+                <li><a href="OMneOdkazy.html">Moja tvorba inde</a></li>
+                <li><a href="Portfolio.html">Portf&#243;lio</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; harrison314 2013</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
