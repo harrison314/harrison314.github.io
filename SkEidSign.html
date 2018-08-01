@@ -108,17 +108,18 @@ tokeny a  čipové karty (<em>smart cards</em>). Práve Slovenské eID-čko je t
 <p>Na začiatku sa načíta a inicializuje <em>PKCS#11</em> knižnica pre eID, ktorá je súčasťou aplikácie <a href="https://www.slovensko.sk/sk/na-stiahnutie">eID klient</a>.</p>
 
 <p>Vyberie sa slot a token, v tomto prípade je slot čítačka kariet a token samotná čipová karta,
-eID-čko má len jeden slot a jeden token, takže v kóde vyberiem prvý slot.</p>
+eID-čko má slot zo ZEP certifikátom označený labelom <em>SIG_ZEP</em>, program ho vyberie.</p>
 
 <p>Načítajú sa informácie o tokene a zistí sa, či je preň potrebná autentifikácia.
 Pre eID-čko je to BOK PIN, ktorý umožní prístup k objektom na karte.</p>
 
 <p>Objekty sú napríklad certifikáty, kľúče, dáta, HW features,... Každý objekt je reprezentovaný
-definovanou množinou atribútov. Knižnice implementujúce štandard <em>PKCS#11</em> izoluje operácie pomocou sessions
-(operácie v rámci jednej otvorenej session nemajú garantované thread-safe spávanie), 
-jeho zvláštnosťou je, že keď je autentifikovaná jedna session, tak sú autentifikované všetky v aplikácii.</p>
+definovanou množinou atribútov. Knižnice implementujúce štandard PKCS#11 izolujú operácie pomocou sessions
+(operácie v rámci jednej otvorenej session nemajú garantované thread-safe spávanie),
+jeho zvláštnosťou je, že keď je autentifikovaná jedna session,
+tak sú autentifikované všetky v aplikácii.</p>
 
-<p>Vytvorí sa nová session, ktorá je už autentifikovaná, a vyhľadajú sa všetky certifikáty na karte.
+<p>Vytvorí sa nová session, ktorá je už autentifikovaná, a vyhľadajú sa všetky certifikáty na tokene.
 Vyextrahuje sa certifikát v binárnej podobe (atribút <em>CKA_VALUE</em>) a v C# kóde sa zistí,
 ktorý z certifikátov je určený na podpis dokumentov (certifikát má extension s flagom <em>NonRepudiation</em>).
 Následne sa k nemu vyhľadá privátny kľuč, ten má spravidla rovnaké atribúty <em>CKA_ID</em> a <em>CKA_LABEL</em>
@@ -143,12 +144,12 @@ Ten vráti v metóde rozhrania <a href="https://github.com/harrison314/SlovakEid
 <a href="https://www.nuget.org/packages/itext7/">iTextSharp</a> pre manipuláciu s PDF dokumentom
 a <a href="https://github.com/commandlineparser/commandline">CommandLine</a> pre parsovanie CLI parametrov.</p>
 
-<p>Vytvorenie "surového" RSA alebo EC podpisu je ľahké, ťažšie je to robiť dobre (ochrana PIN-ov, certifikácia softvéru pre podpis od NBU, splnenie špecifikácie pre knkrétne druhy podpisov).
+<p>Vytvorenie "surového" RSA alebo EC podpisu je ľahké, ťažšie je to robiť dobre (ochrana PIN-ov, certifikácia softvéru pre podpis od NBU, splnenie špecifikácie pre konkrétne druhy podpisov).
 Takto podpísané PDF-ko je v Adobre Readery zelené.</p>
 
 <p><img src="images/SkEidSign/SignedDocument.png" alt="Signed PDF" /></p>
 
-<p>No podpis nie je platným <em>eIDAS PAdES</em> podpisom, chýbajú mu rôzne atribúty, odkaz na podpisovú politiku... </p>
+<p>No podpis nie je platným <em>eIDAS PAdES</em> podpisom, chýbajú mu rôzne atribúty, odkaz na podpisovú politiku,...</p>
 
 <h2>Zdroje</h2>
 
