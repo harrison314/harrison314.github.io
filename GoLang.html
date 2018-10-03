@@ -164,7 +164,7 @@
 
 <p>.Net Core umožňuje korss-kompiláciu pre jednotlivé platformy s pribalením všetkých závislostí (nie je potrebné inštalovať runtime). S výkonom sa ide pohrať cez <em>unsafe</em> kód. Nevýhodou je, že aj ku konzolovej aplikácii s HTTP klientom pribalí 30 až 50 MB (podľa výslednej platformy), čo pri serveri nevadí, no pri utilitke pre bežných ľudí hej.</p>
 
-<p><strong>Edit</strong>: Aj .Net Core ide kompilovať do natívnej binárky, ktorá má obdobnú veľkosť ako program v <em>Go</em> <a href="https://github.com/dotnet/corert/blob/master/Documentation/how-to-build-and-run-ilcompiler-in-console-shell-prompt.md">pomocou ILCompoler-u</a>.</p>
+<p><strong>Edit</strong>: Aj .Net Core ide kompilovať do natívnej binárky, ktorá má obdobnú veľkosť ako program v <em>Go</em> <a href="https://github.com/dotnet/corert/blob/master/Documentation/how-to-build-and-run-ilcompiler-in-console-shell-prompt.md">pomocou ILCompoler-u</a>, alebo pomocou <a href="http://www.jackdermody.net/article/Compiling_NET_Core_to_Native">oficiálneho nástroja crossgen</a>.</p>
 
 <h2>Záver</h2>
 
