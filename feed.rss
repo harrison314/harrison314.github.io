@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+	<channel>
+		<title />
+		<link>https://harrison314.github.io/</link>
+		<description />
+		<copyright>2018</copyright>
+		<pubDate>Sun, 18 Nov 2018 17:47:23 GMT</pubDate>
+		<lastBuildDate>Sun, 18 Nov 2018 17:47:23 GMT</lastBuildDate>
+		<item>
+			<title>Video straming v ASP.NET Core</title>
+			<link>https://harrison314.github.io/CoreStreaming.html</link>
+			<guid>https://harrison314.github.io/CoreStreaming.html</guid>
+			<pubDate>Thu, 25 Aug 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Content filte</title>
+			<link>https://harrison314.github.io/ContetFilter.html</link>
+			<guid>https://harrison314.github.io/ContetFilter.html</guid>
+			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>O mne a mojich zálubách</title>
+			<link>https://harrison314.github.io/OMne.html</link>
+			<guid>https://harrison314.github.io/OMne.html</guid>
+			<pubDate>Thu, 07 Apr 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Katalóg produktov v relačnej databáze</title>
+			<link>https://harrison314.github.io/CatalogProduktov.html</link>
+			<guid>https://harrison314.github.io/CatalogProduktov.html</guid>
+			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Inštalácia .Net Core cez Ansible</title>
+			<link>https://harrison314.github.io/Ansible.html</link>
+			<guid>https://harrison314.github.io/Ansible.html</guid>
+			<pubDate>Thu, 19 Jul 2018 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Podpísanie PDF-ka Slovenským eID-čkom</title>
+			<link>https://harrison314.github.io/SkEidSign.html</link>
+			<guid>https://harrison314.github.io/SkEidSign.html</guid>
+			<pubDate>Mon, 30 Jul 2018 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Monády</title>
+			<link>https://harrison314.github.io/Monads.html</link>
+			<guid>https://harrison314.github.io/Monads.html</guid>
+			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Optimalizácia výpočtu Levenstainovej vzdialenosti</title>
+			<link>https://harrison314.github.io/LevenstainOptimalization.html</link>
+			<guid>https://harrison314.github.io/LevenstainOptimalization.html</guid>
+			<pubDate>Sat, 20 Jan 2018 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Ako používať var a dynamic v C#</title>
+			<link>https://harrison314.github.io/VarAndDynamic.html</link>
+			<guid>https://harrison314.github.io/VarAndDynamic.html</guid>
+			<pubDate>Sun, 10 Apr 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Golang a alternatívy</title>
+			<link>https://harrison314.github.io/GoLang.html</link>
+			<guid>https://harrison314.github.io/GoLang.html</guid>
+			<pubDate>Sun, 20 May 2018 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Čo robí programátor?</title>
+			<link>https://harrison314.github.io/CoRobiProgramator.html</link>
+			<guid>https://harrison314.github.io/CoRobiProgramator.html</guid>
+			<pubDate>Wed, 18 Sep 2013 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Portfólio</title>
+			<link>https://harrison314.github.io/Portfolio.html</link>
+			<guid>https://harrison314.github.io/Portfolio.html</guid>
+			<pubDate>Tue, 18 Jun 2013 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>TFS 2015 a číslo verzie assembly</title>
+			<link>https://harrison314.github.io/Tfs15AsmVersion.html</link>
+			<guid>https://harrison314.github.io/Tfs15AsmVersion.html</guid>
+			<pubDate>Tue, 14 Jun 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Moja tvorba inde</title>
+			<link>https://harrison314.github.io/OMneOdkazy.html</link>
+			<guid>https://harrison314.github.io/OMneOdkazy.html</guid>
+			<pubDate>Sun, 01 Dec 2013 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Užitočné programy</title>
+			<link>https://harrison314.github.io/UzitocneProgramy.html</link>
+			<guid>https://harrison314.github.io/UzitocneProgramy.html</guid>
+			<pubDate>Wed, 19 Jul 2017 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Stupne zla Service lokátoru</title>
+			<link>https://harrison314.github.io/ServiceLocator.html</link>
+			<guid>https://harrison314.github.io/ServiceLocator.html</guid>
+			<pubDate>Tue, 26 Apr 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Generátor Ezo textov</title>
+			<link>https://harrison314.github.io/EzoGenerator.html</link>
+			<guid>https://harrison314.github.io/EzoGenerator.html</guid>
+			<pubDate>Sun, 07 Oct 2018 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Zabezpečenie vstupov ASP.NET MVC aplikácie</title>
+			<link>https://harrison314.github.io/ZabezpecnieAspMvc.html</link>
+			<guid>https://harrison314.github.io/ZabezpecnieAspMvc.html</guid>
+			<pubDate>Fri, 15 Sep 2017 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Votrelci dávnoveku</title>
+			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
+			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
+			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Recept na propagáciu alternatívnej medicíny</title>
+			<link>https://harrison314.github.io/AlternativnyRecept.html</link>
+			<guid>https://harrison314.github.io/AlternativnyRecept.html</guid>
+			<pubDate>Wed, 03 May 2017 00:00:00 GMT</pubDate>
+		</item>
+	</channel>
+</rss>

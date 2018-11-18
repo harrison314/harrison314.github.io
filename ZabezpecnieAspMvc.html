@@ -1,120 +1,4 @@
-<!DOCTYPE html>
-<html lang="sk">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Zabezpečenie vstupov ASP.NET MVC aplik&#225;cie aj ASP.NET Core MVC" />
-    <meta name="author" content="" />
-
-    <title>Zabezpečenie vstupov ASP.NET MVC aplik&#225;cie</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Custom CSS -->
-    <link href="css/blog-post.css" rel="stylesheet" />
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-        <link rel="stylesheet" href="css/Highiler/vs.css" />
-        <script src="js/highlight.pack.js"></script>
-        <script type="text/javascript">
-            hljs.initHighlightingOnLoad();
-        </script>
-    <style>
-        img {
-            max-width: 100%;
-        }
-    </style>
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-83854587-1', 'auto');
-  ga('send', 'pageview');
-
-    </script>
-</head>
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href=".">harrison314 blog</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="All.html">Obsah</a>
-                </li>
-                <li>
-                    <a href="DevelopingAll.html">Programovanie</a>
-                </li>
-                <li>
-                    <a href="GeneralAll.html">Všeobecné</a>
-                </li>
-                <li>
-                    <a href="OMne.html">O mne</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-
-
-    <!-- Page Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <h1>Zabezpečenie vstupov ASP.NET MVC aplik&#225;cie</h1>
-
-<p>Medzi základné pravidlá zabezpečenia webových aplikácií (na aplikačnej úrovni) patrí kontrola 
-všetkých vstupov a to na validnosť aj dĺžku.</p>
-
-<p>Táto úloha je v ASP.NET MVC (Core) o niečo jednoduchšia, lebo v modeloch a parametroch akcií 
-ide používať typy ako <em>int</em>, <em>Guid</em>, <em>long</em>, <em>bool</em> ktoré sú pri bindingu validované.</p>
-
-<p>Trochu iná situácia je pri menej štandardných vstupoch ako  návratová adresa (relatívna),
-hexadecimálny kód, dáta vo forme base64, či špecifické kódy (kód produktu, diagnózy, stomatologického výkonu)
-alebo špecifických identifikátorov či tokenov. V týchto prípadoch sa často spolieha na to,
-že aplikačná vrstva odmietne daný vstup ako invalidný, no nie vždy sa tak musí stať.
-Horší prípad, ak tento vstup prebuble do HTML, alebo vygenerovaného JavaScrip kódu.</p>
-
-<p>Ak si bude tieto vstupy validovať človek sám v akciách, je jednak otrava a ľahko sa nejaký vstup prehliadne.</p>
-
-<p>Ďalšia možnosť je vytvoriť si <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters">ActionFilter</a>
-a validovať vstupy podľa mennej konvencie, napríklad <em>retUrl</em> sa vždy pokladá za návratovú adresu, <em>documentId</em> za identifikátor dokumentu,...
- a podľa toho sa globálne validujú.
-Toto je celkom schodná cesta, lebo jediným kusom kódu dokáže ošetriť celú aplikáciu globálne,
-no je dosť situácií, kedy nestačí.</p>
-
-<p>Moje preferované riešenie je používať na tieto druhy vstupov vlastné <a href="https://martinfowler.com/bliki/ValueObject.html">value objekty</a>.
-Vytvorí sa jednoduchý typ pre vstup, ktorý sa validuje v čase bindingu.</p>
-
-<p>Tento spôsob je vhodné na vstupy, ktoré nezadáva používateľ.</p>
-
-<h2>Ukážka kódu</h2>
-
-<p>Vytvorí sa abstraktný <a href="https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/ModelBinding/Binders/SimpleTypeModelBinder.cs">binder</a>:</p>
-
-<pre>
- <code class="cs">
-public abstract class ArmoredBinder&lt;T&gt; : IModelBinder
+<!DOCTYPE html><html lang=sk><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1"><link rel=alternate type=application/rss+xml title="RSS Feed" href=/feed.rss><link rel=alternate type=application/atom+xml title="Atom Feed" href=/feed.atom><meta name=author content=harrison314><title>Zabezpečenie vstupov ASP.NET MVC aplikácie</title><link href=css/bootstrap.min.css rel=stylesheet><link href=css/blog-post.css rel=stylesheet><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script><script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]--><link rel=stylesheet href=css/Highiler/vs.css><style>img{max-width:100%}.img-center{display:block;margin-left:auto;margin-right:auto}</style><body><nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#bs-example-navbar-collapse-1> <span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span> </button> <a class=navbar-brand href=index.html>harrison314 blog</a></div><div class="collapse navbar-collapse" id=bs-example-navbar-collapse-1><ul class="nav navbar-nav"><li><a href=/All.html>Obsah</a><li><a href=/DevelopingAll.html>Programovanie</a><li><a href=/GeneralAll.html>Všeobecné</a><li><a href=/OMne.html>O mne</a></ul></div></div></nav><div class=container><div class=row><div class="col-lg-8 col-md-8"><h1 id=zabezpecenie-vstupov-asp.net-mvc-aplikacie>Zabezpečenie vstupov ASP.NET MVC aplikácie</h1><p>Medzi základné pravidlá zabezpečenia webových aplikácií (na aplikačnej úrovni) patrí kontrola všetkých vstupov a&nbsp;to na&nbsp;validnosť aj&nbsp;dĺžku.<p>Táto úloha je v&nbsp;ASP.NET MVC (Core) o&nbsp;niečo jednoduchšia, lebo&nbsp;v modeloch a&nbsp;parametroch akcií ide používať typy ako <em>int</em>, <em>Guid</em>, <em>long</em>, <em>bool</em> ktoré sú pri&nbsp;bindingu validované.<p>Trochu iná situácia je pri&nbsp;menej štandardných vstupoch ako návratová adresa (relatívna), hexadecimálny kód, dáta vo forme base64, či&nbsp;špecifické kódy (kód produktu, diagnózy, stomatologického výkonu) alebo&nbsp;špecifických identifikátorov či&nbsp;tokenov. V&nbsp;týchto prípadoch sa často spolieha na&nbsp;to, že&nbsp;aplikačná vrstva odmietne daný vstup ako invalidný, no&nbsp;nie vždy sa tak musí stať. Horší prípad, ak tento vstup prebuble do&nbsp;HTML, alebo&nbsp;vygenerovaného JavaScrip kódu.<p>Ak si bude tieto vstupy validovať človek sám v&nbsp;akciách, je jednak otrava a&nbsp;ľahko sa nejaký vstup prehliadne.<p>Ďalšia možnosť je vytvoriť si <a href=https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters>ActionFilter</a> a&nbsp;validovať vstupy podľa mennej konvencie, napríklad <em>retUrl</em> sa vždy pokladá za&nbsp;návratovú adresu, <em>documentId</em> za&nbsp;identifikátor dokumentu,… a&nbsp;podľa toho sa globálne validujú. Toto je celkom schodná cesta, lebo&nbsp;jediným kusom kódu dokáže ošetriť celú aplikáciu globálne, no&nbsp;je dosť situácií, kedy nestačí.<p>Moje preferované riešenie je používať na&nbsp;tieto druhy vstupov vlastné <a href=https://martinfowler.com/bliki/ValueObject.html>value objekty</a>. Vytvorí sa jednoduchý typ pre&nbsp;vstup, ktorý&nbsp;sa validuje v&nbsp;čase bindingu.<p>Tento spôsob je vhodné na&nbsp;vstupy, ktoré nezadáva používateľ.<h2 id=ukazka-kodu>Ukážka kódu</h2><p>Vytvorí sa abstraktný <a href=https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/ModelBinding/Binders/SimpleTypeModelBinder.cs>binder</a>:<pre><code class="language-cs hljs">public abstract class ArmoredBinder&lt;T&gt; : IModelBinder
 {
     public Task BindModelAsync(ModelBindingContext bindingContext)
     {
@@ -126,7 +10,7 @@ public abstract class ArmoredBinder&lt;T&gt; : IModelBinder
         ValueProviderResult valueProviderResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
         if (valueProviderResult == ValueProviderResult.None)
         {
-            // no entry
+            // no&nbsp;entry
             return Task.CompletedTask;
         }
 
@@ -151,7 +35,7 @@ public abstract class ArmoredBinder&lt;T&gt; : IModelBinder
         catch (Exception exception)
         {
             bool isFormatException = exception is FormatException;
-            if (!isFormatException &amp;&amp; exception.InnerException != null)
+            if (!isFormatException &amp;amp;&amp;amp; exception.InnerException != null)
             {
                 exception = System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(exception.InnerException).SourceException;
             }
@@ -167,14 +51,7 @@ public abstract class ArmoredBinder&lt;T&gt; : IModelBinder
     protected abstract bool TryExtractValue(string stringValue, out T value);
 
 }
- </code>
-</pre>
-
-<p>Ako value objekt som zvolil návratovú relatívnu URL adresu. Odvodíme pre ňu binder, ktorý kontroluje povolené znaky a URL enkóding a relatívnosť.</p>
-
-<pre>
- <code class="cs">
-public class ReturnUrlTypeBinder : ArmoredBinder&lt;ReturnUrl&gt;
+</code></pre><p>Ako value objekt som zvolil návratovú relatívnu URL adresu. Odvodíme pre&nbsp;ňu binder, ktorý&nbsp;kontroluje povolené znaky a&nbsp;URL enkóding a&nbsp;relatívnosť.<pre><code class="language-cs hljs">public class ReturnUrlTypeBinder : ArmoredBinder&lt;ReturnUrl&gt;;
 {
     public ReturnUrlTypeBinder()
     {
@@ -183,73 +60,51 @@ public class ReturnUrlTypeBinder : ArmoredBinder&lt;ReturnUrl&gt;
 
     protected override bool TryExtractValue(string stringValue, out ReturnUrl value)
     {
-        bool isMatch = Regex.IsMatch(stringValue, @&quot;^(/([-a-zA-Z0-9_\(\)_~:?#\]\]@!\.\$&amp;\*\+,;=&#39;]|%[a-zA-Z0-9]{2})+)+$&quot;, RegexOptions.Singleline);
+        bool isMatch = Regex.IsMatch(stringValue, @"^(/([-a-zA-Z0-9_\(\)_~:?#\]\]@!\.\$&amp;\*\+,;=&amp;#39;]|%[a-zA-Z0-9]{2})+)+$", RegexOptions.Singleline);
         value = (isMatch &amp;&amp; stringValue.Length &lt; 600) ? new ReturnUrl(stringValue) : null;
 
         return isValid;
     }
 }
- </code>
-</pre>
-
-<p>Value objekt <em>ReturnUrl</em>:</p>
-
-<pre>
- <code class="cs">
-[ModelBinder(BinderType = typeof(ReturnUrlTypeBinder))]
-public class ReturnUrl
+</code></pre><p>Value objekt <em>ReturnUrl</em>:<pre><code class="language-cs hljs">[ModelBinder(BinderType = <span class=hljs-keyword>typeof</span>(ReturnUrlTypeBinder))]
+<span class=hljs-keyword>public</span> <span class=hljs-keyword>class</span> <span class=hljs-title>ReturnUrl</span>
 {
-    public string Value
+    <span class=hljs-keyword>public</span> <span class=hljs-keyword>string</span> Value
     {
-        get;
-        protected set;
+        <span class=hljs-keyword>get</span>;
+        <span class=hljs-keyword>protected</span> <span class=hljs-keyword>set</span>;
     }
 
-    public ReturnUrl(string url)
-    {
-        if (url == null) throw new ArgumentNullException(nameof(url));
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-title>ReturnUrl</span>(<span class=hljs-params><span class=hljs-keyword>string</span> url</span>)
+    </span>{
+        <span class=hljs-keyword>if</span> (url == <span class=hljs-literal>null</span>) <span class=hljs-keyword>throw</span> <span class=hljs-keyword>new</span> ArgumentNullException(<span class=hljs-keyword>nameof</span>(url));
 
-        this.Value = url;
+        <span class=hljs-keyword>this</span>.Value = url;
     }
 
-    public override string ToString()
-    {
-        return this.Value;
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-keyword>override</span> <span class=hljs-keyword>string</span> <span class=hljs-title>ToString</span>(<span class=hljs-params></span>)
+    </span>{
+        <span class=hljs-keyword>return</span> <span class=hljs-keyword>this</span>.Value;
     }
 
-    public static implicit operator string(ReturnUrl returnUrl)
-    {
-        return returnUrl.Value;
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-keyword>static</span> <span class=hljs-keyword>implicit</span> <span class=hljs-keyword>operator</span> <span class=hljs-title>string</span>(<span class=hljs-params>ReturnUrl returnUrl</span>)
+    </span>{
+        <span class=hljs-keyword>return</span> returnUrl.Value;
     }
 }
- </code>
-</pre>
-
-<p>Konečne ukážka použitia. <em>ReturnUrl</em> v akcii kontroleru. V prípade, keď bude <em>retUrl</em> obsahovať nedovolené znaky (je nevalidná)
-nebude nabindovaná, jej hodnota bude <em>null</em> a <em>ViewState</em> sa dostane do nevalidného stavu.</p>
-
-<pre>
- <code class="cs">
-public class TestController : Controller
+</code></pre><p>Konečne ukážka použitia. <em>ReturnUrl</em> v&nbsp;akcii kontroleru. V&nbsp;prípade, keď&nbsp;bude <em>retUrl</em> obsahovať nedovolené znaky (je nevalidná) nebude nabindovaná, jej hodnota bude <em>null</em> a&nbsp;<em>ViewState</em> sa dostane do&nbsp;nevalidného stavu.<pre><code class="language-cs hljs"><span class=hljs-keyword>public</span> <span class=hljs-keyword>class</span> <span class=hljs-title>TestController</span> : <span class=hljs-title>Controller</span>
 {
-    public IActionResult ConfirmRedirect(ReturnUrl retUrl)
-    {
-       if (!this.ModelState.Isvalid)
+    <span class=hljs-function><span class=hljs-keyword>public</span> IActionResult <span class=hljs-title>ConfirmRedirect</span>(<span class=hljs-params>ReturnUrl retUrl</span>)
+    </span>{
+       <span class=hljs-keyword>if</span> (!<span class=hljs-keyword>this</span>.ModelState.Isvalid)
        {
-         //TODO: osetrenie chyboveho stavu
+         <span class=hljs-comment>//<span class=hljs-doctag>TODO:</span> osetrenie chyboveho stavu</span>
        }
-        //TODO: spracovanie akcie
-        return this.Redirect(retUrl.Value);
+        <span class=hljs-comment>//<span class=hljs-doctag>TODO:</span> spracovanie akcie</span>
+        <span class=hljs-keyword>return</span> <span class=hljs-keyword>this</span>.Redirect(retUrl.Value);
     }
 }
- </code>
-</pre>
-
-<p>Pre zjednodušenie kontroly <em>ViewState</em> v metódach reagujúcich na HTTP GET požiadavku používam nasledujúci atribút.</p>
-
-<pre>
- <code class="cs">
-[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
+</code></pre><p>Pre zjednodušenie kontroly <em>ViewState</em> v&nbsp;metódach reagujúcich na&nbsp;HTTP GET požiadavku používam nasledujúci atribút.<pre><code class="language-cs hljs">[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
 public class RqueireValidModelStateFilterAttribute : Attribute, IActionFilter
 {
     public RqueireValidModelStateFilterAttribute()
@@ -269,101 +124,13 @@ public class RqueireValidModelStateFilterAttribute : Attribute, IActionFilter
         }
     }
 }
- </code>
-</pre>
-
-<p>Akcia kontroleru môže vyzerať nasledovne:</p>
-
-<pre>
- <code class="cs">
-public class TestController : Controller
+</code></pre><p>Akcia kontroleru môže vyzerať nasledovne:<pre><code class="language-cs hljs"><span class=hljs-keyword>public</span> <span class=hljs-keyword>class</span> <span class=hljs-title>TestController</span> : <span class=hljs-title>Controller</span>
 {
      [RqueireValidModelStateFilter]
-     public IActionResult ConfirmRedirect(ReturnUrl retUrl, bool isTest)
-     {
-         //TODO: spracovanie akcie
-         return this.Redirect(retUrl.Value);
+     <span class=hljs-function><span class=hljs-keyword>public</span> IActionResult <span class=hljs-title>ConfirmRedirect</span>(<span class=hljs-params>ReturnUrl retUrl, <span class=hljs-keyword>bool</span> isTest</span>)
+     </span>{
+         <span class=hljs-comment>//<span class=hljs-doctag>TODO:</span> spracovanie akcie</span>
+         <span class=hljs-keyword>return</span> <span class=hljs-keyword>this</span>.Redirect(retUrl.Value);
      }
 }
- </code>
-</pre>
-
-<p>Po zavolaní adresy 
-<em>/Test/ConfirmRedirect?retUrl=%2FTest%2FIndex%3Faa%3D47&amp;isTest=false</em> sa akcia vykoná.
-No pri 
-<em>/Test/ConfirmRedirect?retUrl=%2FTest%2FIndex%3Faa%3D47&amp;isTest=iamattacker</em>
-alebo 
-<em>/Test/ConfirmRedirect?retUrl=%3Cscript%3Ealert%281%29%3B%3C%2Fscript%3E&amp;isTest=false</em>
-už nie a používateľ dostane odpoveď Bad Request, pretože v prvom prípade sa nepodarilo ASP.NET MVC sparsovať bool
-a v druhom boli u URL-ke nepovolené znaky a pokus o <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">XSS</a>.</p>
-
-<p>V ASP.NET Core je samozrejme možné použiť dependency injection v bindroch aj atribútoch,
-čo sa veľmi hodí pri logovaní toho, čo sa na serveri udialo.</p>
-
-            </div>
-            <div class="col-md-4">
-                
-<div class="well">
-    <h4>Vývoj</h4>
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="list-unstyled">
-                    <li><a href="SkEidSign.html">Podpisovanie PDF v .Net Core</a></li>
-                    <li><a href="Ansible.html">Ansible a .Net Core</a></li>
-                    <li><a href="GoLang.html">Golang</a></li>
-                    <li><a href="LevenstainOptimalization.html">Optimaliz&#225;cia v&#253;počtu Levenstainovej vzdialenosti</a></li>
-                    <li><a href="ZabezpecnieAspMvc.html">Zabezpečenie ASP.NET MVC</a></li>
-                    <li><a href="UzitocneProgramy.html">Užitočn&#233; programy</a></li>
-                    <li><a href="CoreStreaming.html">Video straming v ASP.NET Core</a></li>
-                    <li><a href="Tfs15AsmVersion.html">TFS 2015 a č&#237;slo verzie assembly</a></li>
-                    <li><a href="ServiceLocator.html">Stupne zla Service lok&#225;toru</a></li>
-                    <li><a href="Monads.html">Mon&#225;dy</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="well">
-    <h4>Všeobecné</h4>
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="list-unstyled">
-                <li><a href="EzoGenerator.html">Gener&#225;tor Ezo textov</a></li>
-                <li><a href="AlternativnyRecept.html">Propag&#225;cia alternat&#237;vnej medic&#237;ny</a></li>
-                <li><a href="VotrelciDavnoveku.html">Votrelci d&#225;vnoveku</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="well">
-    <h4>O mne</h4>
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="list-unstyled">
-                <li><a href="OMne.html">O mne</a></li>
-                <li><a href="OMneOdkazy.html">Moja tvorba inde</a></li>
-                <li><a href="Portfolio.html">Portf&#243;lio</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-            </div>
-        </div>
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; harrison314 2013</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
-
-    </div>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+</code></pre><p>Po zavolaní adresy <em>/Test/ConfirmRedirect?retUrl=%2FTest%2FIndex%3Faa%3D47&amp;isTest=false</em> sa akcia vykoná. No&nbsp;pri <em>/Test/ConfirmRedirect?retUrl=%2FTest%2FIndex%3Faa%3D47&amp;isTest=iamattacker</em> alebo&nbsp;<em>/Test/ConfirmRedirect?retUrl=%3Cscript%3Ealert%281%29%3B%3C%2Fscript%3E&amp;isTest=false</em> už nie a&nbsp;používateľ dostane odpoveď Bad Request, pretože&nbsp;v prvom prípade sa nepodarilo ASP.NET MVC sparsovať bool a&nbsp;v druhom boli u URL-ke nepovolené znaky a&nbsp;pokus o&nbsp;<a href=https://en.wikipedia.org/wiki/Cross-site_scripting>XSS</a>.<p>V ASP.NET Core je samozrejme možné použiť dependency injection v&nbsp;bindroch aj&nbsp;atribútoch, čo&nbsp;sa veľmi hodí pri&nbsp;logovaní toho, čo&nbsp;sa na&nbsp;serveri udialo.</div><div class="col-lg-4 col-md-4 hidden-xs hidden-sm"><div class=well><h4>Vývoj</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/SkEidSign.html>Podpisovanie PDF v .Net Core</a><li><a href=/Ansible.html>Ansible a .Net Core</a><li><a href=/GoLang.html>Golang</a><li><a href=/LevenstainOptimalization.html>Optimalizácia výpočtu Levenstainovej vzdialenosti</a><li><a href=/ZabezpecnieAspMvc.html>Zabezpečenie ASP.NET MVC</a><li><a href=/UzitocneProgramy.html>Užitočné programy</a><li><a href=/CoreStreaming.html>Video straming v ASP.NET Core</a><li><a href=/Tfs15AsmVersion.html>TFS 2015 a číslo verzie assembly</a><li><a href=/ServiceLocator.html>Stupne zla Service lokátoru</a><li><a href=/Monads.html>Monády</a></ul></div></div></div><div class=well><h4>Všeobecné</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/EzoGenerator.html>Generátor Ezo textov</a><li><a href=/AlternativnyRecept.html>Propagácia alternatívnej medicíny</a><li><a href=/VotrelciDavnoveku.html>Votrelci dávnoveku</a></ul></div></div></div><div class=well><h4>O mne</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/OMne.html>O mne</a><li><a href=/OMneOdkazy.html>Moja tvorba inde</a><li><a href=/Portfolio.html>Portfólio</a></ul></div></div></div></div></div><hr><footer><div class=row><div class=col-lg-12><p>Copyright © harrison314 2013</div></div></footer></div><script src=js/jquery.js></script><script src=js/bootstrap.min.js></script>

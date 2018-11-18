@@ -1,211 +1,35 @@
-<!DOCTYPE html>
-<html lang="sk">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Kr&#225;tky n&#225;vod ako nastaviť &#250;pravu č&#237;sla verzie assembly pomocou TFS-ka 2015 pre automatick&#233; buildy." />
-    <meta name="author" content="" />
+<!DOCTYPE html><html lang=sk><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1"><link rel=alternate type=application/rss+xml title="RSS Feed" href=/feed.rss><link rel=alternate type=application/atom+xml title="Atom Feed" href=/feed.atom><meta name=author content=harrison314><title>TFS 2015 a číslo verzie assembly</title><link href=css/bootstrap.min.css rel=stylesheet><link href=css/blog-post.css rel=stylesheet><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script><script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]--><link rel=stylesheet href=css/Highiler/vs.css><style>img{max-width:100%}.img-center{display:block;margin-left:auto;margin-right:auto}</style><body><nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#bs-example-navbar-collapse-1> <span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span> </button> <a class=navbar-brand href=index.html>harrison314 blog</a></div><div class="collapse navbar-collapse" id=bs-example-navbar-collapse-1><ul class="nav navbar-nav"><li><a href=/All.html>Obsah</a><li><a href=/DevelopingAll.html>Programovanie</a><li><a href=/GeneralAll.html>Všeobecné</a><li><a href=/OMne.html>O mne</a></ul></div></div></nav><div class=container><div class=row><div class="col-lg-8 col-md-8"><h1 id=tfs-2015-a-cislo-verzie-assembly>TFS 2015 a&nbsp;číslo verzie assembly</h1><p>Krátky návod ako nastaviť automatickú úpravu čísla verzie assembly pomocou TFS-ka 2015 pre&nbsp;automatické buildy. Skript upravuje posledné dve čisla, kde&nbsp;<em>Build Number</em> je počet dní od&nbsp;zadaného dátumu a&nbsp;<em>Revision</em> sekunda buildu vrámci dňa, ide to samozrejme upraviť.<p>Do sourse controlu treba pridať do&nbsp;koreňového priečinku PowerShell script nazvaný <em>UpdateSourceVersion.ps1</em>:<pre><code class="language-powershell hljs"><span class=hljs-keyword>param</span>([string] <span class=hljs-variable>$BaseDir</span>=<span class=hljs-string>""</span>)
 
-    <title>TFS 2015 a č&#237;slo verzie assembly</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Custom CSS -->
-    <link href="css/blog-post.css" rel="stylesheet" />
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-        <link rel="stylesheet" href="css/Highiler/vs.css" />
-        <script src="js/highlight.pack.js"></script>
-        <script type="text/javascript">
-            hljs.initHighlightingOnLoad();
-        </script>
-    <style>
-        img {
-            max-width: 100%;
-        }
-    </style>
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-83854587-1', 'auto');
-  ga('send', 'pageview');
-
-    </script>
-</head>
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href=".">harrison314 blog</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="All.html">Obsah</a>
-                </li>
-                <li>
-                    <a href="DevelopingAll.html">Programovanie</a>
-                </li>
-                <li>
-                    <a href="GeneralAll.html">Všeobecné</a>
-                </li>
-                <li>
-                    <a href="OMne.html">O mne</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-
-
-    <!-- Page Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <h1>TFS 2015 a číslo verzie assembly</h1>
-
-<p>Krátky návod ako nastaviť automatickú úpravu čísla verzie assembly pomocou TFS-ka 2015 pre automatické buildy.
-Skript upravuje posledné dve čisla, kde <em>Build Number</em> je počet dní od zadaného dátumu
-a <em>Revision</em> sekunda buildu vrámci dňa, ide to samozrejme upraviť.</p>
-
-<p>Do sourse controlu treba pridať do koreňového priečinku PowerShell script nazvaný <em>UpdateSourceVersion.ps1</em> :</p>
-
-<pre>
- <code class="ps">
-param([string] $BaseDir="")
-
-if([string]::IsNullOrEmpty($BaseDir))
+<span class=hljs-keyword>if</span>([string]::IsNullOrEmpty(<span class=hljs-variable>$BaseDir</span>))
 {
-    $BaseDir = split-path -parent $MyInvocation.MyCommand.Definition
+    <span class=hljs-variable>$BaseDir</span> = <span class=hljs-built_in>split-path</span> -parent <span class=hljs-variable>$MyInvocation</span>.MyCommand.Definition
 }
 
-$re = [regex] 'Assembly[a-zA-Z]+\("\d\.\d\.\*"\)'
-[int]$buildNumberDay = ((Get-Date) - (Get-Date '2013-06-30')).Days
-[int]$buildNumberSec = ((Get-Date) - [DateTime]::Now.Date).TotalSeconds
-[string] $replacment = "{0}.{1}" -f $buildNumberDay, $buildNumberSec
+<span class=hljs-variable>$re</span> = [regex] <span class=hljs-string>'Assembly[a-zA-Z]+\("\d\.\d\.\*"\)'</span>
+[int]<span class=hljs-variable>$buildNumberDay</span> = ((<span class=hljs-built_in>Get-Date</span>) - (<span class=hljs-built_in>Get-Date</span> <span class=hljs-string>'2013-06-30'</span>)).Days
+[int]<span class=hljs-variable>$buildNumberSec</span> = ((<span class=hljs-built_in>Get-Date</span>) - [DateTime]::Now.Date).TotalSeconds
+[string] <span class=hljs-variable>$replacment</span> = <span class=hljs-string>"{0}.{1}"</span> -f <span class=hljs-variable>$buildNumberDay</span>, <span class=hljs-variable>$buildNumberSec</span>
 
-$reCallback = {
-    $args[0].Value -replace "\*", $replacment
+<span class=hljs-variable>$reCallback</span> = {
+    <span class=hljs-variable>$args</span>[<span class=hljs-number>0</span>].Value <span class=hljs-nomarkup>-replace</span> <span class=hljs-string>"\*"</span>, <span class=hljs-variable>$replacment</span>
 };
 
-Write-Host "Scan AssemblyInfo.cs in " $baseDir
-$files = Get-ChildItem $BaseDir -Recurse -Filter "AssemblyInfo.cs" 
-foreach ($file in $files)
+<span class=hljs-built_in>Write-Host</span> <span class=hljs-string>"Scan AssemblyInfo.cs in "</span> <span class=hljs-variable>$baseDir</span>
+<span class=hljs-variable>$files</span> = <span class=hljs-built_in>Get-ChildItem</span> <span class=hljs-variable>$BaseDir</span> -Recurse -Filter <span class=hljs-string>"AssemblyInfo.cs"</span> 
+<span class=hljs-keyword>foreach</span> (<span class=hljs-variable>$file</span> <span class=hljs-keyword>in</span> <span class=hljs-variable>$files</span>)
 {
-    $content = [IO.File]::ReadAllText($file.FullName, [Text.Encoding]::UTF8)
-    if($re.IsMatch($content))
+    <span class=hljs-variable>$content</span> = [IO.File]::ReadAllText(<span class=hljs-variable>$file</span>.FullName, [Text.Encoding]::UTF8)
+    <span class=hljs-keyword>if</span>(<span class=hljs-variable>$re</span>.IsMatch(<span class=hljs-variable>$content</span>))
     {
-        $content = $re.Replace($content, $reCallback)
-        Set-Content -Path  $file.FullName -Value $content
-        "Write vesion : * {0}.{1} to file '{2}'." -f $buildNumberDay, $buildNumberSec, $file.FullName | Write-Host
+        <span class=hljs-variable>$content</span> = <span class=hljs-variable>$re</span>.Replace(<span class=hljs-variable>$content</span>, <span class=hljs-variable>$reCallback</span>)
+        <span class=hljs-built_in>Set-Content</span> -Path  <span class=hljs-variable>$file</span>.FullName -Value <span class=hljs-variable>$content</span>
+        <span class=hljs-string>"Write vesion : * {0}.{1} to file '{2}'."</span> -f <span class=hljs-variable>$buildNumberDay</span>, <span class=hljs-variable>$buildNumberSec</span>, <span class=hljs-variable>$file</span>.FullName | <span class=hljs-built_in>Write-Host</span>
     }
 }
- </code>
-</pre>
-
-<p>Všetky súbory <em>AssemblyInfo.cs</em> sa upravia tak aby v obsahovali:</p>
-
-<pre>
- <code class="cs">
- // You can specify all the values or you can default the Build and Revision Numbers 
- // by using the '*' as shown below:
- // [assembly: AssemblyVersion("1.0.*")]
- [assembly: AssemblyVersion("1.0.*")]
- [assembly: AssemblyFileVersion("1.0.0.0")]
- [assembly: AssemblyInformationalVersion("1.0.*")]
- </code>
-</pre>
-
-<p>Potom sa v nastaveniach buildu v  <em>Team Foundation Server 2015</em> sa pridá PowerShell script <em>UpdateSourceVersion.ps1</em> 
-predradený pred samotnú kompiláciu a testy.</p>
-
-<p><img src="images/Programing/Tfs15AsmVersion/1.png" alt="Team Foundation Server 2015" /></p>
-
-<p>A veselo buildujeme.</p>
-
-            </div>
-            <div class="col-md-4">
-                
-<div class="well">
-    <h4>Vývoj</h4>
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="list-unstyled">
-                    <li><a href="SkEidSign.html">Podpisovanie PDF v .Net Core</a></li>
-                    <li><a href="Ansible.html">Ansible a .Net Core</a></li>
-                    <li><a href="GoLang.html">Golang</a></li>
-                    <li><a href="LevenstainOptimalization.html">Optimaliz&#225;cia v&#253;počtu Levenstainovej vzdialenosti</a></li>
-                    <li><a href="ZabezpecnieAspMvc.html">Zabezpečenie ASP.NET MVC</a></li>
-                    <li><a href="UzitocneProgramy.html">Užitočn&#233; programy</a></li>
-                    <li><a href="CoreStreaming.html">Video straming v ASP.NET Core</a></li>
-                    <li><a href="Tfs15AsmVersion.html">TFS 2015 a č&#237;slo verzie assembly</a></li>
-                    <li><a href="ServiceLocator.html">Stupne zla Service lok&#225;toru</a></li>
-                    <li><a href="Monads.html">Mon&#225;dy</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="well">
-    <h4>Všeobecné</h4>
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="list-unstyled">
-                <li><a href="EzoGenerator.html">Gener&#225;tor Ezo textov</a></li>
-                <li><a href="AlternativnyRecept.html">Propag&#225;cia alternat&#237;vnej medic&#237;ny</a></li>
-                <li><a href="VotrelciDavnoveku.html">Votrelci d&#225;vnoveku</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="well">
-    <h4>O mne</h4>
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="list-unstyled">
-                <li><a href="OMne.html">O mne</a></li>
-                <li><a href="OMneOdkazy.html">Moja tvorba inde</a></li>
-                <li><a href="Portfolio.html">Portf&#243;lio</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-            </div>
-        </div>
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; harrison314 2013</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
-
-    </div>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-</body>
-</html>
+</code></pre><p>Všetky súbory <em>AssemblyInfo.cs</em> sa upravia tak aby&nbsp;v obsahovali:<pre><code class="language-cs hljs"> <span class=hljs-comment>// You can specify all the values or you can default the Build and Revision Numbers </span>
+ <span class=hljs-comment>// by using the '*' as shown below:</span>
+ <span class=hljs-comment>// [assembly: AssemblyVersion("1.0.*")]</span>
+ [assembly: AssemblyVersion(<span class=hljs-string>"1.0.*"</span>)]
+ [assembly: AssemblyFileVersion(<span class=hljs-string>"1.0.0.0"</span>)]
+ [assembly: AssemblyInformationalVersion(<span class=hljs-string>"1.0.*"</span>)]
+</code></pre><p>Potom sa v&nbsp;nastaveniach buildu v&nbsp;<em>Team Foundation Server 2015</em> sa pridá PowerShell script <em>UpdateSourceVersion.ps1</em> predradený pred samotnú kompiláciu a&nbsp;testy.<p><img src=images/Programing/Tfs15AsmVersion/1.png alt="Team Foundation Server 2015"><p>A veselo buildujeme.</div><div class="col-lg-4 col-md-4 hidden-xs hidden-sm"><div class=well><h4>Vývoj</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/SkEidSign.html>Podpisovanie PDF v .Net Core</a><li><a href=/Ansible.html>Ansible a .Net Core</a><li><a href=/GoLang.html>Golang</a><li><a href=/LevenstainOptimalization.html>Optimalizácia výpočtu Levenstainovej vzdialenosti</a><li><a href=/ZabezpecnieAspMvc.html>Zabezpečenie ASP.NET MVC</a><li><a href=/UzitocneProgramy.html>Užitočné programy</a><li><a href=/CoreStreaming.html>Video straming v ASP.NET Core</a><li><a href=/Tfs15AsmVersion.html>TFS 2015 a číslo verzie assembly</a><li><a href=/ServiceLocator.html>Stupne zla Service lokátoru</a><li><a href=/Monads.html>Monády</a></ul></div></div></div><div class=well><h4>Všeobecné</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/EzoGenerator.html>Generátor Ezo textov</a><li><a href=/AlternativnyRecept.html>Propagácia alternatívnej medicíny</a><li><a href=/VotrelciDavnoveku.html>Votrelci dávnoveku</a></ul></div></div></div><div class=well><h4>O mne</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/OMne.html>O mne</a><li><a href=/OMneOdkazy.html>Moja tvorba inde</a><li><a href=/Portfolio.html>Portfólio</a></ul></div></div></div></div></div><hr><footer><div class=row><div class=col-lg-12><p>Copyright © harrison314 2013</div></div></footer></div><script src=js/jquery.js></script><script src=js/bootstrap.min.js></script>
