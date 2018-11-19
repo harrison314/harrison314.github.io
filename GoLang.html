@@ -4,7 +4,7 @@
     <span class=hljs-keyword>const</span> <span class=hljs-keyword>int</span> size = <span class=hljs-number>256</span>;
     <span class=hljs-keyword>double</span> sinTable[size];
     
-    <span class=hljs-keyword>for</span>(<span class=hljs-keyword>int</span> n=<span class=hljs-number>0</span>; n&amp;lt;size; ++n)
+    <span class=hljs-keyword>for</span>(<span class=hljs-keyword>int</span> n=<span class=hljs-number>0</span>; n &lt; size; ++n)
       sinTable[n] = <span class=hljs-built_in>std</span>::<span class=hljs-built_in>sin</span>(<span class=hljs-number>2</span> * M_PI * n / size);
   
     <span class=hljs-comment>// the table is now initialized</span>
@@ -16,7 +16,7 @@
     <span class=hljs-keyword>double</span> sinTable[size];
     
     <span class=hljs-meta>#<span class=hljs-meta-keyword>pragma</span> omp parallel for</span>
-    <span class=hljs-keyword>for</span>(<span class=hljs-keyword>int</span> n=<span class=hljs-number>0</span>; n&amp;lt;size; ++n)
+    <span class=hljs-keyword>for</span>(<span class=hljs-keyword>int</span> n=<span class=hljs-number>0</span>; n &lt; size; ++n)
       sinTable[n] = <span class=hljs-built_in>std</span>::<span class=hljs-built_in>sin</span>(<span class=hljs-number>2</span> * M_PI * n / size);
   
     <span class=hljs-comment>// the table is now initialized</span>
