@@ -4,18 +4,24 @@
 	<id>https://harrison314.github.io/</id>
 	<title />
 	<rights>2018</rights>
-	<updated>2018-11-21T18:39:00Z</updated>
+	<updated>2018-11-21T20:39:49Z</updated>
 	<entry>
-		<link href="https://harrison314.github.io/Portfolio.html" />
-		<id>https://harrison314.github.io/Portfolio.html</id>
-		<title>Portfólio</title>
-		<updated>2013-06-18T00:00:00Z</updated>
+		<link href="https://harrison314.github.io/EzoGenerator.html" />
+		<id>https://harrison314.github.io/EzoGenerator.html</id>
+		<title>Generátor Ezo textov</title>
+		<updated>2018-10-07T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<link href="https://harrison314.github.io/LevenstainOptimalization.html" />
-		<id>https://harrison314.github.io/LevenstainOptimalization.html</id>
-		<title>Optimalizácia výpočtu Levenstainovej vzdialenosti</title>
-		<updated>2018-01-20T00:00:00Z</updated>
+		<link href="https://harrison314.github.io/SkEidSign.html" />
+		<id>https://harrison314.github.io/SkEidSign.html</id>
+		<title>Podpísanie PDF-ka Slovenským eID-čkom</title>
+		<updated>2018-07-30T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/Ansible.html" />
+		<id>https://harrison314.github.io/Ansible.html</id>
+		<title>Inštalácia .Net Core cez Ansible</title>
+		<updated>2018-07-19T00:00:00Z</updated>
 	</entry>
 	<entry>
 		<link href="https://harrison314.github.io/GoLang.html" />
@@ -24,9 +30,81 @@
 		<updated>2018-05-20T00:00:00Z</updated>
 	</entry>
 	<entry>
+		<link href="https://harrison314.github.io/LevenstainOptimalization.html" />
+		<id>https://harrison314.github.io/LevenstainOptimalization.html</id>
+		<title>Optimalizácia výpočtu Levenstainovej vzdialenosti</title>
+		<updated>2018-01-20T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/ZabezpecnieAspMvc.html" />
+		<id>https://harrison314.github.io/ZabezpecnieAspMvc.html</id>
+		<title>Zabezpečenie vstupov ASP.NET MVC aplikácie</title>
+		<updated>2017-09-15T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/UzitocneProgramy.html" />
+		<id>https://harrison314.github.io/UzitocneProgramy.html</id>
+		<title>Užitočné programy</title>
+		<updated>2017-07-19T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/AlternativnyRecept.html" />
+		<id>https://harrison314.github.io/AlternativnyRecept.html</id>
+		<title>Recept na propagáciu alternatívnej medicíny</title>
+		<updated>2017-05-03T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/CoreStreaming.html" />
+		<id>https://harrison314.github.io/CoreStreaming.html</id>
+		<title>Video straming v ASP.NET Core</title>
+		<updated>2016-08-25T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/Tfs15AsmVersion.html" />
+		<id>https://harrison314.github.io/Tfs15AsmVersion.html</id>
+		<title>TFS 2015 a číslo verzie assembly</title>
+		<updated>2016-06-14T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/ServiceLocator.html" />
+		<id>https://harrison314.github.io/ServiceLocator.html</id>
+		<title>Stupne zla Service lokátoru</title>
+		<updated>2016-04-26T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/Monads.html" />
+		<id>https://harrison314.github.io/Monads.html</id>
+		<title>Monády</title>
+		<updated>2016-04-16T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
+		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
+		<title>Votrelci dávnoveku</title>
+		<updated>2016-04-16T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/VarAndDynamic.html" />
+		<id>https://harrison314.github.io/VarAndDynamic.html</id>
+		<title>Ako používať var a dynamic v C#</title>
+		<updated>2016-04-10T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/OMne.html" />
+		<id>https://harrison314.github.io/OMne.html</id>
+		<title>O mne a mojich zálubách</title>
+		<updated>2016-04-07T00:00:00Z</updated>
+	</entry>
+	<entry>
 		<link href="https://harrison314.github.io/ContetFilter.html" />
 		<id>https://harrison314.github.io/ContetFilter.html</id>
 		<title>Content filte</title>
+		<updated>2013-12-25T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/CatalogProduktov.html" />
+		<id>https://harrison314.github.io/CatalogProduktov.html</id>
+		<title>Katalóg produktov v relačnej databáze</title>
 		<updated>2013-12-25T00:00:00Z</updated>
 	</entry>
 	<entry>
@@ -36,93 +114,15 @@
 		<updated>2013-12-01T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<link href="https://harrison314.github.io/VarAndDynamic.html" />
-		<id>https://harrison314.github.io/VarAndDynamic.html</id>
-		<title>Ako používať var a dynamic v C#</title>
-		<updated>2016-04-10T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
-		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
-		<title>Votrelci dávnoveku</title>
-		<updated>2016-04-16T00:00:00Z</updated>
-	</entry>
-	<entry>
 		<link href="https://harrison314.github.io/CoRobiProgramator.html" />
 		<id>https://harrison314.github.io/CoRobiProgramator.html</id>
 		<title>Čo robí programátor?</title>
 		<updated>2013-09-18T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<link href="https://harrison314.github.io/AlternativnyRecept.html" />
-		<id>https://harrison314.github.io/AlternativnyRecept.html</id>
-		<title>Recept na propagáciu alternatívnej medicíny</title>
-		<updated>2017-05-03T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/EzoGenerator.html" />
-		<id>https://harrison314.github.io/EzoGenerator.html</id>
-		<title>Generátor Ezo textov</title>
-		<updated>2018-10-07T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/Ansible.html" />
-		<id>https://harrison314.github.io/Ansible.html</id>
-		<title>Inštalácia .Net Core cez Ansible</title>
-		<updated>2018-07-19T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/Tfs15AsmVersion.html" />
-		<id>https://harrison314.github.io/Tfs15AsmVersion.html</id>
-		<title>TFS 2015 a číslo verzie assembly</title>
-		<updated>2016-06-14T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/CatalogProduktov.html" />
-		<id>https://harrison314.github.io/CatalogProduktov.html</id>
-		<title>Katalóg produktov v relačnej databáze</title>
-		<updated>2013-12-25T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/ServiceLocator.html" />
-		<id>https://harrison314.github.io/ServiceLocator.html</id>
-		<title>Stupne zla Service lokátoru</title>
-		<updated>2016-04-26T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/SkEidSign.html" />
-		<id>https://harrison314.github.io/SkEidSign.html</id>
-		<title>Podpísanie PDF-ka Slovenským eID-čkom</title>
-		<updated>2018-07-30T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/OMne.html" />
-		<id>https://harrison314.github.io/OMne.html</id>
-		<title>O mne a mojich zálubách</title>
-		<updated>2016-04-07T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/Monads.html" />
-		<id>https://harrison314.github.io/Monads.html</id>
-		<title>Monády</title>
-		<updated>2016-04-16T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/CoreStreaming.html" />
-		<id>https://harrison314.github.io/CoreStreaming.html</id>
-		<title>Video straming v ASP.NET Core</title>
-		<updated>2016-08-25T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/UzitocneProgramy.html" />
-		<id>https://harrison314.github.io/UzitocneProgramy.html</id>
-		<title>Užitočné programy</title>
-		<updated>2017-07-19T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/ZabezpecnieAspMvc.html" />
-		<id>https://harrison314.github.io/ZabezpecnieAspMvc.html</id>
-		<title>Zabezpečenie vstupov ASP.NET MVC aplikácie</title>
-		<updated>2017-09-15T00:00:00Z</updated>
+		<link href="https://harrison314.github.io/Portfolio.html" />
+		<id>https://harrison314.github.io/Portfolio.html</id>
+		<title>Portfólio</title>
+		<updated>2013-06-18T00:00:00Z</updated>
 	</entry>
 </feed>
