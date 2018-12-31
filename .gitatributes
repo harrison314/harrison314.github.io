@@ -1,0 +1,9 @@
+core.autocrlf true
+
+* text=auto
+*.html text eol=crlf
+*.css text eol=crlf
+*.js text eol=crlf
+
+*.png binary
+*.jpg binary

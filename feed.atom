@@ -4,12 +4,12 @@
 	<id>https://harrison314.github.io/</id>
 	<title />
 	<rights>2018</rights>
-	<updated>2018-11-21T20:39:49Z</updated>
+	<updated>2018-12-31T09:36:24Z</updated>
 	<entry>
 		<link href="https://harrison314.github.io/EzoGenerator.html" />
 		<id>https://harrison314.github.io/EzoGenerator.html</id>
 		<title>Generátor Ezo textov</title>
-		<updated>2018-10-07T00:00:00Z</updated>
+		<updated>2018-12-31T00:00:00Z</updated>
 	</entry>
 	<entry>
 		<link href="https://harrison314.github.io/SkEidSign.html" />
@@ -72,15 +72,15 @@
 		<updated>2016-04-26T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<link href="https://harrison314.github.io/Monads.html" />
-		<id>https://harrison314.github.io/Monads.html</id>
-		<title>Monády</title>
-		<updated>2016-04-16T00:00:00Z</updated>
-	</entry>
-	<entry>
 		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
 		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
 		<title>Votrelci dávnoveku</title>
+		<updated>2016-04-16T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/Monads.html" />
+		<id>https://harrison314.github.io/Monads.html</id>
+		<title>Monády</title>
 		<updated>2016-04-16T00:00:00Z</updated>
 	</entry>
 	<entry>
