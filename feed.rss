@@ -4,9 +4,15 @@
 		<title />
 		<link>https://harrison314.github.io/</link>
 		<description />
-		<copyright>2018</copyright>
-		<pubDate>Mon, 31 Dec 2018 09:36:24 GMT</pubDate>
-		<lastBuildDate>Mon, 31 Dec 2018 09:36:24 GMT</lastBuildDate>
+		<copyright>2019</copyright>
+		<pubDate>Tue, 05 Mar 2019 18:05:19 GMT</pubDate>
+		<lastBuildDate>Tue, 05 Mar 2019 18:05:19 GMT</lastBuildDate>
+		<item>
+			<title>Hostovanie .Net Core assembly v natívnej DLL/SO knižnici</title>
+			<link>https://harrison314.github.io/HostCoreInDll.html</link>
+			<guid>https://harrison314.github.io/HostCoreInDll.html</guid>
+			<pubDate>Sat, 02 Mar 2019 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Generátor Ezo textov</title>
 			<link>https://harrison314.github.io/EzoGenerator.html</link>
@@ -98,15 +104,15 @@
 			<pubDate>Thu, 07 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 		<item>
-			<title>Content filte</title>
-			<link>https://harrison314.github.io/ContetFilter.html</link>
-			<guid>https://harrison314.github.io/ContetFilter.html</guid>
-			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
-		</item>
-		<item>
 			<title>Katalóg produktov v relačnej databáze</title>
 			<link>https://harrison314.github.io/CatalogProduktov.html</link>
 			<guid>https://harrison314.github.io/CatalogProduktov.html</guid>
+			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Content filte</title>
+			<link>https://harrison314.github.io/ContetFilter.html</link>
+			<guid>https://harrison314.github.io/ContetFilter.html</guid>
 			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
 		</item>
 		<item>
@@ -120,12 +126,6 @@
 			<link>https://harrison314.github.io/CoRobiProgramator.html</link>
 			<guid>https://harrison314.github.io/CoRobiProgramator.html</guid>
 			<pubDate>Wed, 18 Sep 2013 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Portfólio</title>
-			<link>https://harrison314.github.io/Portfolio.html</link>
-			<guid>https://harrison314.github.io/Portfolio.html</guid>
-			<pubDate>Tue, 18 Jun 2013 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>

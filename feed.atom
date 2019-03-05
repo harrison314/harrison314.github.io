@@ -3,8 +3,14 @@
 	<link rel="self" href="https://harrison314.github.io/" />
 	<id>https://harrison314.github.io/</id>
 	<title />
-	<rights>2018</rights>
-	<updated>2018-12-31T09:36:24Z</updated>
+	<rights>2019</rights>
+	<updated>2019-03-05T18:05:19Z</updated>
+	<entry>
+		<link href="https://harrison314.github.io/HostCoreInDll.html" />
+		<id>https://harrison314.github.io/HostCoreInDll.html</id>
+		<title>Hostovanie .Net Core assembly v natívnej DLL/SO knižnici</title>
+		<updated>2019-03-02T00:00:00Z</updated>
+	</entry>
 	<entry>
 		<link href="https://harrison314.github.io/EzoGenerator.html" />
 		<id>https://harrison314.github.io/EzoGenerator.html</id>
@@ -96,15 +102,15 @@
 		<updated>2016-04-07T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<link href="https://harrison314.github.io/ContetFilter.html" />
-		<id>https://harrison314.github.io/ContetFilter.html</id>
-		<title>Content filte</title>
-		<updated>2013-12-25T00:00:00Z</updated>
-	</entry>
-	<entry>
 		<link href="https://harrison314.github.io/CatalogProduktov.html" />
 		<id>https://harrison314.github.io/CatalogProduktov.html</id>
 		<title>Katalóg produktov v relačnej databáze</title>
+		<updated>2013-12-25T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/ContetFilter.html" />
+		<id>https://harrison314.github.io/ContetFilter.html</id>
+		<title>Content filte</title>
 		<updated>2013-12-25T00:00:00Z</updated>
 	</entry>
 	<entry>
@@ -118,11 +124,5 @@
 		<id>https://harrison314.github.io/CoRobiProgramator.html</id>
 		<title>Čo robí programátor?</title>
 		<updated>2013-09-18T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/Portfolio.html" />
-		<id>https://harrison314.github.io/Portfolio.html</id>
-		<title>Portfólio</title>
-		<updated>2013-06-18T00:00:00Z</updated>
 	</entry>
 </feed>
