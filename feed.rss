@@ -5,13 +5,13 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2019</copyright>
-		<pubDate>Tue, 05 Mar 2019 18:05:19 GMT</pubDate>
-		<lastBuildDate>Tue, 05 Mar 2019 18:05:19 GMT</lastBuildDate>
+		<pubDate>Sat, 09 Mar 2019 15:43:43 GMT</pubDate>
+		<lastBuildDate>Sat, 09 Mar 2019 15:43:43 GMT</lastBuildDate>
 		<item>
 			<title>Hostovanie .Net Core assembly v natívnej DLL/SO knižnici</title>
 			<link>https://harrison314.github.io/HostCoreInDll.html</link>
 			<guid>https://harrison314.github.io/HostCoreInDll.html</guid>
-			<pubDate>Sat, 02 Mar 2019 00:00:00 GMT</pubDate>
+			<pubDate>Sat, 09 Mar 2019 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Generátor Ezo textov</title>
@@ -80,15 +80,15 @@
 			<pubDate>Tue, 26 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 		<item>
-			<title>Votrelci dávnoveku</title>
-			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
-			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
-			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
-		</item>
-		<item>
 			<title>Monády</title>
 			<link>https://harrison314.github.io/Monads.html</link>
 			<guid>https://harrison314.github.io/Monads.html</guid>
+			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Votrelci dávnoveku</title>
+			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
+			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
 			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 		<item>
@@ -104,15 +104,15 @@
 			<pubDate>Thu, 07 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 		<item>
-			<title>Katalóg produktov v relačnej databáze</title>
-			<link>https://harrison314.github.io/CatalogProduktov.html</link>
-			<guid>https://harrison314.github.io/CatalogProduktov.html</guid>
-			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
-		</item>
-		<item>
 			<title>Content filte</title>
 			<link>https://harrison314.github.io/ContetFilter.html</link>
 			<guid>https://harrison314.github.io/ContetFilter.html</guid>
+			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Katalóg produktov v relačnej databáze</title>
+			<link>https://harrison314.github.io/CatalogProduktov.html</link>
+			<guid>https://harrison314.github.io/CatalogProduktov.html</guid>
 			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
 		</item>
 		<item>

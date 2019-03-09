@@ -4,12 +4,12 @@
 	<id>https://harrison314.github.io/</id>
 	<title />
 	<rights>2019</rights>
-	<updated>2019-03-05T18:05:19Z</updated>
+	<updated>2019-03-09T15:43:43Z</updated>
 	<entry>
 		<link href="https://harrison314.github.io/HostCoreInDll.html" />
 		<id>https://harrison314.github.io/HostCoreInDll.html</id>
 		<title>Hostovanie .Net Core assembly v natívnej DLL/SO knižnici</title>
-		<updated>2019-03-02T00:00:00Z</updated>
+		<updated>2019-03-09T00:00:00Z</updated>
 	</entry>
 	<entry>
 		<link href="https://harrison314.github.io/EzoGenerator.html" />
@@ -78,15 +78,15 @@
 		<updated>2016-04-26T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
-		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
-		<title>Votrelci dávnoveku</title>
-		<updated>2016-04-16T00:00:00Z</updated>
-	</entry>
-	<entry>
 		<link href="https://harrison314.github.io/Monads.html" />
 		<id>https://harrison314.github.io/Monads.html</id>
 		<title>Monády</title>
+		<updated>2016-04-16T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
+		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
+		<title>Votrelci dávnoveku</title>
 		<updated>2016-04-16T00:00:00Z</updated>
 	</entry>
 	<entry>
@@ -102,15 +102,15 @@
 		<updated>2016-04-07T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<link href="https://harrison314.github.io/CatalogProduktov.html" />
-		<id>https://harrison314.github.io/CatalogProduktov.html</id>
-		<title>Katalóg produktov v relačnej databáze</title>
-		<updated>2013-12-25T00:00:00Z</updated>
-	</entry>
-	<entry>
 		<link href="https://harrison314.github.io/ContetFilter.html" />
 		<id>https://harrison314.github.io/ContetFilter.html</id>
 		<title>Content filte</title>
+		<updated>2013-12-25T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/CatalogProduktov.html" />
+		<id>https://harrison314.github.io/CatalogProduktov.html</id>
+		<title>Katalóg produktov v relačnej databáze</title>
 		<updated>2013-12-25T00:00:00Z</updated>
 	</entry>
 	<entry>
