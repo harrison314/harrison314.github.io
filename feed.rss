@@ -5,8 +5,14 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2019</copyright>
-		<pubDate>Mon, 11 Mar 2019 17:55:32 GMT</pubDate>
-		<lastBuildDate>Mon, 11 Mar 2019 17:55:32 GMT</lastBuildDate>
+		<pubDate>Sun, 31 Mar 2019 19:52:17 GMT</pubDate>
+		<lastBuildDate>Sun, 31 Mar 2019 19:52:17 GMT</lastBuildDate>
+		<item>
+			<title>Slovenská typografia pre wyam</title>
+			<link>https://harrison314.github.io/SlovakWyamTypography.html</link>
+			<guid>https://harrison314.github.io/SlovakWyamTypography.html</guid>
+			<pubDate>Thu, 28 Mar 2019 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Hostovanie .Net Core assembly v natívnej DLL/SO knižnici</title>
 			<link>https://harrison314.github.io/HostCoreInDll.html</link>
@@ -71,7 +77,7 @@
 			<title>TFS 2015 a číslo verzie assembly</title>
 			<link>https://harrison314.github.io/Tfs15AsmVersion.html</link>
 			<guid>https://harrison314.github.io/Tfs15AsmVersion.html</guid>
-			<pubDate>Tue, 14 Jun 2016 00:00:00 GMT</pubDate>
+			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Stupne zla Service lokátoru</title>
@@ -89,7 +95,7 @@
 			<title>Votrelci dávnoveku</title>
 			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
 			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
-			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Ako používať var a dynamic v C#</title>
@@ -104,15 +110,15 @@
 			<pubDate>Thu, 07 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 		<item>
-			<title>Content filter</title>
-			<link>https://harrison314.github.io/ContetFilter.html</link>
-			<guid>https://harrison314.github.io/ContetFilter.html</guid>
-			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
-		</item>
-		<item>
 			<title>Katalóg produktov v relačnej databáze</title>
 			<link>https://harrison314.github.io/CatalogProduktov.html</link>
 			<guid>https://harrison314.github.io/CatalogProduktov.html</guid>
+			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Content filter</title>
+			<link>https://harrison314.github.io/ContetFilter.html</link>
+			<guid>https://harrison314.github.io/ContetFilter.html</guid>
 			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
 		</item>
 		<item>
@@ -120,12 +126,6 @@
 			<link>https://harrison314.github.io/OMneOdkazy.html</link>
 			<guid>https://harrison314.github.io/OMneOdkazy.html</guid>
 			<pubDate>Sun, 01 Dec 2013 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Čo robí programátor?</title>
-			<link>https://harrison314.github.io/CoRobiProgramator.html</link>
-			<guid>https://harrison314.github.io/CoRobiProgramator.html</guid>
-			<pubDate>Wed, 18 Sep 2013 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>

@@ -4,7 +4,13 @@
 	<id>https://harrison314.github.io/</id>
 	<title />
 	<rights>2019</rights>
-	<updated>2019-03-11T17:55:32Z</updated>
+	<updated>2019-03-31T19:52:17Z</updated>
+	<entry>
+		<link href="https://harrison314.github.io/SlovakWyamTypography.html" />
+		<id>https://harrison314.github.io/SlovakWyamTypography.html</id>
+		<title>Slovenská typografia pre wyam</title>
+		<updated>2019-03-28T00:00:00Z</updated>
+	</entry>
 	<entry>
 		<link href="https://harrison314.github.io/HostCoreInDll.html" />
 		<id>https://harrison314.github.io/HostCoreInDll.html</id>
@@ -69,7 +75,7 @@
 		<link href="https://harrison314.github.io/Tfs15AsmVersion.html" />
 		<id>https://harrison314.github.io/Tfs15AsmVersion.html</id>
 		<title>TFS 2015 a číslo verzie assembly</title>
-		<updated>2016-06-14T00:00:00Z</updated>
+		<updated>2019-03-31T00:00:00Z</updated>
 	</entry>
 	<entry>
 		<link href="https://harrison314.github.io/ServiceLocator.html" />
@@ -87,7 +93,7 @@
 		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
 		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
 		<title>Votrelci dávnoveku</title>
-		<updated>2016-04-16T00:00:00Z</updated>
+		<updated>2019-03-31T00:00:00Z</updated>
 	</entry>
 	<entry>
 		<link href="https://harrison314.github.io/VarAndDynamic.html" />
@@ -102,15 +108,15 @@
 		<updated>2016-04-07T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<link href="https://harrison314.github.io/ContetFilter.html" />
-		<id>https://harrison314.github.io/ContetFilter.html</id>
-		<title>Content filter</title>
-		<updated>2013-12-25T00:00:00Z</updated>
-	</entry>
-	<entry>
 		<link href="https://harrison314.github.io/CatalogProduktov.html" />
 		<id>https://harrison314.github.io/CatalogProduktov.html</id>
 		<title>Katalóg produktov v relačnej databáze</title>
+		<updated>2013-12-25T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<link href="https://harrison314.github.io/ContetFilter.html" />
+		<id>https://harrison314.github.io/ContetFilter.html</id>
+		<title>Content filter</title>
 		<updated>2013-12-25T00:00:00Z</updated>
 	</entry>
 	<entry>
@@ -118,11 +124,5 @@
 		<id>https://harrison314.github.io/OMneOdkazy.html</id>
 		<title>Moja tvorba inde</title>
 		<updated>2013-12-01T00:00:00Z</updated>
-	</entry>
-	<entry>
-		<link href="https://harrison314.github.io/CoRobiProgramator.html" />
-		<id>https://harrison314.github.io/CoRobiProgramator.html</id>
-		<title>Čo robí programátor?</title>
-		<updated>2013-09-18T00:00:00Z</updated>
 	</entry>
 </feed>
