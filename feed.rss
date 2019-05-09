@@ -5,8 +5,8 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2019</copyright>
-		<pubDate>Sun, 14 Apr 2019 19:03:44 GMT</pubDate>
-		<lastBuildDate>Sun, 14 Apr 2019 19:03:44 GMT</lastBuildDate>
+		<pubDate>Thu, 09 May 2019 18:28:17 GMT</pubDate>
+		<lastBuildDate>Thu, 09 May 2019 18:28:17 GMT</lastBuildDate>
 		<item>
 			<title>Slovenská typografia pre wyam</title>
 			<link>https://harrison314.github.io/SlovakWyamTypography.html</link>
@@ -59,7 +59,7 @@
 			<title>Užitočné programy</title>
 			<link>https://harrison314.github.io/UzitocneProgramy.html</link>
 			<guid>https://harrison314.github.io/UzitocneProgramy.html</guid>
-			<pubDate>Wed, 19 Jul 2017 00:00:00 GMT</pubDate>
+			<pubDate>Thu, 09 May 2019 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Recept na propagáciu alternatívnej medicíny</title>
@@ -86,16 +86,16 @@
 			<pubDate>Tue, 26 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 		<item>
-			<title>Votrelci dávnoveku</title>
-			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
-			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
-			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
-		</item>
-		<item>
 			<title>Monády</title>
 			<link>https://harrison314.github.io/Monads.html</link>
 			<guid>https://harrison314.github.io/Monads.html</guid>
 			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Votrelci dávnoveku</title>
+			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
+			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
+			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Ako používať var a dynamic v C#</title>
@@ -110,15 +110,15 @@
 			<pubDate>Thu, 07 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 		<item>
-			<title>Katalóg produktov v relačnej databáze</title>
-			<link>https://harrison314.github.io/CatalogProduktov.html</link>
-			<guid>https://harrison314.github.io/CatalogProduktov.html</guid>
-			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
-		</item>
-		<item>
 			<title>Content filter</title>
 			<link>https://harrison314.github.io/ContetFilter.html</link>
 			<guid>https://harrison314.github.io/ContetFilter.html</guid>
+			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Katalóg produktov v relačnej databáze</title>
+			<link>https://harrison314.github.io/CatalogProduktov.html</link>
+			<guid>https://harrison314.github.io/CatalogProduktov.html</guid>
 			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
 		</item>
 		<item>
