@@ -4,7 +4,7 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2019</rights>
-	<updated>2019-05-09T18:28:17Z</updated>
+	<updated>2019-08-28T20:00:30Z</updated>
 	<entry>
 		<id>https://harrison314.github.io/SlovakWyamTypography.html</id>
 		<title>Slovenská typografia pre wyam</title>
@@ -84,16 +84,16 @@
 		<updated>2016-04-26T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<id>https://harrison314.github.io/Monads.html</id>
-		<title>Monády</title>
-		<link href="https://harrison314.github.io/Monads.html" />
-		<updated>2016-04-16T00:00:00Z</updated>
-	</entry>
-	<entry>
 		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
 		<title>Votrelci dávnoveku</title>
 		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
 		<updated>2019-03-31T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<id>https://harrison314.github.io/Monads.html</id>
+		<title>Monády</title>
+		<link href="https://harrison314.github.io/Monads.html" />
+		<updated>2016-04-16T00:00:00Z</updated>
 	</entry>
 	<entry>
 		<id>https://harrison314.github.io/VarAndDynamic.html</id>
@@ -108,15 +108,15 @@
 		<updated>2016-04-07T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<id>https://harrison314.github.io/ContetFilter.html</id>
-		<title>Content filter</title>
-		<link href="https://harrison314.github.io/ContetFilter.html" />
-		<updated>2013-12-25T00:00:00Z</updated>
-	</entry>
-	<entry>
 		<id>https://harrison314.github.io/CatalogProduktov.html</id>
 		<title>Katalóg produktov v relačnej databáze</title>
 		<link href="https://harrison314.github.io/CatalogProduktov.html" />
+		<updated>2013-12-25T00:00:00Z</updated>
+	</entry>
+	<entry>
+		<id>https://harrison314.github.io/ContetFilter.html</id>
+		<title>Content filter</title>
+		<link href="https://harrison314.github.io/ContetFilter.html" />
 		<updated>2013-12-25T00:00:00Z</updated>
 	</entry>
 	<entry>
