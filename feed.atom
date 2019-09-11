@@ -4,7 +4,13 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2019</rights>
-	<updated>2019-08-28T20:00:30Z</updated>
+	<updated>2019-09-11T17:00:46Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/NetCoreSecuring.html</id>
+		<title>Dodatočné zabezpečenie .Net Core</title>
+		<link href="https://harrison314.github.io/NetCoreSecuring.html" />
+		<updated>2019-08-29T00:00:00Z</updated>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/SlovakWyamTypography.html</id>
 		<title>Slovenská typografia pre wyam</title>
@@ -39,7 +45,7 @@
 		<id>https://harrison314.github.io/GoLang.html</id>
 		<title>Golang a alternatívy</title>
 		<link href="https://harrison314.github.io/GoLang.html" />
-		<updated>2019-04-14T00:00:00Z</updated>
+		<updated>2019-09-12T00:00:00Z</updated>
 	</entry>
 	<entry>
 		<id>https://harrison314.github.io/LevenstainOptimalization.html</id>
@@ -108,21 +114,15 @@
 		<updated>2016-04-07T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<id>https://harrison314.github.io/CatalogProduktov.html</id>
-		<title>Katalóg produktov v relačnej databáze</title>
-		<link href="https://harrison314.github.io/CatalogProduktov.html" />
-		<updated>2013-12-25T00:00:00Z</updated>
-	</entry>
-	<entry>
 		<id>https://harrison314.github.io/ContetFilter.html</id>
 		<title>Content filter</title>
 		<link href="https://harrison314.github.io/ContetFilter.html" />
 		<updated>2013-12-25T00:00:00Z</updated>
 	</entry>
 	<entry>
-		<id>https://harrison314.github.io/OMneOdkazy.html</id>
-		<title>Moja tvorba inde</title>
-		<link href="https://harrison314.github.io/OMneOdkazy.html" />
-		<updated>2013-12-01T00:00:00Z</updated>
+		<id>https://harrison314.github.io/CatalogProduktov.html</id>
+		<title>Katalóg produktov v relačnej databáze</title>
+		<link href="https://harrison314.github.io/CatalogProduktov.html" />
+		<updated>2013-12-25T00:00:00Z</updated>
 	</entry>
 </feed>
