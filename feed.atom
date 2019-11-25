@@ -4,7 +4,14 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2019</rights>
-	<updated>2019-10-29T19:03:49Z</updated>
+	<updated>2019-11-25T21:21:00Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/Blazor.html</id>
+		<title>Ako ma zachránil Blazor</title>
+		<link href="https://harrison314.github.io/Blazor.html" />
+		<updated>2019-11-25T00:00:00Z</updated>
+		<summary>Ako ma zachránil Blazor pred svetom JavaScriptu.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/NetCoreSecuring.html</id>
 		<title>Dodatočné zabezpečenie .Net Core</title>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/ContetFilter.html" />
 		<updated>2013-12-25T00:00:00Z</updated>
 		<summary>Experiment zo strojovím učením na odhalovanie šarlatánskych článkov.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/CatalogProduktov.html</id>
-		<title>Katalóg produktov v relačnej databáze</title>
-		<link href="https://harrison314.github.io/CatalogProduktov.html" />
-		<updated>2013-12-25T00:00:00Z</updated>
-		<summary>Rekapitulácia tvorby dynamickej dátovej štruktúry v databázach z mojich školských čias.</summary>
 	</entry>
 </feed>

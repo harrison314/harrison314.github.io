@@ -5,8 +5,15 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2019</copyright>
-		<pubDate>Tue, 29 Oct 2019 19:03:49 GMT</pubDate>
-		<lastBuildDate>Tue, 29 Oct 2019 19:03:49 GMT</lastBuildDate>
+		<pubDate>Mon, 25 Nov 2019 21:21:00 GMT</pubDate>
+		<lastBuildDate>Mon, 25 Nov 2019 21:21:00 GMT</lastBuildDate>
+		<item>
+			<title>Ako ma zachránil Blazor</title>
+			<link>https://harrison314.github.io/Blazor.html</link>
+			<description>Ako ma zachránil Blazor pred svetom JavaScriptu.</description>
+			<guid>https://harrison314.github.io/Blazor.html</guid>
+			<pubDate>Mon, 25 Nov 2019 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Dodatočné zabezpečenie .Net Core</title>
 			<link>https://harrison314.github.io/NetCoreSecuring.html</link>
@@ -138,13 +145,6 @@
 			<link>https://harrison314.github.io/ContetFilter.html</link>
 			<description>Experiment zo strojovím učením na odhalovanie šarlatánskych článkov.</description>
 			<guid>https://harrison314.github.io/ContetFilter.html</guid>
-			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Katalóg produktov v relačnej databáze</title>
-			<link>https://harrison314.github.io/CatalogProduktov.html</link>
-			<description>Rekapitulácia tvorby dynamickej dátovej štruktúry v databázach z mojich školských čias.</description>
-			<guid>https://harrison314.github.io/CatalogProduktov.html</guid>
 			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
