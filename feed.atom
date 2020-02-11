@@ -3,8 +3,15 @@
 	<id>https://harrison314.github.io/</id>
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
-	<rights>2019</rights>
-	<updated>2019-11-25T21:21:00Z</updated>
+	<rights>2020</rights>
+	<updated>2020-02-11T20:05:35Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/eVolby.html</id>
+		<title>Elektronické voľby</title>
+		<link href="https://harrison314.github.io/eVolby.html" />
+		<updated>2020-02-12T00:00:00Z</updated>
+		<summary>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internet banking funguje?</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/Blazor.html</id>
 		<title>Ako ma zachránil Blazor</title>
@@ -111,18 +118,18 @@
 		<summary>Myšlienky okolo Service lokátoru.</summary>
 	</entry>
 	<entry>
-		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
-		<title>Votrelci dávnoveku</title>
-		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
-		<updated>2019-03-31T00:00:00Z</updated>
-		<summary>Hlúposti seriálu votrelci dávnoveku.</summary>
-	</entry>
-	<entry>
 		<id>https://harrison314.github.io/Monads.html</id>
 		<title>Monády</title>
 		<link href="https://harrison314.github.io/Monads.html" />
 		<updated>2016-04-16T00:00:00Z</updated>
 		<summary>Stručný popis monád (nachádzajúcich sa napríklad v Haskelli).</summary>
+	</entry>
+	<entry>
+		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
+		<title>Votrelci dávnoveku</title>
+		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
+		<updated>2019-03-31T00:00:00Z</updated>
+		<summary>Hlúposti seriálu votrelci dávnoveku.</summary>
 	</entry>
 	<entry>
 		<id>https://harrison314.github.io/VarAndDynamic.html</id>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/OMne.html" />
 		<updated>2016-04-07T00:00:00Z</updated>
 		<summary>Stránka o mne a mojich zálubách.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/ContetFilter.html</id>
-		<title>Content filter</title>
-		<link href="https://harrison314.github.io/ContetFilter.html" />
-		<updated>2013-12-25T00:00:00Z</updated>
-		<summary>Experiment zo strojovím učením na odhalovanie šarlatánskych článkov.</summary>
 	</entry>
 </feed>

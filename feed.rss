@@ -4,9 +4,16 @@
 		<title />
 		<link>https://harrison314.github.io/</link>
 		<description />
-		<copyright>2019</copyright>
-		<pubDate>Mon, 25 Nov 2019 21:21:00 GMT</pubDate>
-		<lastBuildDate>Mon, 25 Nov 2019 21:21:00 GMT</lastBuildDate>
+		<copyright>2020</copyright>
+		<pubDate>Tue, 11 Feb 2020 20:05:35 GMT</pubDate>
+		<lastBuildDate>Tue, 11 Feb 2020 20:05:35 GMT</lastBuildDate>
+		<item>
+			<title>Elektronické voľby</title>
+			<link>https://harrison314.github.io/eVolby.html</link>
+			<description>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internet banking funguje?</description>
+			<guid>https://harrison314.github.io/eVolby.html</guid>
+			<pubDate>Wed, 12 Feb 2020 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Ako ma zachránil Blazor</title>
 			<link>https://harrison314.github.io/Blazor.html</link>
@@ -113,18 +120,18 @@
 			<pubDate>Tue, 26 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 		<item>
-			<title>Votrelci dávnoveku</title>
-			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
-			<description>Hlúposti seriálu votrelci dávnoveku.</description>
-			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
-			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
-		</item>
-		<item>
 			<title>Monády</title>
 			<link>https://harrison314.github.io/Monads.html</link>
 			<description>Stručný popis monád (nachádzajúcich sa napríklad v Haskelli).</description>
 			<guid>https://harrison314.github.io/Monads.html</guid>
 			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
+			<title>Votrelci dávnoveku</title>
+			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
+			<description>Hlúposti seriálu votrelci dávnoveku.</description>
+			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
+			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Ako používať var a dynamic v C#</title>
@@ -139,13 +146,6 @@
 			<description>Stránka o mne a mojich zálubách.</description>
 			<guid>https://harrison314.github.io/OMne.html</guid>
 			<pubDate>Thu, 07 Apr 2016 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Content filter</title>
-			<link>https://harrison314.github.io/ContetFilter.html</link>
-			<description>Experiment zo strojovím učením na odhalovanie šarlatánskych článkov.</description>
-			<guid>https://harrison314.github.io/ContetFilter.html</guid>
-			<pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>
