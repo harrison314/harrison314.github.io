@@ -5,12 +5,19 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2020</copyright>
-		<pubDate>Tue, 11 Feb 2020 20:05:35 GMT</pubDate>
-		<lastBuildDate>Tue, 11 Feb 2020 20:05:35 GMT</lastBuildDate>
+		<pubDate>Sun, 23 Feb 2020 12:03:03 GMT</pubDate>
+		<lastBuildDate>Sun, 23 Feb 2020 12:03:03 GMT</lastBuildDate>
+		<item>
+			<title>eID nie je platobná karta</title>
+			<link>https://harrison314.github.io/SkEid.html</link>
+			<description>Vysvetlenie častých omylov okolo elektronického občianskeho preukazu.</description>
+			<guid>https://harrison314.github.io/SkEid.html</guid>
+			<pubDate>Thu, 20 Feb 2020 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Elektronické voľby</title>
 			<link>https://harrison314.github.io/eVolby.html</link>
-			<description>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internet banking funguje?</description>
+			<description>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internetbanking funguje?</description>
 			<guid>https://harrison314.github.io/eVolby.html</guid>
 			<pubDate>Wed, 12 Feb 2020 00:00:00 GMT</pubDate>
 		</item>
@@ -120,13 +127,6 @@
 			<pubDate>Tue, 26 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 		<item>
-			<title>Monády</title>
-			<link>https://harrison314.github.io/Monads.html</link>
-			<description>Stručný popis monád (nachádzajúcich sa napríklad v Haskelli).</description>
-			<guid>https://harrison314.github.io/Monads.html</guid>
-			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
-		</item>
-		<item>
 			<title>Votrelci dávnoveku</title>
 			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
 			<description>Hlúposti seriálu votrelci dávnoveku.</description>
@@ -134,18 +134,18 @@
 			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
 		</item>
 		<item>
+			<title>Monády</title>
+			<link>https://harrison314.github.io/Monads.html</link>
+			<description>Stručný popis monád (nachádzajúcich sa napríklad v Haskelli).</description>
+			<guid>https://harrison314.github.io/Monads.html</guid>
+			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+		</item>
+		<item>
 			<title>Ako používať var a dynamic v C#</title>
 			<link>https://harrison314.github.io/VarAndDynamic.html</link>
 			<description>Kľúčové slová var a dynamic, ako to vidím ja.</description>
 			<guid>https://harrison314.github.io/VarAndDynamic.html</guid>
 			<pubDate>Sun, 10 Apr 2016 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>O mne a mojich zálubách</title>
-			<link>https://harrison314.github.io/OMne.html</link>
-			<description>Stránka o mne a mojich zálubách.</description>
-			<guid>https://harrison314.github.io/OMne.html</guid>
-			<pubDate>Thu, 07 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>

@@ -4,13 +4,20 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2020</rights>
-	<updated>2020-02-11T20:05:35Z</updated>
+	<updated>2020-02-23T12:03:03Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/SkEid.html</id>
+		<title>eID nie je platobná karta</title>
+		<link href="https://harrison314.github.io/SkEid.html" />
+		<updated>2020-02-20T00:00:00Z</updated>
+		<summary>Vysvetlenie častých omylov okolo elektronického občianskeho preukazu.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/eVolby.html</id>
 		<title>Elektronické voľby</title>
 		<link href="https://harrison314.github.io/eVolby.html" />
 		<updated>2020-02-12T00:00:00Z</updated>
-		<summary>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internet banking funguje?</summary>
+		<summary>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internetbanking funguje?</summary>
 	</entry>
 	<entry>
 		<id>https://harrison314.github.io/Blazor.html</id>
@@ -118,13 +125,6 @@
 		<summary>Myšlienky okolo Service lokátoru.</summary>
 	</entry>
 	<entry>
-		<id>https://harrison314.github.io/Monads.html</id>
-		<title>Monády</title>
-		<link href="https://harrison314.github.io/Monads.html" />
-		<updated>2016-04-16T00:00:00Z</updated>
-		<summary>Stručný popis monád (nachádzajúcich sa napríklad v Haskelli).</summary>
-	</entry>
-	<entry>
 		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
 		<title>Votrelci dávnoveku</title>
 		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
@@ -132,17 +132,17 @@
 		<summary>Hlúposti seriálu votrelci dávnoveku.</summary>
 	</entry>
 	<entry>
+		<id>https://harrison314.github.io/Monads.html</id>
+		<title>Monády</title>
+		<link href="https://harrison314.github.io/Monads.html" />
+		<updated>2016-04-16T00:00:00Z</updated>
+		<summary>Stručný popis monád (nachádzajúcich sa napríklad v Haskelli).</summary>
+	</entry>
+	<entry>
 		<id>https://harrison314.github.io/VarAndDynamic.html</id>
 		<title>Ako používať var a dynamic v C#</title>
 		<link href="https://harrison314.github.io/VarAndDynamic.html" />
 		<updated>2016-04-10T00:00:00Z</updated>
 		<summary>Kľúčové slová var a dynamic, ako to vidím ja.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/OMne.html</id>
-		<title>O mne a mojich zálubách</title>
-		<link href="https://harrison314.github.io/OMne.html" />
-		<updated>2016-04-07T00:00:00Z</updated>
-		<summary>Stránka o mne a mojich zálubách.</summary>
 	</entry>
 </feed>
