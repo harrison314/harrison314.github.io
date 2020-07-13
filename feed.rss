@@ -5,8 +5,15 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2020</copyright>
-		<pubDate>Sat, 22 Feb 2020 21:32:39 GMT</pubDate>
-		<lastBuildDate>Sat, 22 Feb 2020 21:32:39 GMT</lastBuildDate>
+		<pubDate>Mon, 13 Jul 2020 20:02:52 GMT</pubDate>
+		<lastBuildDate>Mon, 13 Jul 2020 20:02:52 GMT</lastBuildDate>
+		<item>
+			<title>Čo ma naučilo IoT</title>
+			<link>https://harrison314.github.io/CoMaNauciloIot.html</link>
+			<description>Blog o tom, čo som sa naučil pri hraní s IoT.</description>
+			<guid>https://harrison314.github.io/CoMaNauciloIot.html</guid>
+			<pubDate>Mon, 13 Jul 2020 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>eID nie je platobná karta</title>
 			<link>https://harrison314.github.io/SkEid.html</link>
@@ -19,7 +26,7 @@
 			<link>https://harrison314.github.io/eVolby.html</link>
 			<description>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internetbanking funguje?</description>
 			<guid>https://harrison314.github.io/eVolby.html</guid>
-			<pubDate>Wed, 12 Feb 2020 00:00:00 GMT</pubDate>
+			<pubDate>Sun, 26 May 2019 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Ako ma zachránil Blazor</title>
@@ -139,13 +146,6 @@
 			<description>Hlúposti seriálu votrelci dávnoveku.</description>
 			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
 			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Ako používať var a dynamic v C#</title>
-			<link>https://harrison314.github.io/VarAndDynamic.html</link>
-			<description>Kľúčové slová var a dynamic, ako to vidím ja.</description>
-			<guid>https://harrison314.github.io/VarAndDynamic.html</guid>
-			<pubDate>Sun, 10 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>

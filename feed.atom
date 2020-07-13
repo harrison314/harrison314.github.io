@@ -4,7 +4,14 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2020</rights>
-	<updated>2020-02-22T21:32:39Z</updated>
+	<updated>2020-07-13T20:02:52Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/CoMaNauciloIot.html</id>
+		<title>Čo ma naučilo IoT</title>
+		<link href="https://harrison314.github.io/CoMaNauciloIot.html" />
+		<updated>2020-07-13T00:00:00Z</updated>
+		<summary>Blog o tom, čo som sa naučil pri hraní s IoT.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/SkEid.html</id>
 		<title>eID nie je platobná karta</title>
@@ -16,7 +23,7 @@
 		<id>https://harrison314.github.io/eVolby.html</id>
 		<title>Elektronické voľby</title>
 		<link href="https://harrison314.github.io/eVolby.html" />
-		<updated>2020-02-12T00:00:00Z</updated>
+		<updated>2019-05-26T00:00:00Z</updated>
 		<summary>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internetbanking funguje?</summary>
 	</entry>
 	<entry>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
 		<updated>2019-03-31T00:00:00Z</updated>
 		<summary>Hlúposti seriálu votrelci dávnoveku.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/VarAndDynamic.html</id>
-		<title>Ako používať var a dynamic v C#</title>
-		<link href="https://harrison314.github.io/VarAndDynamic.html" />
-		<updated>2016-04-10T00:00:00Z</updated>
-		<summary>Kľúčové slová var a dynamic, ako to vidím ja.</summary>
 	</entry>
 </feed>
