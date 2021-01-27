@@ -4,9 +4,16 @@
 		<title />
 		<link>https://harrison314.github.io/</link>
 		<description />
-		<copyright>2020</copyright>
-		<pubDate>Tue, 14 Jul 2020 15:27:32 GMT</pubDate>
-		<lastBuildDate>Tue, 14 Jul 2020 15:27:32 GMT</lastBuildDate>
+		<copyright>2021</copyright>
+		<pubDate>Wed, 27 Jan 2021 19:54:56 GMT</pubDate>
+		<lastBuildDate>Wed, 27 Jan 2021 19:54:56 GMT</lastBuildDate>
+		<item>
+			<title>Experiment s In-Memory OLTP</title>
+			<link>https://harrison314.github.io/InMemoryOltp.html</link>
+			<description>Myšlienkový a praktický experiment, ako riešiť systém na registráciu termínov, ktorá odolá veľkej záťaži.</description>
+			<guid>https://harrison314.github.io/InMemoryOltp.html</guid>
+			<pubDate>Wed, 27 Jan 2021 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Čo ma naučilo IoT</title>
 			<link>https://harrison314.github.io/CoMaNauciloIot.html</link>
@@ -26,7 +33,7 @@
 			<link>https://harrison314.github.io/eVolby.html</link>
 			<description>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internetbanking funguje?</description>
 			<guid>https://harrison314.github.io/eVolby.html</guid>
-			<pubDate>Sun, 26 May 2019 00:00:00 GMT</pubDate>
+			<pubDate>Sat, 25 Jul 2020 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Ako ma zachránil Blazor</title>
@@ -132,13 +139,6 @@
 			<description>Myšlienky okolo Service lokátoru.</description>
 			<guid>https://harrison314.github.io/ServiceLocator.html</guid>
 			<pubDate>Tue, 26 Apr 2016 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Votrelci dávnoveku</title>
-			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
-			<description>Hlúposti seriálu votrelci dávnoveku.</description>
-			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
-			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Monády</title>

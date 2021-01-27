@@ -3,8 +3,15 @@
 	<id>https://harrison314.github.io/</id>
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
-	<rights>2020</rights>
-	<updated>2020-07-14T15:27:32Z</updated>
+	<rights>2021</rights>
+	<updated>2021-01-27T19:54:56Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/InMemoryOltp.html</id>
+		<title>Experiment s In-Memory OLTP</title>
+		<link href="https://harrison314.github.io/InMemoryOltp.html" />
+		<updated>2021-01-27T00:00:00Z</updated>
+		<summary>Myšlienkový a praktický experiment, ako riešiť systém na registráciu termínov, ktorá odolá veľkej záťaži.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/CoMaNauciloIot.html</id>
 		<title>Čo ma naučilo IoT</title>
@@ -23,7 +30,7 @@
 		<id>https://harrison314.github.io/eVolby.html</id>
 		<title>Elektronické voľby</title>
 		<link href="https://harrison314.github.io/eVolby.html" />
-		<updated>2019-05-26T00:00:00Z</updated>
+		<updated>2020-07-25T00:00:00Z</updated>
 		<summary>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internetbanking funguje?</summary>
 	</entry>
 	<entry>
@@ -130,13 +137,6 @@
 		<link href="https://harrison314.github.io/ServiceLocator.html" />
 		<updated>2016-04-26T00:00:00Z</updated>
 		<summary>Myšlienky okolo Service lokátoru.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
-		<title>Votrelci dávnoveku</title>
-		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
-		<updated>2019-03-31T00:00:00Z</updated>
-		<summary>Hlúposti seriálu votrelci dávnoveku.</summary>
 	</entry>
 	<entry>
 		<id>https://harrison314.github.io/Monads.html</id>
