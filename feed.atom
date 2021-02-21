@@ -4,12 +4,12 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2021</rights>
-	<updated>2021-01-27T19:54:56Z</updated>
+	<updated>2021-02-21T15:54:53Z</updated>
 	<entry>
 		<id>https://harrison314.github.io/InMemoryOltp.html</id>
 		<title>Experiment s In-Memory OLTP</title>
 		<link href="https://harrison314.github.io/InMemoryOltp.html" />
-		<updated>2021-01-27T00:00:00Z</updated>
+		<updated>2021-02-21T00:00:00Z</updated>
 		<summary>Myšlienkový a praktický experiment, ako riešiť systém na registráciu termínov, ktorá odolá veľkej záťaži.</summary>
 	</entry>
 	<entry>
@@ -139,10 +139,10 @@
 		<summary>Myšlienky okolo Service lokátoru.</summary>
 	</entry>
 	<entry>
-		<id>https://harrison314.github.io/Monads.html</id>
-		<title>Monády</title>
-		<link href="https://harrison314.github.io/Monads.html" />
-		<updated>2016-04-16T00:00:00Z</updated>
-		<summary>Stručný popis monád (nachádzajúcich sa napríklad v Haskelli).</summary>
+		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
+		<title>Votrelci dávnoveku</title>
+		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
+		<updated>2019-03-31T00:00:00Z</updated>
+		<summary>Hlúposti seriálu votrelci dávnoveku.</summary>
 	</entry>
 </feed>

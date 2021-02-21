@@ -5,14 +5,14 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2021</copyright>
-		<pubDate>Wed, 27 Jan 2021 19:54:56 GMT</pubDate>
-		<lastBuildDate>Wed, 27 Jan 2021 19:54:56 GMT</lastBuildDate>
+		<pubDate>Sun, 21 Feb 2021 15:54:53 GMT</pubDate>
+		<lastBuildDate>Sun, 21 Feb 2021 15:54:53 GMT</lastBuildDate>
 		<item>
 			<title>Experiment s In-Memory OLTP</title>
 			<link>https://harrison314.github.io/InMemoryOltp.html</link>
 			<description>Myšlienkový a praktický experiment, ako riešiť systém na registráciu termínov, ktorá odolá veľkej záťaži.</description>
 			<guid>https://harrison314.github.io/InMemoryOltp.html</guid>
-			<pubDate>Wed, 27 Jan 2021 00:00:00 GMT</pubDate>
+			<pubDate>Sun, 21 Feb 2021 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Čo ma naučilo IoT</title>
@@ -141,11 +141,11 @@
 			<pubDate>Tue, 26 Apr 2016 00:00:00 GMT</pubDate>
 		</item>
 		<item>
-			<title>Monády</title>
-			<link>https://harrison314.github.io/Monads.html</link>
-			<description>Stručný popis monád (nachádzajúcich sa napríklad v Haskelli).</description>
-			<guid>https://harrison314.github.io/Monads.html</guid>
-			<pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+			<title>Votrelci dávnoveku</title>
+			<link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
+			<description>Hlúposti seriálu votrelci dávnoveku.</description>
+			<guid>https://harrison314.github.io/VotrelciDavnoveku.html</guid>
+			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>
