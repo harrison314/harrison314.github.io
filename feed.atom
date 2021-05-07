@@ -4,7 +4,14 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2021</rights>
-	<updated>2021-02-21T15:54:53Z</updated>
+	<updated>2021-05-07T18:29:38Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/CngApiTips.html</id>
+		<title>Triky s Windows CNG API</title>
+		<link href="https://harrison314.github.io/CngApiTips.html" />
+		<updated>2021-05-07T00:00:00Z</updated>
+		<summary>Vytvorenie kľúčového páru a certifikátu chráneného TPM a zadanie PIN-u pre kartu.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/InMemoryOltp.html</id>
 		<title>Experiment s In-Memory OLTP</title>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/ServiceLocator.html" />
 		<updated>2016-04-26T00:00:00Z</updated>
 		<summary>Myšlienky okolo Service lokátoru.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/VotrelciDavnoveku.html</id>
-		<title>Votrelci dávnoveku</title>
-		<link href="https://harrison314.github.io/VotrelciDavnoveku.html" />
-		<updated>2019-03-31T00:00:00Z</updated>
-		<summary>Hlúposti seriálu votrelci dávnoveku.</summary>
 	</entry>
 </feed>
