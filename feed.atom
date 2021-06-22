@@ -4,7 +4,14 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2021</rights>
-	<updated>2021-05-07T18:29:38Z</updated>
+	<updated>2021-06-22T19:32:20Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/PerformaceInNet.html</id>
+		<title>Meranie performace pre dotnetistov</title>
+		<link href="https://harrison314.github.io/PerformaceInNet.html" />
+		<updated>2021-06-22T00:00:00Z</updated>
+		<summary>Benchmarking, load testing a hľadanie úzkeho hrdla v dotnet aplikáciách.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/CngApiTips.html</id>
 		<title>Triky s Windows CNG API</title>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/Tfs15AsmVersion.html" />
 		<updated>2019-03-31T00:00:00Z</updated>
 		<summary>Automatická inkrementácia čísla verzie assembly v TFS 2015.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/ServiceLocator.html</id>
-		<title>Stupne zla Service lokátoru</title>
-		<link href="https://harrison314.github.io/ServiceLocator.html" />
-		<updated>2016-04-26T00:00:00Z</updated>
-		<summary>Myšlienky okolo Service lokátoru.</summary>
 	</entry>
 </feed>
