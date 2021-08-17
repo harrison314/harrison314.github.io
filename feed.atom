@@ -4,7 +4,14 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2021</rights>
-	<updated>2021-06-22T19:32:20Z</updated>
+	<updated>2021-08-17T15:53:23Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/BinaryContentInApi.html</id>
+		<title>ASP.NET Core API a binárny obsah</title>
+		<link href="https://harrison314.github.io/BinaryContentInApi.html" />
+		<updated>2021-08-16T00:00:00Z</updated>
+		<summary>Nahrávanie a sťahovanie binárnych dát alebo súborov v ASP.NET Core API s podporou OpenAPI špecifikácie.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/PerformaceInNet.html</id>
 		<title>Meranie performace pre dotnetistov</title>
@@ -23,7 +30,7 @@
 		<id>https://harrison314.github.io/InMemoryOltp.html</id>
 		<title>Experiment s In-Memory OLTP</title>
 		<link href="https://harrison314.github.io/InMemoryOltp.html" />
-		<updated>2021-02-21T00:00:00Z</updated>
+		<updated>2021-08-17T00:00:00Z</updated>
 		<summary>Myšlienkový a praktický experiment, ako riešiť systém na registráciu termínov, ktorá odolá veľkej záťaži.</summary>
 	</entry>
 	<entry>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/CoreStreaming.html" />
 		<updated>2016-08-25T00:00:00Z</updated>
 		<summary>Implementácia streamingu videa v ASP.Net Core 2.1 aplikáci do webu.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/Tfs15AsmVersion.html</id>
-		<title>TFS 2015 a číslo verzie assembly</title>
-		<link href="https://harrison314.github.io/Tfs15AsmVersion.html" />
-		<updated>2019-03-31T00:00:00Z</updated>
-		<summary>Automatická inkrementácia čísla verzie assembly v TFS 2015.</summary>
 	</entry>
 </feed>

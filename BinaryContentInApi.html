@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang=sk><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta http-equiv=X-Xss-Protection content="1; mode=block"><meta http-equiv=X-Content-Type-Options content=nosniff><meta name=viewport content="width=device-width, initial-scale=1"><link rel=alternate type=application/rss+xml title="RSS Feed" href=/feed.rss><link rel=alternate type=application/atom+xml title="Atom Feed" href=/feed.atom><meta name=author content=harrison314><title>ASP.NET Core API a binárny obsah</title><meta property=og:title content="ASP.NET Core API a binárny obsah"><meta property=og:description content="Nahrávanie a sťahovanie binárnych dát alebo súborov v ASP.NET Core API s podporou OpenAPI špecifikácie."><meta property=og:url content=https://harrison314.github.io/BinaryContentInApi.html><meta property=og:image content=https://harrison314.github.io/images/BinaryContentInApi/UploadButton.jpg><meta name=description content="Nahrávanie a sťahovanie binárnych dát alebo súborov v ASP.NET Core API s podporou OpenAPI špecifikácie."><link href=css/bootstrap.min.css rel=stylesheet><link href=css/blog-post.css rel=stylesheet><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script><script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]--><link rel=stylesheet href=css/Highiler/vs.css><style>img{max-width:100%}.img-center{display:block;margin-left:auto;margin-right:auto}</style><body><nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#bs-example-navbar-collapse-1> <span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span> </button> <a class=navbar-brand href=index.html>harrison314 blog</a></div><div class="collapse navbar-collapse" id=bs-example-navbar-collapse-1><ul class="nav navbar-nav"><li><a href=/All.html>Obsah</a><li><a href=/DevelopingAll.html>Programovanie</a><li><a href=/GeneralAll.html>Všeobecné</a><li><a href=/OMne.html>O mne</a></ul></div></div></nav><div class=container><div class=row><div class="col-lg-8 col-md-8"><h1>ASP.NET Core API a binárny obsah</h1><div class=publishDate>August 2021</div><p>Občas je potrebné cez REST-ové API poslať súbor (napríklad PDF, obrázok, ZIP archív,…), alebo&nbsp;iné binárne dáta. Ak sú malé (desiatky bajtov max. jednotky kB) je stále vhodné použiť štandardnú JSON serializáciu, no&nbsp;pri väčších objemoch dát je vhodné ich posielať ako binárne dáta a&nbsp;nie ako <em>base64</em> string v&nbsp;JSON-e, lebo&nbsp;sa tým šetrí pamäť, buffering a&nbsp;umožňuje na&nbsp;strane serveru použiť streamové spracovanie.<p>Tento návod funguje pre&nbsp;<em>ASP.NET Core 3.1</em> a&nbsp;vyšší s&nbsp;použitím <em>NSwag</em> knižnice.<p>Na takýto prenos dát myslí aj&nbsp;špecifikácia OpenAPI (Swagger 3) - <a href="https://swagger.io/specification/">https://swagger.io/specification/</a>, ktorá hovorí, že&nbsp;sa majú prenášať s&nbsp;content-type <code>application/octet-stream</code> ako binárny string.<br> (<strong>Pozor:</strong> Swagger verzie 2 to neumožňoval, podporoval len upload ako form data s&nbsp;content-type <code>multipart/form-data</code> - <a href="https://swagger.io/docs/specification/2-0/file-upload/">https://swagger.io/docs/specification/2-0/file-upload/</a>).<h2 id=nahratie-binarneho-obsahu>Nahratie binárneho obsahu</h2><p>Pre nahranie (upload) binárnych dát s&nbsp;klienta na&nbsp;server je potrebné určiť konzumovaný content-type a&nbsp;doplniť <em>InputFormater</em> do&nbsp;<em>ASP.NET Core</em>.<p>Stačí oanotovať akciu API kontroleru nasledovne:<pre><code class="language-cs hljs">[HttpPost]
+[Consumes(<span class=hljs-string>"application/octet-stream"</span>)]
+[ProducesResponseType(<span class=hljs-keyword>typeof</span>(<span class=hljs-keyword>void</span>), <span class=hljs-number>200</span>)]
+<span class=hljs-function><span class=hljs-keyword>public</span> IActionResult <span class=hljs-title>Upload</span>(<span class=hljs-params>[FromBody] Stream content</span>)
+</span>{
+    <span class=hljs-comment>// …</span>
+    <span class=hljs-keyword>return</span> <span class=hljs-keyword>this</span>.Ok();
+}
+</code></pre><p>No to pre&nbsp;správne fungovanie je potrebné pridať vlastný <em>InputFormater</em> pre&nbsp;kontroleri:<pre><code class="language-cs hljs"><span class=hljs-keyword>using</span> Microsoft.AspNetCore.Mvc.Formatters;
+<span class=hljs-keyword>using</span> Microsoft.Net.Http.Headers;
+<span class=hljs-keyword>using</span> System.IO;
+
+<span class=hljs-keyword>public</span> <span class=hljs-keyword>class</span> <span class=hljs-title>RawRequestBodyFormatter</span> : <span class=hljs-title>InputFormatter</span>
+{
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-title>RawRequestBodyFormatter</span>(<span class=hljs-params></span>)
+    </span>{
+        <span class=hljs-keyword>this</span>.SupportedMediaTypes.Add(<span class=hljs-keyword>new</span> MediaTypeHeaderValue(<span class=hljs-string>"application/octet-stream"</span>));
+    }
+
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-keyword>override</span> <span class=hljs-keyword>bool</span> <span class=hljs-title>CanRead</span>(<span class=hljs-params>InputFormatterContext context</span>)
+    </span>{
+        <span class=hljs-keyword>if</span> (context == <span class=hljs-literal>null</span>) <span class=hljs-keyword>throw</span> <span class=hljs-keyword>new</span> ArgumentNullException(<span class=hljs-keyword>nameof</span>(context));
+
+        <span class=hljs-keyword>return</span> context.ModelType == <span class=hljs-keyword>typeof</span>(Stream);
+    }
+
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-keyword>override</span> <span class=hljs-keyword>async</span> Task&lt;InputFormatterResult&gt; <span class=hljs-title>ReadRequestBodyAsync</span>(<span class=hljs-params>InputFormatterContext context</span>)
+    </span>{
+        Microsoft.AspNetCore.Http.HttpRequest request = context.HttpContext.Request;
+
+        <span class=hljs-keyword>if</span> (context.ModelType == <span class=hljs-keyword>typeof</span>(Stream))
+        {
+            <span class=hljs-keyword>return</span> <span class=hljs-keyword>await</span> InputFormatterResult.SuccessAsync(request.Body);
+        }
+
+        <span class=hljs-keyword>return</span> <span class=hljs-keyword>await</span> InputFormatterResult.FailureAsync();
+    }
+}
+</code></pre><p>A v&nbsp;triede <code>Startup.cs</code> do&nbsp;inicializácie kontrolerov (<code>AddControllers</code>, <code>AddControllersWithViews</code>,…) zaradiť tento <em>InputFormater</em>:<pre><code class="language-cs hljs">services.AddControllers(options =&gt;
+{
+    options.InputFormatters.Insert(<span class=hljs-number>0</span>, <span class=hljs-keyword>new</span> RawRequestBodyFormatter());
+});
+</code></pre><p>Následne aj&nbsp;Sagger UI zobrazuje upload tlačidlo pre&nbsp;túto akciu:<p><img src=images/BinaryContentInApi/UploadButton.jpg class=img-center alt="Upload v Swagger UI."><h2 id=stiahnutie-binarneho-obsahu>Stiahnutie binárneho obsahu</h2><p>Samotné stiahnutie (download) binárnych dát v&nbsp;<em>ASP.NET Core</em> funguje. No&nbsp;treba pedant vlastný atribút aby&nbsp;to bolo jasné OpenAPI a&nbsp;<em>Swagger UI</em>.<pre><code class="language-cs hljs">[HttpGet(<span class=hljs-string>"{id}"</span>)]
+[ProducesBinaryString(<span class=hljs-number>200</span>)]
+[Produces(<span class=hljs-string>"application/octet-stream"</span>)]
+<span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-keyword>async</span> ValueTask&lt;IActionResult&gt; <span class=hljs-title>GetDocumentContent</span>(<span class=hljs-params><span class=hljs-keyword>int</span> id</span>)
+</span>{
+    Stream stream = <span class=hljs-keyword>await</span> <span class=hljs-keyword>this</span>.GetContentStreamById(id);
+    <span class=hljs-keyword>return</span> <span class=hljs-keyword>this</span>.Ok(stream);
+}
+</code></pre><p>Je potrebné upraviť response body v&nbsp;OpenAPI špecifikácii, na&nbsp;to sa použije nasledujúci atribút:<pre><code class="language-cs hljs">[AttributeUsage(AttributeTargets.Method)]
+<span class=hljs-keyword>internal</span> <span class=hljs-keyword>class</span> <span class=hljs-title>ProducesBinaryStringAttribute</span> : <span class=hljs-title>OpenApiOperationProcessorAttribute</span>
+{
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-title>ProducesBinaryStringAttribute</span>(<span class=hljs-params><span class=hljs-keyword>int</span> statusCode</span>)
+        :<span class=hljs-title>base</span>(<span class=hljs-params><span class=hljs-keyword>typeof</span>(ProducesBinaryStringOperationProcessor</span>), statusCode)
+    </span>{
+
+    }
+}
+
+<span class=hljs-keyword>internal</span> <span class=hljs-keyword>class</span> <span class=hljs-title>ProducesBinaryStringOperationProcessor</span> : <span class=hljs-title>IOperationProcessor</span>
+{
+    <span class=hljs-keyword>private</span> <span class=hljs-keyword>readonly</span> <span class=hljs-keyword>int</span> statusCode;
+
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-title>ProducesBinaryStringOperationProcessor</span>(<span class=hljs-params><span class=hljs-keyword>int</span> statusCode</span>)
+    </span>{
+        <span class=hljs-keyword>this</span>.statusCode = statusCode;
+    }
+
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-keyword>bool</span> <span class=hljs-title>Process</span>(<span class=hljs-params>OperationProcessorContext context</span>)
+    </span>{
+        <span class=hljs-keyword>string</span> defaultMimeType = context.OperationDescription.Operation.Produces.FirstOrDefault() ?? <span class=hljs-string>"application/octet-stream"</span>;
+        NSwag.OpenApiResponse response = <span class=hljs-keyword>new</span> NSwag.OpenApiResponse();
+        NSwag.OpenApiMediaType mediaType = <span class=hljs-keyword>new</span> NSwag.OpenApiMediaType()
+        {
+            Schema = <span class=hljs-keyword>new</span> NJsonSchema.JsonSchema()
+            {
+                Type = NJsonSchema.JsonObjectType.String,
+                Format = <span class=hljs-string>"binary"</span>
+            }
+        };
+
+        response.Content.Add(defaultMimeType, mediaType);
+        context.OperationDescription.Operation.Responses.Add(<span class=hljs-keyword>this</span>.statusCode.ToString(), response);
+
+        <span class=hljs-keyword>return</span> <span class=hljs-literal>true</span>;
+    }
+}
+</code></pre><h2 id=zaver>Záver</h2><p>Pri posielaní binárnych dát na&nbsp;API kontroler sa dá podobne prestupovať aj&nbsp;ku bajtovému poľu alebo&nbsp;stringu, záleží ako sa budú dáta ďalej spracovávať.<p>No treba myslieť na&nbsp;to, že&nbsp;hoci tento postup dodržuje OpenAPI špecifikáciu, tak nie každý generátor dokáže vygenerovať správneho klienta (stávalo sa mi, že&nbsp;niektoré pre&nbsp;<em>Rust</em> sa pokúšali binárny obsah najskôr serializovať a&nbsp;až potom&nbsp;poslať). V&nbsp;takomto prípade je ale&nbsp;veľmi jednoduché chybnú metódu dopísať ručne.<h2 id=zdroje>Zdroje</h2><ol><li><a href=https://github.com/RicoSuter/NSwag>NSwag</a><li><a href=https://github.com/RicoSuter/NSwag/issues/2508#issuecomment-720927415>NSwag - Consumes attribute is ignored for OpenApi3</a><li><a href=https://github.com/RicoSuter/NSwag/issues/2495>NSwag - OpenAPI 3.0.1 upload/download file example</a><li><a href="https://swagger.io/tools/swagger-ui/">Swagger UI</a></ol></div><div class="col-lg-4 col-md-4 hidden-xs hidden-sm"><div class=well><h4>Vývoj</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/BinaryContentInApi.html>ASP.NET Core API a binárny obsah</a><li><a href=/PerformaceInNet.html>Meranie performace pre dotnetistov</a><li><a href=/CngApiTips.html>Triky s Windows CNG API</a><li><a href=/InMemoryOltp.html>Experiment s In-Memory OLTP</a><li><a href=/CoMaNauciloIot.html>Čo ma naučilo IoT</a><li><a href=/SkEid.html>eID nie je platobná karta</a><li><a href=/eVolby.html>Elektronické voľby</a><li><a href=/Blazor.html>Ako ma zachránil Blazor</a><li><a href=/NetCoreSecuring.html>Dodatočné zabezpečenie .Net Core</a><li><a href=/SlovakWyamTypography.html>Slovenská typografia pre wyam</a><li><a href=/DevelopingAll.html>…</a></ul></div></div></div><div class=well><h4>Všeobecné</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/EzoGenerator.html>Generátor Ezo textov</a><li><a href=/AlternativnyRecept.html>Propagácia alternatívnej medicíny</a><li><a href=/VotrelciDavnoveku.html>Votrelci dávnoveku</a><li><a href=/GeneralAll.html>…</a></ul></div></div></div><div class=well><h4>O mne</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/OMne.html>O mne</a><li><a href=/OMneOdkazy.html>Moja tvorba inde</a><li><a href=/Portfolio.html>Portólio</a></ul></div></div></div></div></div><hr><footer><div class=row><div class="col-lg-8 col-sm-8"><div class=well><h4>Našli ste chybu, alebo chcete niečo doplniť?</h4><p>Ak ste našli chybu v článu, chcete niečo dopniť, alebo sa vyjadriť k téme, môžete na <a href="https://github.com/harrison314/harrison314.github.io/issues/new?title=ASP.NET%20Core%20API%20a%20bin%C3%A1rny%20obsah&amp;body=https%3A%2F%2Fharrison314.github.io%2FBinaryContentInApi.html" target=_blank>Githube otvoriť issue</a>.</div></div></div><div class=row><div class=col-lg-12><p>Copyright © harrison314 2013</div></div></footer></div><script src=js/jquery.js></script><script src=js/bootstrap.min.js></script>

@@ -5,8 +5,15 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2021</copyright>
-		<pubDate>Tue, 22 Jun 2021 19:32:20 GMT</pubDate>
-		<lastBuildDate>Tue, 22 Jun 2021 19:32:20 GMT</lastBuildDate>
+		<pubDate>Tue, 17 Aug 2021 15:53:23 GMT</pubDate>
+		<lastBuildDate>Tue, 17 Aug 2021 15:53:23 GMT</lastBuildDate>
+		<item>
+			<title>ASP.NET Core API a binárny obsah</title>
+			<link>https://harrison314.github.io/BinaryContentInApi.html</link>
+			<description>Nahrávanie a sťahovanie binárnych dát alebo súborov v ASP.NET Core API s podporou OpenAPI špecifikácie.</description>
+			<guid>https://harrison314.github.io/BinaryContentInApi.html</guid>
+			<pubDate>Mon, 16 Aug 2021 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Meranie performace pre dotnetistov</title>
 			<link>https://harrison314.github.io/PerformaceInNet.html</link>
@@ -26,7 +33,7 @@
 			<link>https://harrison314.github.io/InMemoryOltp.html</link>
 			<description>Myšlienkový a praktický experiment, ako riešiť systém na registráciu termínov, ktorá odolá veľkej záťaži.</description>
 			<guid>https://harrison314.github.io/InMemoryOltp.html</guid>
-			<pubDate>Sun, 21 Feb 2021 00:00:00 GMT</pubDate>
+			<pubDate>Tue, 17 Aug 2021 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Čo ma naučilo IoT</title>
@@ -139,13 +146,6 @@
 			<description>Implementácia streamingu videa v ASP.Net Core 2.1 aplikáci do webu.</description>
 			<guid>https://harrison314.github.io/CoreStreaming.html</guid>
 			<pubDate>Thu, 25 Aug 2016 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>TFS 2015 a číslo verzie assembly</title>
-			<link>https://harrison314.github.io/Tfs15AsmVersion.html</link>
-			<description>Automatická inkrementácia čísla verzie assembly v TFS 2015.</description>
-			<guid>https://harrison314.github.io/Tfs15AsmVersion.html</guid>
-			<pubDate>Sun, 31 Mar 2019 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>
