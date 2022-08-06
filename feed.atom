@@ -3,8 +3,15 @@
 	<id>https://harrison314.github.io/</id>
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
-	<rights>2021</rights>
-	<updated>2021-09-22T16:33:32Z</updated>
+	<rights>2022</rights>
+	<updated>2022-08-06T15:17:48Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/WinHttp.html</id>
+		<title>Volanie http requestu so 16kB binárky</title>
+		<link href="https://harrison314.github.io/WinHttp.html" />
+		<updated>2022-08-06T00:00:00Z</updated>
+		<summary>Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/BinaryContentInApi.html</id>
 		<title>ASP.NET Core API a binárny obsah</title>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/AlternativnyRecept.html" />
 		<updated>2017-05-03T00:00:00Z</updated>
 		<summary>Satiricky o tom ako písať články pre alternatívnu medicínu.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/CoreStreaming.html</id>
-		<title>Video straming v ASP.NET Core</title>
-		<link href="https://harrison314.github.io/CoreStreaming.html" />
-		<updated>2016-08-25T00:00:00Z</updated>
-		<summary>Implementácia streamingu videa v ASP.Net Core 2.1 aplikáci do webu.</summary>
 	</entry>
 </feed>

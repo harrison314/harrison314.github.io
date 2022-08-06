@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang=sk><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta http-equiv=X-Xss-Protection content="1; mode=block"><meta http-equiv=X-Content-Type-Options content=nosniff><meta name=viewport content="width=device-width, initial-scale=1"><link rel=alternate type=application/rss+xml title="RSS Feed" href=/feed.rss><link rel=alternate type=application/atom+xml title="Atom Feed" href=/feed.atom><meta name=author content=harrison314><title>Volanie http requestu so 16kB binárky</title><meta property=og:title content="Volanie http requestu so 16kB binárky"><meta property=og:description content="Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou."><meta property=og:url content=https://harrison314.github.io/WinHttp.html><meta name=description content="Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou."><link href=css/bootstrap.min.css rel=stylesheet><link href=css/blog-post.css rel=stylesheet><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script><script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]--><link rel=stylesheet href=css/Highiler/vs.css><style>img{max-width:100%}.img-center{display:block;margin-left:auto;margin-right:auto}</style><body><nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#bs-example-navbar-collapse-1> <span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span> </button> <a class=navbar-brand href=index.html>harrison314 blog</a></div><div class="collapse navbar-collapse" id=bs-example-navbar-collapse-1><ul class="nav navbar-nav"><li><a href=/All.html>Obsah</a><li><a href=/DevelopingAll.html>Programovanie</a><li><a href=/GeneralAll.html>Všeobecné</a><li><a href=/OMne.html>O mne</a></ul></div></div></nav><div class=container><div class=row><div class="col-lg-8 col-md-8"><h1>Volanie http requestu so 16kB binárky</h1><div class=publishDate>August 2022</div><p>Občas sa stretnem s&nbsp;požiadavkou zavolať REST endpoint s&nbsp;natívneho programu. Mnoho ľudí hneď siahne po&nbsp;cURL knižnici, Rust-e, alebo&nbsp;Go, no&nbsp;výsledná binárka má najmenej <em>2-4MB</em>. S&nbsp;WinHTTP je možné sa zmestiť do&nbsp;<em>16kB</em> programu (samozrejme funguje len na&nbsp;Windowsoch).<p>Prinášam malú ukážku použitia WinHTTP.<pre><code class="language-c hljs"><span class=hljs-meta>#<span class=hljs-meta-keyword>include</span> <span class=hljs-meta-string>&lt;stdio.h&gt;</span></span>
+<span class=hljs-meta>#<span class=hljs-meta-keyword>include</span> <span class=hljs-meta-string>&lt;stdlib.h&gt;</span></span>
+<span class=hljs-meta>#<span class=hljs-meta-keyword>include</span> <span class=hljs-meta-string>&lt;windows.h&gt;</span></span>
+<span class=hljs-meta>#<span class=hljs-meta-keyword>include</span> <span class=hljs-meta-string>&lt;winhttp.h&gt;</span></span>
+
+<span class=hljs-function><span class=hljs-keyword>int</span> <span class=hljs-title>main</span><span class=hljs-params>()</span>
+</span>{
+    DWORD dwSize = <span class=hljs-number>0</span>;
+    DWORD dwDownloaded = <span class=hljs-number>0</span>;
+    LPSTR pszOutBuffer;
+    BOOL  bResults = FALSE;
+    HINTERNET  hSession = <span class=hljs-literal>NULL</span>, hConnect = <span class=hljs-literal>NULL</span>, hRequest = <span class=hljs-literal>NULL</span>;
+
+    hSession = WinHttpOpen(<span class=hljs-string>L"WinHTTP Example/1.0"</span>, WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, <span class=hljs-number>0</span>);
+
+    <span class=hljs-keyword>if</span> (hSession)
+    {
+        hConnect = WinHttpConnect(hSession, <span class=hljs-string>L"harrison314.github.io"</span>, INTERNET_DEFAULT_HTTPS_PORT, <span class=hljs-number>0</span>);
+    }
+
+    <span class=hljs-keyword>if</span> (hConnect)
+    {
+        hRequest = WinHttpOpenRequest(hConnect, <span class=hljs-string>L"GET"</span>, <span class=hljs-string>L"/dev_endpoints/simple.json"</span>, <span class=hljs-literal>NULL</span>, WINHTTP_NO_REFERER, WINHTTP_DEFAULT_ACCEPT_TYPES, WINHTTP_FLAG_SECURE);
+    }
+
+    <span class=hljs-keyword>if</span> (hRequest)
+    {
+        bResults = WinHttpSendRequest(hRequest, WINHTTP_NO_ADDITIONAL_HEADERS, <span class=hljs-number>0</span>, WINHTTP_NO_REQUEST_DATA, <span class=hljs-number>0</span>, <span class=hljs-number>0</span>, <span class=hljs-number>0</span>);
+    }
+
+    <span class=hljs-keyword>if</span> (bResults)
+    {
+        bResults = WinHttpReceiveResponse(hRequest, <span class=hljs-literal>NULL</span>);
+    }
+
+    <span class=hljs-keyword>if</span> (bResults)
+    {
+        <span class=hljs-keyword>do</span>&nbsp;{
+            dwSize = <span class=hljs-number>0</span>;
+            <span class=hljs-keyword>if</span> (!WinHttpQueryDataAvailable(hRequest, &amp;dwSize))
+            {
+                <span class=hljs-built_in>printf</span>(<span class=hljs-string>"Error %u in WinHttpQueryDataAvailable.\n"</span>, GetLastError());
+            }
+
+            pszOutBuffer = (<span class=hljs-keyword>char</span>*) <span class=hljs-built_in>malloc</span>(<span class=hljs-keyword>sizeof</span>(<span class=hljs-keyword>char</span>)*(dwSize + <span class=hljs-number>1</span>));
+            <span class=hljs-keyword>if</span> (!pszOutBuffer)
+            {
+                <span class=hljs-built_in>printf</span>(<span class=hljs-string>"Out of memory\n"</span>);
+                dwSize = <span class=hljs-number>0</span>;
+            }
+            <span class=hljs-keyword>else</span>
+            {
+                ZeroMemory(pszOutBuffer, dwSize + <span class=hljs-number>1</span>);
+                <span class=hljs-keyword>if</span> (!WinHttpReadData(hRequest, (LPVOID)pszOutBuffer, dwSize, &amp;dwDownloaded))
+                {
+                    <span class=hljs-built_in>printf</span>(<span class=hljs-string>"Error %u in WinHttpReadData.\n"</span>, GetLastError());
+                }
+                <span class=hljs-keyword>else</span>
+                {
+                    <span class=hljs-built_in>printf</span>(<span class=hljs-string>"%s"</span>, pszOutBuffer);
+                }
+
+                <span class=hljs-keyword>if</span> (pszOutBuffer)
+                {
+                    <span class=hljs-built_in>free</span>((<span class=hljs-keyword>void</span>*)pszOutBuffer);
+                }
+            }
+        }
+        <span class=hljs-keyword>while</span> (dwSize &gt; <span class=hljs-number>0</span>);
+    }
+
+    <span class=hljs-keyword>if</span> (!bResults)
+    {
+        <span class=hljs-built_in>printf</span>(<span class=hljs-string>"Error %d has occurred.\n"</span>, GetLastError());
+    }
+
+    <span class=hljs-keyword>if</span> (hRequest) WinHttpCloseHandle(hRequest);
+    <span class=hljs-keyword>if</span> (hConnect) WinHttpCloseHandle(hConnect);
+    <span class=hljs-keyword>if</span> (hSession) WinHttpCloseHandle(hSession);
+
+    <span class=hljs-keyword>return</span> <span class=hljs-number>0</span>;
+}
+</code></pre><p>Kompilácia: <code>gcc -s main.c -lwinhttp -o main.exe</code>.<p>Samozrejme ide len o&nbsp;inšpiráciu, ale&nbsp;nemalo by sa zabúdať na&nbsp;to, že&nbsp;<em>WinAPI</em> je plné zaujímavých funkcií, ktoré sú nám k&nbsp;dispozícii a&nbsp;dokážu zaujímavé veci a&nbsp;to aj&nbsp;z hadiska bezpečnosti.</div><div class="col-lg-4 col-md-4 hidden-xs hidden-sm"><div class=well><h4>Vývoj</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/WinHttp.html>Použitie WinHTTP</a><li><a href=/BinaryContentInApi.html>ASP.NET Core API a binárny obsah</a><li><a href=/PerformaceInNet.html>Meranie performace pre dotnetistov</a><li><a href=/CngApiTips.html>Triky s Windows CNG API</a><li><a href=/InMemoryOltp.html>Experiment s In-Memory OLTP</a><li><a href=/CoMaNauciloIot.html>Čo ma naučilo IoT</a><li><a href=/SkEid.html>eID nie je platobná karta</a><li><a href=/eVolby.html>Elektronické voľby</a><li><a href=/Blazor.html>Ako ma zachránil Blazor</a><li><a href=/NetCoreSecuring.html>Dodatočné zabezpečenie .Net Core</a><li><a href=/DevelopingAll.html>…</a></ul></div></div></div><div class=well><h4>Všeobecné</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/EzoGenerator.html>Generátor Ezo textov</a><li><a href=/AlternativnyRecept.html>Propagácia alternatívnej medicíny</a><li><a href=/VotrelciDavnoveku.html>Votrelci dávnoveku</a><li><a href=/GeneralAll.html>…</a></ul></div></div></div><div class=well><h4>O mne</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/OMne.html>O mne</a><li><a href=/OMneOdkazy.html>Moja tvorba inde</a><li><a href=/Portfolio.html>Portólio</a></ul></div></div></div></div></div><hr><footer><div class=row><div class="col-lg-8 col-sm-8"><div class=well><h4>Našli ste chybu, alebo chcete niečo doplniť?</h4><p>Ak ste našli chybu v článu, chcete niečo dopniť, alebo sa vyjadriť k téme, môžete na <a href="https://github.com/harrison314/harrison314.github.io/issues/new?title=Volanie%20http%20requestu%20so%2016kB%20bin%C3%A1rky&amp;body=https%3A%2F%2Fharrison314.github.io%2FWinHttp.html" target=_blank>Githube otvoriť issue</a>.</div></div></div><div class=row><div class=col-lg-12><p>Copyright © harrison314 2013</div></div></footer></div><script src=js/jquery.js></script><script src=js/bootstrap.min.js></script>
