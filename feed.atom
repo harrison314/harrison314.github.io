@@ -4,10 +4,10 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2022</rights>
-	<updated>2022-08-06T15:21:37Z</updated>
+	<updated>2022-08-06T15:24:27Z</updated>
 	<entry>
 		<id>https://harrison314.github.io/WinHttp.html</id>
-		<title>Volanie HTTP requestu so 16kB binárky</title>
+		<title>Volanie HTTP requestu zo 16kB binárky</title>
 		<link href="https://harrison314.github.io/WinHttp.html" />
 		<updated>2022-08-06T00:00:00Z</updated>
 		<summary>Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou.</summary>
