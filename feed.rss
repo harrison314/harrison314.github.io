@@ -5,10 +5,10 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2022</copyright>
-		<pubDate>Sat, 06 Aug 2022 15:17:48 GMT</pubDate>
-		<lastBuildDate>Sat, 06 Aug 2022 15:17:48 GMT</lastBuildDate>
+		<pubDate>Sat, 06 Aug 2022 15:21:37 GMT</pubDate>
+		<lastBuildDate>Sat, 06 Aug 2022 15:21:37 GMT</lastBuildDate>
 		<item>
-			<title>Volanie http requestu so 16kB binárky</title>
+			<title>Volanie HTTP requestu so 16kB binárky</title>
 			<link>https://harrison314.github.io/WinHttp.html</link>
 			<description>Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou.</description>
 			<guid>https://harrison314.github.io/WinHttp.html</guid>
