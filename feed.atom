@@ -4,7 +4,14 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2022</rights>
-	<updated>2022-08-06T15:24:27Z</updated>
+	<updated>2022-08-26T15:52:46Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/MongoDbVsRavenDb.html</id>
+		<title>MongoDB vs. RavenDB</title>
+		<link href="https://harrison314.github.io/MongoDbVsRavenDb.html" />
+		<updated>2022-08-26T00:00:00Z</updated>
+		<summary>Keď dvaja robia to isté, tak to môže byť úplne iné – porovnanie MongoDB a RavenDB na reálnom projekte.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/WinHttp.html</id>
 		<title>Volanie HTTP requestu zo 16kB binárky</title>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/UzitocneProgramy.html" />
 		<updated>2019-05-09T00:00:00Z</updated>
 		<summary>Zoznam programov užitočných pre Windows a .Net vývojára.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/AlternativnyRecept.html</id>
-		<title>Recept na propagáciu alternatívnej medicíny</title>
-		<link href="https://harrison314.github.io/AlternativnyRecept.html" />
-		<updated>2017-05-03T00:00:00Z</updated>
-		<summary>Satiricky o tom ako písať články pre alternatívnu medicínu.</summary>
 	</entry>
 </feed>

@@ -5,8 +5,15 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2022</copyright>
-		<pubDate>Sat, 06 Aug 2022 15:24:27 GMT</pubDate>
-		<lastBuildDate>Sat, 06 Aug 2022 15:24:27 GMT</lastBuildDate>
+		<pubDate>Fri, 26 Aug 2022 15:52:46 GMT</pubDate>
+		<lastBuildDate>Fri, 26 Aug 2022 15:52:46 GMT</lastBuildDate>
+		<item>
+			<title>MongoDB vs. RavenDB</title>
+			<link>https://harrison314.github.io/MongoDbVsRavenDb.html</link>
+			<description>Keď dvaja robia to isté, tak to môže byť úplne iné – porovnanie MongoDB a RavenDB na reálnom projekte.</description>
+			<guid>https://harrison314.github.io/MongoDbVsRavenDb.html</guid>
+			<pubDate>Fri, 26 Aug 2022 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>Volanie HTTP requestu zo 16kB binárky</title>
 			<link>https://harrison314.github.io/WinHttp.html</link>
@@ -139,13 +146,6 @@
 			<description>Zoznam programov užitočných pre Windows a .Net vývojára.</description>
 			<guid>https://harrison314.github.io/UzitocneProgramy.html</guid>
 			<pubDate>Thu, 09 May 2019 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Recept na propagáciu alternatívnej medicíny</title>
-			<link>https://harrison314.github.io/AlternativnyRecept.html</link>
-			<description>Satiricky o tom ako písať články pre alternatívnu medicínu.</description>
-			<guid>https://harrison314.github.io/AlternativnyRecept.html</guid>
-			<pubDate>Wed, 03 May 2017 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>
