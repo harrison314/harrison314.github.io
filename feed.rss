@@ -5,8 +5,15 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2022</copyright>
-		<pubDate>Fri, 26 Aug 2022 15:52:46 GMT</pubDate>
-		<lastBuildDate>Fri, 26 Aug 2022 15:52:46 GMT</lastBuildDate>
+		<pubDate>Mon, 24 Oct 2022 16:44:38 GMT</pubDate>
+		<lastBuildDate>Mon, 24 Oct 2022 16:44:38 GMT</lastBuildDate>
+		<item>
+			<title>MS SQL a RANK funkcie</title>
+			<link>https://harrison314.github.io/RankFunctions.html</link>
+			<description>Ukážka RANK a Windows funkcii v MS SQL (SQL Serveru).</description>
+			<guid>https://harrison314.github.io/RankFunctions.html</guid>
+			<pubDate>Wed, 26 Oct 2022 00:00:00 GMT</pubDate>
+		</item>
 		<item>
 			<title>MongoDB vs. RavenDB</title>
 			<link>https://harrison314.github.io/MongoDbVsRavenDb.html</link>
@@ -139,13 +146,6 @@
 			<description>Ako zabezpečiť HTTP vstupy do ASP.NET MVC aplikácie.</description>
 			<guid>https://harrison314.github.io/ZabezpecnieAspMvc.html</guid>
 			<pubDate>Fri, 15 Sep 2017 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Užitočné programy</title>
-			<link>https://harrison314.github.io/UzitocneProgramy.html</link>
-			<description>Zoznam programov užitočných pre Windows a .Net vývojára.</description>
-			<guid>https://harrison314.github.io/UzitocneProgramy.html</guid>
-			<pubDate>Thu, 09 May 2019 00:00:00 GMT</pubDate>
 		</item>
 	</channel>
 </rss>
