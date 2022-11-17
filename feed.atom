@@ -4,7 +4,14 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2022</rights>
-	<updated>2022-10-24T16:44:38Z</updated>
+	<updated>2022-11-17T11:53:12Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/VyvojarskeOdkazy.html</id>
+		<title>Moja blogové príspevky na iných stránkach</title>
+		<link href="https://harrison314.github.io/VyvojarskeOdkazy.html" />
+		<updated>2022-11-17T00:00:00Z</updated>
+		<summary>Odkazy na moju tvorbu na iných weboch, ktoré sa týkajú vývoja.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/RankFunctions.html</id>
 		<title>MS SQL a RANK funkcie</title>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/LevenstainOptimalization.html" />
 		<updated>2018-01-20T00:00:00Z</updated>
 		<summary>Mikrooptimalizácia výpočtu Levenstainovej vzdialenosti v .Net-e.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/ZabezpecnieAspMvc.html</id>
-		<title>Zabezpečenie vstupov ASP.NET MVC aplikácie</title>
-		<link href="https://harrison314.github.io/ZabezpecnieAspMvc.html" />
-		<updated>2017-09-15T00:00:00Z</updated>
-		<summary>Ako zabezpečiť HTTP vstupy do ASP.NET MVC aplikácie.</summary>
 	</entry>
 </feed>
