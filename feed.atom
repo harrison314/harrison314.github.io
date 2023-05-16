@@ -3,8 +3,15 @@
 	<id>https://harrison314.github.io/</id>
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
-	<rights>2022</rights>
-	<updated>2022-11-17T11:53:12Z</updated>
+	<rights>2023</rights>
+	<updated>2023-05-16T19:31:25Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/KeyValueDB.html</id>
+		<title>Ako na Key-Value databázu</title>
+		<link href="https://harrison314.github.io/KeyValueDB.html" />
+		<updated>2023-05-16T00:00:00Z</updated>
+		<summary>Ukážka modelovania v key-value databázach.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/VyvojarskeOdkazy.html</id>
 		<title>Moja blogové príspevky na iných stránkach</title>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/GoLang.html" />
 		<updated>2021-09-22T00:00:00Z</updated>
 		<summary>Go očami dotnet developera.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/LevenstainOptimalization.html</id>
-		<title>Optimalizácia výpočtu Levenstainovej vzdialenosti</title>
-		<link href="https://harrison314.github.io/LevenstainOptimalization.html" />
-		<updated>2018-01-20T00:00:00Z</updated>
-		<summary>Mikrooptimalizácia výpočtu Levenstainovej vzdialenosti v .Net-e.</summary>
 	</entry>
 </feed>
