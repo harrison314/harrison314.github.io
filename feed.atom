@@ -4,7 +4,14 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2023</rights>
-	<updated>2023-05-16T19:31:25Z</updated>
+	<updated>2023-07-09T17:34:14Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/BuildAutomation.html</id>
+		<title>Prečo používať build automation</title>
+		<link href="https://harrison314.github.io/BuildAutomation.html" />
+		<updated>2023-07-08T00:00:00Z</updated>
+		<summary>Prečo používať build automation tooly a predstavenie Cake Build a NUKE.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/KeyValueDB.html</id>
 		<title>Ako na Key-Value databázu</title>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/Ansible.html" />
 		<updated>2018-07-19T00:00:00Z</updated>
 		<summary>Návod na inštláciu .Net Core 2.1 pomocou Ansible.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/GoLang.html</id>
-		<title>Golang a alternatívy</title>
-		<link href="https://harrison314.github.io/GoLang.html" />
-		<updated>2021-09-22T00:00:00Z</updated>
-		<summary>Go očami dotnet developera.</summary>
 	</entry>
 </feed>
