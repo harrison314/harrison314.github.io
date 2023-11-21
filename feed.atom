@@ -4,7 +4,14 @@
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
 	<rights>2023</rights>
-	<updated>2023-07-12T19:36:21Z</updated>
+	<updated>2023-11-21T20:53:33Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/BouncyHsm.html</id>
+		<title>Ako som robil BouncyHsm</title>
+		<link href="https://harrison314.github.io/BouncyHsm.html" />
+		<updated>2023-11-21T00:00:00Z</updated>
+		<summary>Dôvody, návrh architektúry a vývoj simulátoru HSM a čipových kariet s PKCS#11 rozhraním v .NET-e a Blazore.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/BuildAutomation.html</id>
 		<title>Prečo používať build automation</title>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/SkEidSign.html" />
 		<updated>2018-07-30T00:00:00Z</updated>
 		<summary>Článok o elektronickom podpisovaní PDF SLovenským eID v .Net Core.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/Ansible.html</id>
-		<title>Inštalácia .Net Core cez Ansible</title>
-		<link href="https://harrison314.github.io/Ansible.html" />
-		<updated>2018-07-19T00:00:00Z</updated>
-		<summary>Návod na inštláciu .Net Core 2.1 pomocou Ansible.</summary>
 	</entry>
 </feed>
