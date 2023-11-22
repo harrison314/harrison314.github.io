@@ -5,14 +5,14 @@
 		<link>https://harrison314.github.io/</link>
 		<description />
 		<copyright>2023</copyright>
-		<pubDate>Tue, 21 Nov 2023 20:53:33 GMT</pubDate>
-		<lastBuildDate>Tue, 21 Nov 2023 20:53:33 GMT</lastBuildDate>
+		<pubDate>Wed, 22 Nov 2023 15:27:49 GMT</pubDate>
+		<lastBuildDate>Wed, 22 Nov 2023 15:27:49 GMT</lastBuildDate>
 		<item>
 			<title>Ako som robil BouncyHsm</title>
 			<link>https://harrison314.github.io/BouncyHsm.html</link>
 			<description>Dôvody, návrh architektúry a vývoj simulátoru HSM a čipových kariet s PKCS#11 rozhraním v .NET-e a Blazore.</description>
 			<guid>https://harrison314.github.io/BouncyHsm.html</guid>
-			<pubDate>Tue, 21 Nov 2023 00:00:00 GMT</pubDate>
+			<pubDate>Wed, 22 Nov 2023 00:00:00 GMT</pubDate>
 		</item>
 		<item>
 			<title>Prečo používať build automation</title>
