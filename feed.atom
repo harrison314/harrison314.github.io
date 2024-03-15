@@ -3,8 +3,15 @@
 	<id>https://harrison314.github.io/</id>
 	<title />
 	<link rel="self" href="https://harrison314.github.io/" />
-	<rights>2023</rights>
-	<updated>2023-11-22T15:27:49Z</updated>
+	<rights>2024</rights>
+	<updated>2024-03-15T19:49:37Z</updated>
+	<entry>
+		<id>https://harrison314.github.io/PostKvantovaKryptografia.html</id>
+		<title>Post-kvantová kryptografia v C#</title>
+		<link href="https://harrison314.github.io/PostKvantovaKryptografia.html" />
+		<updated>2024-03-15T00:00:00Z</updated>
+		<summary>Ťahák pre post-kvantovú kryptografiu a ukážka v Bouncy Castle a C#.</summary>
+	</entry>
 	<entry>
 		<id>https://harrison314.github.io/BouncyHsm.html</id>
 		<title>Ako som robil BouncyHsm</title>
@@ -137,12 +144,5 @@
 		<link href="https://harrison314.github.io/EzoGenerator.html" />
 		<updated>2018-12-31T00:00:00Z</updated>
 		<summary>O tom aké je ľahké byť železný guru.</summary>
-	</entry>
-	<entry>
-		<id>https://harrison314.github.io/SkEidSign.html</id>
-		<title>Podpísanie PDF-ka Slovenským eID-čkom</title>
-		<link href="https://harrison314.github.io/SkEidSign.html" />
-		<updated>2018-07-30T00:00:00Z</updated>
-		<summary>Článok o elektronickom podpisovaní PDF SLovenským eID v .Net Core.</summary>
 	</entry>
 </feed>
