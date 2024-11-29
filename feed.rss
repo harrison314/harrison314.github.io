@@ -1,151 +1,327 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0">
-	<channel>
-		<title />
-		<link>https://harrison314.github.io/</link>
-		<description />
-		<copyright>2024</copyright>
-		<pubDate>Fri, 15 Mar 2024 19:49:37 GMT</pubDate>
-		<lastBuildDate>Fri, 15 Mar 2024 19:49:37 GMT</lastBuildDate>
-		<item>
-			<title>Post-kvantová kryptografia v C#</title>
-			<link>https://harrison314.github.io/PostKvantovaKryptografia.html</link>
-			<description>Ťahák pre post-kvantovú kryptografiu a ukážka v Bouncy Castle a C#.</description>
-			<guid>https://harrison314.github.io/PostKvantovaKryptografia.html</guid>
-			<pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Ako som robil BouncyHsm</title>
-			<link>https://harrison314.github.io/BouncyHsm.html</link>
-			<description>Dôvody, návrh architektúry a vývoj simulátoru HSM a čipových kariet s PKCS#11 rozhraním v .NET-e a Blazore.</description>
-			<guid>https://harrison314.github.io/BouncyHsm.html</guid>
-			<pubDate>Wed, 22 Nov 2023 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Prečo používať build automation</title>
-			<link>https://harrison314.github.io/BuildAutomation.html</link>
-			<description>Prečo používať build automation tooly a predstavenie Cake Build a NUKE.</description>
-			<guid>https://harrison314.github.io/BuildAutomation.html</guid>
-			<pubDate>Wed, 12 Jul 2023 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Ako na Key-Value databázu</title>
-			<link>https://harrison314.github.io/KeyValueDB.html</link>
-			<description>Ukážka modelovania v key-value databázach.</description>
-			<guid>https://harrison314.github.io/KeyValueDB.html</guid>
-			<pubDate>Tue, 16 May 2023 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Moja blogové príspevky na iných stránkach</title>
-			<link>https://harrison314.github.io/VyvojarskeOdkazy.html</link>
-			<description>Odkazy na moju tvorbu na iných weboch, ktoré sa týkajú vývoja.</description>
-			<guid>https://harrison314.github.io/VyvojarskeOdkazy.html</guid>
-			<pubDate>Thu, 17 Nov 2022 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>MS SQL a RANK funkcie</title>
-			<link>https://harrison314.github.io/RankFunctions.html</link>
-			<description>Ukážka RANK a Windows funkcii v MS SQL (SQL Serveru).</description>
-			<guid>https://harrison314.github.io/RankFunctions.html</guid>
-			<pubDate>Wed, 26 Oct 2022 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>MongoDB vs. RavenDB</title>
-			<link>https://harrison314.github.io/MongoDbVsRavenDb.html</link>
-			<description>Keď dvaja robia to isté, tak to môže byť úplne iné – porovnanie MongoDB a RavenDB na reálnom projekte.</description>
-			<guid>https://harrison314.github.io/MongoDbVsRavenDb.html</guid>
-			<pubDate>Fri, 26 Aug 2022 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Volanie HTTP requestu zo 16kB binárky</title>
-			<link>https://harrison314.github.io/WinHttp.html</link>
-			<description>Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou.</description>
-			<guid>https://harrison314.github.io/WinHttp.html</guid>
-			<pubDate>Sat, 06 Aug 2022 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>ASP.NET Core API a binárny obsah</title>
-			<link>https://harrison314.github.io/BinaryContentInApi.html</link>
-			<description>Nahrávanie a sťahovanie binárnych dát alebo súborov v ASP.NET Core API s podporou OpenAPI špecifikácie.</description>
-			<guid>https://harrison314.github.io/BinaryContentInApi.html</guid>
-			<pubDate>Mon, 16 Aug 2021 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Meranie performace pre dotnetistov</title>
-			<link>https://harrison314.github.io/PerformaceInNet.html</link>
-			<description>Benchmarking, load testing a hľadanie úzkeho hrdla v dotnet aplikáciách.</description>
-			<guid>https://harrison314.github.io/PerformaceInNet.html</guid>
-			<pubDate>Tue, 22 Jun 2021 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Triky s Windows CNG API</title>
-			<link>https://harrison314.github.io/CngApiTips.html</link>
-			<description>Vytvorenie kľúčového páru a certifikátu chráneného TPM a zadanie PIN-u pre kartu.</description>
-			<guid>https://harrison314.github.io/CngApiTips.html</guid>
-			<pubDate>Fri, 07 May 2021 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Experiment s In-Memory OLTP</title>
-			<link>https://harrison314.github.io/InMemoryOltp.html</link>
-			<description>Myšlienkový a praktický experiment, ako riešiť systém na registráciu termínov, ktorá odolá veľkej záťaži.</description>
-			<guid>https://harrison314.github.io/InMemoryOltp.html</guid>
-			<pubDate>Tue, 17 Aug 2021 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Čo ma naučilo IoT</title>
-			<link>https://harrison314.github.io/CoMaNauciloIot.html</link>
-			<description>Blog o tom, čo som sa naučil pri hraní s IoT.</description>
-			<guid>https://harrison314.github.io/CoMaNauciloIot.html</guid>
-			<pubDate>Tue, 14 Jul 2020 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>eID nie je platobná karta</title>
-			<link>https://harrison314.github.io/SkEid.html</link>
-			<description>Vysvetlenie častých omylov okolo elektronického občianskeho preukazu.</description>
-			<guid>https://harrison314.github.io/SkEid.html</guid>
-			<pubDate>Thu, 20 Feb 2020 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Elektronické voľby</title>
-			<link>https://harrison314.github.io/eVolby.html</link>
-			<description>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internetbanking funguje?</description>
-			<guid>https://harrison314.github.io/eVolby.html</guid>
-			<pubDate>Sat, 25 Jul 2020 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Ako ma zachránil Blazor</title>
-			<link>https://harrison314.github.io/Blazor.html</link>
-			<description>Ako ma zachránil Blazor pred svetom JavaScriptu.</description>
-			<guid>https://harrison314.github.io/Blazor.html</guid>
-			<pubDate>Mon, 25 Nov 2019 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Dodatočné zabezpečenie .Net Core</title>
-			<link>https://harrison314.github.io/NetCoreSecuring.html</link>
-			<description>Popis dodatočného zabezpečenia ASP.Net Core aplikácie v prostredí linuxu.</description>
-			<guid>https://harrison314.github.io/NetCoreSecuring.html</guid>
-			<pubDate>Thu, 29 Aug 2019 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Slovenská typografia pre wyam</title>
-			<link>https://harrison314.github.io/SlovakWyamTypography.html</link>
-			<description>Pridanie podpory Slovenskej typografie pre generátor statických stránok Wyam.</description>
-			<guid>https://harrison314.github.io/SlovakWyamTypography.html</guid>
-			<pubDate>Thu, 28 Mar 2019 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Hostovanie .Net Core assembly v natívnej DLL/SO knižnici</title>
-			<link>https://harrison314.github.io/HostCoreInDll.html</link>
-			<description>Popis hostovania .Net Core aplikácie v natívej knižnici.</description>
-			<guid>https://harrison314.github.io/HostCoreInDll.html</guid>
-			<pubDate>Sat, 09 Mar 2019 00:00:00 GMT</pubDate>
-		</item>
-		<item>
-			<title>Generátor Ezo textov</title>
-			<link>https://harrison314.github.io/EzoGenerator.html</link>
-			<description>O tom aké je ľahké byť železný guru.</description>
-			<guid>https://harrison314.github.io/EzoGenerator.html</guid>
-			<pubDate>Mon, 31 Dec 2018 00:00:00 GMT</pubDate>
-		</item>
-	</channel>
+  <channel>
+    <title>harrison314 Blog</title>
+    <link>https://harrison314.github.io/</link>
+    <description>Blog jedného skeptického programátora.</description>
+    <copyright>(c) 2013</copyright>
+    <pubDate>Fri, 29 Nov 2024 19:36:08 GMT</pubDate>
+    <lastBuildDate>Fri, 29 Nov 2024 19:36:08 GMT</lastBuildDate>
+    <language>sk-SK</language>
+    <item>
+      <title>Post-kvantová kryptografia v C#</title>
+      <link>https://harrison314.github.io/PostKvantovaKryptografia.html</link>
+      <description>Ťahák pre post-kvantovú kryptografiu a ukážka v Bouncy Castle a C#.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/PostKvantovaKryptografia.html</guid>
+      <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Ako som robil BouncyHsm</title>
+      <link>https://harrison314.github.io/BouncyHsm.html</link>
+      <description>Dôvody, návrh architektúry a vývoj simulátoru HSM a čipových kariet s PKCS#11 rozhraním v .NET-e a Blazore.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/BouncyHsm.html</guid>
+      <pubDate>Tue, 21 Nov 2023 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Prečo používať build automation</title>
+      <link>https://harrison314.github.io/BuildAutomation.html</link>
+      <description>Prečo používať build automation tooly a predstavenie Cake Build a NUKE.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/BuildAutomation.html</guid>
+      <pubDate>Sat, 08 Jul 2023 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Ako na Key-Value databázu</title>
+      <link>https://harrison314.github.io/KeyValueDB.html</link>
+      <description>Ukážka modelovania v key-value databázach.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/KeyValueDB.html</guid>
+      <pubDate>Tue, 16 May 2023 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Moja blogové príspevky na iných stránkach</title>
+      <link>https://harrison314.github.io/VyvojarskeOdkazy.html</link>
+      <description>Odkazy na moju tvorbu na iných weboch, ktoré sa týkajú vývoja.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/VyvojarskeOdkazy.html</guid>
+      <pubDate>Thu, 17 Nov 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>MS SQL a RANK funkcie</title>
+      <link>https://harrison314.github.io/RankFunctions.html</link>
+      <description>Ukážka RANK a Windows funkcii v MS SQL (SQL Serveru).</description>
+      <guid isPermaLink="false">https://harrison314.github.io/RankFunctions.html</guid>
+      <pubDate>Wed, 26 Oct 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>MongoDB vs. RavenDB</title>
+      <link>https://harrison314.github.io/MongoDbVsRavenDb.html</link>
+      <description>Keď dvaja robia to isté, tak to môže byť úplne iné – porovnanie MongoDB a RavenDB na reálnom projekte.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/MongoDbVsRavenDb.html</guid>
+      <pubDate>Fri, 26 Aug 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Volanie HTTP requestu zo 16kB binárky</title>
+      <link>https://harrison314.github.io/WinHttp.html</link>
+      <description>Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/WinHttp.html</guid>
+      <pubDate>Sat, 06 Aug 2022 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>ASP.NET Core API a binárny obsah</title>
+      <link>https://harrison314.github.io/BinaryContentInApi.html</link>
+      <description>Nahrávanie a sťahovanie binárnych dát alebo súborov v ASP.NET Core API s podporou OpenAPI špecifikácie.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/BinaryContentInApi.html</guid>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Meranie performace pre dotnetistov</title>
+      <link>https://harrison314.github.io/PerformaceInNet.html</link>
+      <description>Benchmarking, load testing a hľadanie úzkeho hrdla v dotnet aplikáciách.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/PerformaceInNet.html</guid>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Triky s Windows CNG API</title>
+      <link>https://harrison314.github.io/CngApiTips.html</link>
+      <description>Vytvorenie kľúčového páru a certifikátu chráneného TPM a zadanie PIN-u pre kartu.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/CngApiTips.html</guid>
+      <pubDate>Fri, 07 May 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Experiment s In-Memory OLTP</title>
+      <link>https://harrison314.github.io/InMemoryOltp.html</link>
+      <description>Myšlienkový a praktický experiment, ako riešiť systém na registráciu termínov, ktorá odolá veľkej záťaži.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/InMemoryOltp.html</guid>
+      <pubDate>Wed, 27 Jan 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Čo ma naučilo IoT</title>
+      <link>https://harrison314.github.io/CoMaNauciloIot.html</link>
+      <description>Blog o tom, čo som sa naučil pri hraní s IoT.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/CoMaNauciloIot.html</guid>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>PkcsExtensions</title>
+      <link>https://harrison314.github.io/PkcsExtensions.html</link>
+      <description>Malá knižnica pridávajúca chýbajúce veci do .Net-u v oblasti PKCS a PKI.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/PkcsExtensions.html</guid>
+      <pubDate>Wed, 20 May 2020 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>eID nie je platobná karta</title>
+      <link>https://harrison314.github.io/SkEid.html</link>
+      <description>Vysvetlenie častých omylov okolo elektronického občianskeho preukazu.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/SkEid.html</guid>
+      <pubDate>Thu, 20 Feb 2020 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Elektronické voľby</title>
+      <link>https://harrison314.github.io/eVolby.html</link>
+      <description>Prečo sú elektronické voľby v súčasnosti zlý nápad, hoci nám internetbanking funguje?</description>
+      <guid isPermaLink="false">https://harrison314.github.io/eVolby.html</guid>
+      <pubDate>Wed, 12 Feb 2020 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Ako ma zachránil Blazor</title>
+      <link>https://harrison314.github.io/Blazor.html</link>
+      <description>Ako ma zachránil Blazor pred svetom JavaScriptu.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/Blazor.html</guid>
+      <pubDate>Mon, 25 Nov 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dodatočné zabezpečenie .Net Core</title>
+      <link>https://harrison314.github.io/NetCoreSecuring.html</link>
+      <description>Popis dodatočného zabezpečenia ASP.Net Core aplikácie v prostredí linuxu.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/NetCoreSecuring.html</guid>
+      <pubDate>Thu, 29 Aug 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Slovenská typografia pre wyam</title>
+      <link>https://harrison314.github.io/SlovakWyamTypography.html</link>
+      <description>Pridanie podpory Slovenskej typografie pre generátor statických stránok Wyam.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/SlovakWyamTypography.html</guid>
+      <pubDate>Thu, 28 Mar 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Hostovanie .Net Core assembly v natívnej DLL/SO knižnici</title>
+      <link>https://harrison314.github.io/HostCoreInDll.html</link>
+      <description>Popis hostovania .Net Core aplikácie v natívej knižnici.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/HostCoreInDll.html</guid>
+      <pubDate>Sat, 09 Mar 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>SoftHSMv2 (as nuget) for testing</title>
+      <link>https://harrison314.github.io/SoftHSMv2ForTesting.html</link>
+      <description>SoftHSMv2 ako nuget pre testovanie PKCS11 programov v .Net-e.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/SoftHSMv2ForTesting.html</guid>
+      <pubDate>Tue, 26 Feb 2019 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Generátor Ezo textov</title>
+      <link>https://harrison314.github.io/EzoGenerator.html</link>
+      <description>O tom aké je ľahké byť železný guru.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/EzoGenerator.html</guid>
+      <pubDate>Sun, 07 Oct 2018 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Podpísanie PDF-ka Slovenským eID-čkom</title>
+      <link>https://harrison314.github.io/SkEidSign.html</link>
+      <description>Článok o elektronickom podpisovaní PDF SLovenským eID v .Net Core.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/SkEidSign.html</guid>
+      <pubDate>Mon, 30 Jul 2018 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Inštalácia .Net Core cez Ansible</title>
+      <link>https://harrison314.github.io/Ansible.html</link>
+      <description>Návod na inštláciu .Net Core 2.1 pomocou Ansible.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/Ansible.html</guid>
+      <pubDate>Thu, 19 Jul 2018 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Golang a alternatívy</title>
+      <link>https://harrison314.github.io/GoLang.html</link>
+      <description>Go očami dotnet developera.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/GoLang.html</guid>
+      <pubDate>Sun, 20 May 2018 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Optimalizácia výpočtu Levenstainovej vzdialenosti</title>
+      <link>https://harrison314.github.io/LevenstainOptimalization.html</link>
+      <description>Mikrooptimalizácia výpočtu Levenstainovej vzdialenosti v .Net-e.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/LevenstainOptimalization.html</guid>
+      <pubDate>Sat, 20 Jan 2018 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Zabezpečenie vstupov ASP.NET MVC aplikácie</title>
+      <link>https://harrison314.github.io/ZabezpecnieAspMvc.html</link>
+      <description>Ako zabezpečiť HTTP vstupy do ASP.NET MVC aplikácie.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/ZabezpecnieAspMvc.html</guid>
+      <pubDate>Fri, 15 Sep 2017 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Užitočné programy</title>
+      <link>https://harrison314.github.io/UzitocneProgramy.html</link>
+      <description>Zoznam programov užitočných pre Windows a .Net vývojára.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/UzitocneProgramy.html</guid>
+      <pubDate>Wed, 19 Jul 2017 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Recept na propagáciu alternatívnej medicíny</title>
+      <link>https://harrison314.github.io/AlternativnyRecept.html</link>
+      <description>Satiricky o tom ako písať články pre alternatívnu medicínu.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/AlternativnyRecept.html</guid>
+      <pubDate>Wed, 03 May 2017 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Video straming v ASP.NET Core</title>
+      <link>https://harrison314.github.io/CoreStreaming.html</link>
+      <description>Implementácia streamingu videa v ASP.Net Core 2.1 aplikáci do webu.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/CoreStreaming.html</guid>
+      <pubDate>Thu, 25 Aug 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>MassiveDynamic Proxy Generator</title>
+      <link>https://harrison314.github.io/MassiveDynamic.html</link>
+      <description>Ľahká knižnica pre generovanie proxy objektov a dekorátorov.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/MassiveDynamic.html</guid>
+      <pubDate>Sun, 14 Aug 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>TFS 2015 a číslo verzie assembly</title>
+      <link>https://harrison314.github.io/Tfs15AsmVersion.html</link>
+      <description>Automatická inkrementácia čísla verzie assembly v TFS 2015.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/Tfs15AsmVersion.html</guid>
+      <pubDate>Tue, 14 Jun 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>FileUtils</title>
+      <link>https://harrison314.github.io/FileUtils.html</link>
+      <description>Aplikácia FileUtils pre prácu zo súbormi.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/FileUtils.html</guid>
+      <pubDate>Sat, 28 May 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>PerDia2012</title>
+      <link>https://harrison314.github.io/PerDia2012.html</link>
+      <description>Webová aplikácia ako osobný denník.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/PerDia2012.html</guid>
+      <pubDate>Mon, 02 May 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Stupne zla Service lokátoru</title>
+      <link>https://harrison314.github.io/ServiceLocator.html</link>
+      <description>Myšlienky okolo Service lokátoru.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/ServiceLocator.html</guid>
+      <pubDate>Tue, 26 Apr 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Monády</title>
+      <link>https://harrison314.github.io/Monads.html</link>
+      <description>Stručný popis monád (nachádzajúcich sa napríklad v Haskelli).</description>
+      <guid isPermaLink="false">https://harrison314.github.io/Monads.html</guid>
+      <pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Votrelci dávnoveku</title>
+      <link>https://harrison314.github.io/VotrelciDavnoveku.html</link>
+      <description>Hlúposti seriálu votrelci dávnoveku.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/VotrelciDavnoveku.html</guid>
+      <pubDate>Sat, 16 Apr 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Ako používať var a dynamic v C#</title>
+      <link>https://harrison314.github.io/VarAndDynamic.html</link>
+      <description>Kľúčové slová var a dynamic, ako to vidím ja.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/VarAndDynamic.html</guid>
+      <pubDate>Sun, 10 Apr 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>O mne a mojich zálubách</title>
+      <link>https://harrison314.github.io/OMne.html</link>
+      <description>Stránka o mne a mojich zálubách.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/OMne.html</guid>
+      <pubDate>Thu, 07 Apr 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Mapper Performace</title>
+      <link>https://harrison314.github.io/MapperPerformace.html</link>
+      <description>Experiment z perfomace mapovania dtabázového resultu na objekty.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/MapperPerformace.html</guid>
+      <pubDate>Sun, 24 Jan 2016 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>UnitologyIs</title>
+      <link>https://harrison314.github.io/UnitologyIs.html</link>
+      <description>Experimentálny informačný systém pre lekárske ambulancie.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/UnitologyIs.html</guid>
+      <pubDate>Mon, 01 Jun 2015 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Katalóg produktov v relačnej databáze</title>
+      <link>https://harrison314.github.io/CatalogProduktov.html</link>
+      <description>Rekapitulácia tvorby dynamickej dátovej štruktúry v databázach z mojich školských čias.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/CatalogProduktov.html</guid>
+      <pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Content filter</title>
+      <link>https://harrison314.github.io/ContetFilter.html</link>
+      <description>Experiment zo strojovím učením na odhalovanie šarlatánskych článkov.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/ContetFilter.html</guid>
+      <pubDate>Wed, 25 Dec 2013 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Moja tvorba inde</title>
+      <link>https://harrison314.github.io/OMneOdkazy.html</link>
+      <description>Odkazy na moju tvorbu na iných weboch.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/OMneOdkazy.html</guid>
+      <pubDate>Sun, 01 Dec 2013 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Čo robí programátor?</title>
+      <link>https://harrison314.github.io/CoRobiProgramator.html</link>
+      <description>Čo vlastne robí programátor pri programovaní?</description>
+      <guid isPermaLink="false">https://harrison314.github.io/CoRobiProgramator.html</guid>
+      <pubDate>Wed, 18 Sep 2013 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
 </rss>

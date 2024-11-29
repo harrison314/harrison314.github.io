@@ -1,83 +1,87 @@
-<!DOCTYPE html><html lang=sk><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta http-equiv=X-Xss-Protection content="1; mode=block"><meta http-equiv=X-Content-Type-Options content=nosniff><meta name=viewport content="width=device-width, initial-scale=1"><link rel=alternate type=application/rss+xml title="RSS Feed" href=/feed.rss><link rel=alternate type=application/atom+xml title="Atom Feed" href=/feed.atom><meta name=author content=harrison314><title>Volanie HTTP requestu zo 16kB binárky</title><meta property=og:title content="Volanie HTTP requestu zo 16kB binárky"><meta property=og:description content="Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou."><meta property=og:url content=https://harrison314.github.io/WinHttp.html><meta name=description content="Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou."><link href=css/bootstrap.min.css rel=stylesheet><link href=css/blog-post.css rel=stylesheet><!--[if lt IE 9]><script src=https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js></script><script src=https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js></script><![endif]--><link rel=stylesheet href=css/Highiler/vs.css><style>img{max-width:100%}.img-center{display:block;margin-left:auto;margin-right:auto}</style><body hx-boost=true><nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#bs-example-navbar-collapse-1> <span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span> </button> <a class=navbar-brand href=index.html>harrison314 blog</a></div><div class="collapse navbar-collapse" id=bs-example-navbar-collapse-1><ul class="nav navbar-nav"><li><a href=/All.html>Obsah</a><li><a href=/DevelopingAll.html>Programovanie</a><li><a href=/GeneralAll.html>Všeobecné</a><li><a href=/OMne.html>O mne</a></ul></div></div></nav><div class=container><div class=row><div class="col-lg-8 col-md-8"><h1>Volanie HTTP requestu zo 16kB binárky</h1><div class=publishDate>August 2022</div><p>Občas sa stretnem s&nbsp;požiadavkou zavolať REST endpoint s&nbsp;natívneho programu. Mnoho ľudí hneď siahne po&nbsp;cURL knižnici, Rust-e, alebo&nbsp;Go, no&nbsp;výsledná binárka má najmenej <em>2-4MB</em>. S&nbsp;WinHTTP je možné sa zmestiť do&nbsp;<em>16kB</em> programu (samozrejme funguje len na&nbsp;Windowsoch).<p>Prinášam malú ukážku použitia WinHTTP.<pre><code class="language-c hljs"><span class=hljs-meta>#<span class=hljs-meta-keyword>include</span> <span class=hljs-meta-string>&lt;stdio.h&gt;</span></span>
-<span class=hljs-meta>#<span class=hljs-meta-keyword>include</span> <span class=hljs-meta-string>&lt;stdlib.h&gt;</span></span>
-<span class=hljs-meta>#<span class=hljs-meta-keyword>include</span> <span class=hljs-meta-string>&lt;windows.h&gt;</span></span>
-<span class=hljs-meta>#<span class=hljs-meta-keyword>include</span> <span class=hljs-meta-string>&lt;winhttp.h&gt;</span></span>
+﻿<!DOCTYPE html><html lang=sk><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta http-equiv=X-Xss-Protection content="1; mode=block"><meta http-equiv=X-Content-Type-Options content=nosniff><meta name=viewport content="width=device-width, initial-scale=1"><link rel=alternate type=application/rss+xml title="RSS Feed" href=feed.rss><meta name=author content=harrison314><meta name=generator content=AspNetStatic><!--Blazor:{"type":"server","prerenderId":"dee06354487a47d7897f686d7bd1e3b6","key":{"locationHash":"77D12F14A8105320B1AAED6AE7E689DA0EC4483270A645E84079EAA0FFDF550D:5","formattedComponentKey":""},"sequence":0,"descriptor":"CfDJ8G7p01mvTipOj9seX7mukmsyKt5q3xrQpbSBFHd6Z5fj7Va8XsD4HC/rpJus/kUdHjbPxypm\u002BgKALeTTnsX4A43CsRvcgTdk5\u002BPu3hAKZ91lHJ6HlKfaLnLGtHQyNapil2lNNKDuuR03Ed2NnDepBH8SzLy9vlQ/vl/wXdF1V8EBLBvx1M3nxWUH1FhkU9I5nlEUxCWPVRhMYb8mcKNYjojRUQSJEu\u002BW\u002B0Qv5Z0NcR2z2mQIR55nyU1AqqX8GpigA/0aAxE86yTF2G13ofVwjincsBpMOVTZoLo0AySZoaU/NC3wBaTxtHWIpH5l9TLETLpu8dzIpu32Enau7D/E6669M4ce2t5ufni\u002B5PIbK6Viym/4PbiOgOjiX8FUHfmsT/hzgytZHBW4ubqRoqsqtGA2\u002BrTLiJ29eHY396ZorEFEtWTnLl14mRw5ccPGpND4\u002BP1tJIBsl2SRIm8brhZBl5ZzxYu9LcAnRl9j7QKHvtcavR7l3UUHUxw9aZkZ2QCpgverOFxSrcQ4fB/hh7ynugp2xNbCK0pxAggNIp8LhC8n12epGnt6HJhq9dvQqksKqtxGNALwy8znp4nE4KX8XyM="}--><title>Volanie HTTP requestu zo 16kB bin&#xE1;rky</title><meta property=og:title content="Volanie HTTP requestu zo 16kB binárky"><meta property=og:description content="Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou."><meta property=og:url content=https://harrison314.github.io/WinHttp.html><meta name=description content="Jednoduchý príklad ako použiť WinHTTP na volanie HTTP endpointu s minimálnou binárkou."><!--Blazor:{"prerenderId":"dee06354487a47d7897f686d7bd1e3b6"}--><link href=css/bootstrap.min.css rel=stylesheet><link href=css/blog-post.css rel=stylesheet><script type=text/x-mathjax-config>
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script><script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script><link rel=stylesheet href=css/Highiler/vs.css><style>img{max-width:100%}.img-center{display:block;margin-left:auto;margin-right:auto}</style><body><!--Blazor:{"type":"server","prerenderId":"006bba92db2541709c106fc6c251f1f5","key":{"locationHash":"E66163C4CFF76A7FA22AAEDA8B754AB10710C0C1D42652E9DDB330204231FE18:11","formattedComponentKey":""},"sequence":1,"descriptor":"CfDJ8G7p01mvTipOj9seX7mukmuIPHMZTmC8hA3pL\u002ByMkzL4PhdtB3e3gEZ1L4/XCP5dQCLh95nx2ihCqbYJR0Yb6c/Yk4GyUNpdREs0\u002BTVOHXw8yMUYpfeBdeUuVCRdk4zDWPbKarBfswWRu7c0PfJdTi12K3HsuTdAVOcRaKn6\u002BAIygiEeFqt8v1IHNwHU49xvHueXkMnjMzrhr9ARGq2PxZ2olPpf3tvl4J/oZXoVqcY9chq0IOfZ\u002BMkE0Kgw6XGH\u002B5vf2EAzkT6Gs2JTY6MAEYp4YYyzP\u002BakxFK1fI5HJFVFFDvYp6gKLFNNBMBNVadOjksH\u002B0BeamlJD/CH07Ye3IEu6\u002BQfXGo/iog3D1HyFs2pmpN\u002BnsgGm52GxJ0DtYtvcV4Ca1n0eWld3VnLFtfcT0vi5uzFbXlNXo51vEzT/c5YUKp1XH8Di6Ljh7BQslsV91d7bXbdOTHuVNh0d76nxuJ4z/oRpLBUkpWzZGJLy/0zs\u002BvCKZqyomzQK12e8UqaXUPZMNSqmB9tARFypTgoIhvHnOSpcNK5/RkCa95TPmVZ"}--><nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#bs-example-navbar-collapse-1><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href=index.html>harrison314 blog</a></div><div class="collapse navbar-collapse" id=bs-example-navbar-collapse-1><ul class="nav navbar-nav"><li><a href=/All.html>Obsah</a><li><a href=/DevelopingAll.html>Programovanie</a><li><a href=/GeneralAll.html>Všeobecné</a><li><a href=/OMne.html>O mne</a></ul></div></div></nav><div class=container><div class=row><div class="col-lg-8 col-md-8"><h1>Volanie HTTP requestu zo 16kB bin&#xE1;rky</h1><div class=publishDate>August 2022</div><p>Občas sa stretnem s&#160;požiadavkou zavolať REST endpoint s&#160;natívneho programu. Mnoho ľudí hneď siahne po&#160;cURL knižnici, Rust-e, alebo&#160;Go, no&#160;výsledná binárka má najmenej <em>2-4MB</em>. S&#160;WinHTTP je možné sa zmestiť do&#160;<em>16kB</em> programu (samozrejme funguje len na&#160;Windowsoch).<p>Prinášam malú ukážku použitia WinHTTP.<div class="lang-c editor-colors"><div style=color:Black;background-color:White><pre>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;windows.h&gt;
+#include &lt;winhttp.h&gt;
 
-<span class=hljs-function><span class=hljs-keyword>int</span> <span class=hljs-title>main</span><span class=hljs-params>()</span>
-</span>{
-    DWORD dwSize = <span class=hljs-number>0</span>;
-    DWORD dwDownloaded = <span class=hljs-number>0</span>;
+<span style=color:Blue>int</span> main()
+{
+    DWORD dwSize = 0;
+    DWORD dwDownloaded = 0;
     LPSTR pszOutBuffer;
     BOOL  bResults = FALSE;
-    HINTERNET  hSession = <span class=hljs-literal>NULL</span>, hConnect = <span class=hljs-literal>NULL</span>, hRequest = <span class=hljs-literal>NULL</span>;
+    HINTERNET  hSession = NULL, hConnect = NULL, hRequest = NULL;
 
-    hSession = WinHttpOpen(<span class=hljs-string>L"WinHTTP Example/1.0"</span>, WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, <span class=hljs-number>0</span>);
+    hSession = WinHttpOpen(L<span style=color:#A31515>&quot;WinHTTP Example/1.0&quot;</span>, WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, 0);
 
-    <span class=hljs-keyword>if</span> (hSession)
+    <span style=color:Blue>if</span> (hSession)
     {
-        hConnect = WinHttpConnect(hSession, <span class=hljs-string>L"harrison314.github.io"</span>, INTERNET_DEFAULT_HTTPS_PORT, <span class=hljs-number>0</span>);
+        hConnect = WinHttpConnect(hSession, L<span style=color:#A31515>&quot;harrison314.github.io&quot;</span>, INTERNET_DEFAULT_HTTPS_PORT, 0);
     }
 
-    <span class=hljs-keyword>if</span> (hConnect)
+    <span style=color:Blue>if</span> (hConnect)
     {
-        hRequest = WinHttpOpenRequest(hConnect, <span class=hljs-string>L"GET"</span>, <span class=hljs-string>L"/dev_endpoints/simple.json"</span>, <span class=hljs-literal>NULL</span>, WINHTTP_NO_REFERER, WINHTTP_DEFAULT_ACCEPT_TYPES, WINHTTP_FLAG_SECURE);
+        hRequest = WinHttpOpenRequest(hConnect, L<span style=color:#A31515>&quot;GET&quot;</span>, L<span style=color:#A31515>&quot;/dev_endpoints/simple.json&quot;</span>, NULL, WINHTTP_NO_REFERER, WINHTTP_DEFAULT_ACCEPT_TYPES, WINHTTP_FLAG_SECURE);
     }
 
-    <span class=hljs-keyword>if</span> (hRequest)
+    <span style=color:Blue>if</span> (hRequest)
     {
-        bResults = WinHttpSendRequest(hRequest, WINHTTP_NO_ADDITIONAL_HEADERS, <span class=hljs-number>0</span>, WINHTTP_NO_REQUEST_DATA, <span class=hljs-number>0</span>, <span class=hljs-number>0</span>, <span class=hljs-number>0</span>);
+        bResults = WinHttpSendRequest(hRequest, WINHTTP_NO_ADDITIONAL_HEADERS, 0, WINHTTP_NO_REQUEST_DATA, 0, 0, 0);
     }
 
-    <span class=hljs-keyword>if</span> (bResults)
+    <span style=color:Blue>if</span> (bResults)
     {
-        bResults = WinHttpReceiveResponse(hRequest, <span class=hljs-literal>NULL</span>);
+        bResults = WinHttpReceiveResponse(hRequest, NULL);
     }
 
-    <span class=hljs-keyword>if</span> (bResults)
+    <span style=color:Blue>if</span> (bResults)
     {
-        <span class=hljs-keyword>do</span>&nbsp;{
-            dwSize = <span class=hljs-number>0</span>;
-            <span class=hljs-keyword>if</span> (!WinHttpQueryDataAvailable(hRequest, &amp;dwSize))
+        <span style=color:Blue>do</span>
+        {
+            dwSize = 0;
+            <span style=color:Blue>if</span> (!WinHttpQueryDataAvailable(hRequest, &amp;dwSize))
             {
-                <span class=hljs-built_in>printf</span>(<span class=hljs-string>"Error %u in WinHttpQueryDataAvailable.\n"</span>, GetLastError());
+                printf(<span style=color:#A31515>&quot;Error %u in WinHttpQueryDataAvailable.\n&quot;</span>, GetLastError());
             }
 
-            pszOutBuffer = (<span class=hljs-keyword>char</span>*) <span class=hljs-built_in>malloc</span>(<span class=hljs-keyword>sizeof</span>(<span class=hljs-keyword>char</span>)*(dwSize + <span class=hljs-number>1</span>));
-            <span class=hljs-keyword>if</span> (!pszOutBuffer)
+            pszOutBuffer = (<span style=color:Blue>char</span>*) malloc(<span style=color:Blue>sizeof</span>(<span style=color:Blue>char</span>)*(dwSize + 1));
+            <span style=color:Blue>if</span> (!pszOutBuffer)
             {
-                <span class=hljs-built_in>printf</span>(<span class=hljs-string>"Out of memory\n"</span>);
-                dwSize = <span class=hljs-number>0</span>;
+                printf(<span style=color:#A31515>&quot;Out of memory\n&quot;</span>);
+                dwSize = 0;
             }
-            <span class=hljs-keyword>else</span>
+            <span style=color:Blue>else</span>
             {
-                ZeroMemory(pszOutBuffer, dwSize + <span class=hljs-number>1</span>);
-                <span class=hljs-keyword>if</span> (!WinHttpReadData(hRequest, (LPVOID)pszOutBuffer, dwSize, &amp;dwDownloaded))
+                ZeroMemory(pszOutBuffer, dwSize + 1);
+                <span style=color:Blue>if</span> (!WinHttpReadData(hRequest, (LPVOID)pszOutBuffer, dwSize, &amp;dwDownloaded))
                 {
-                    <span class=hljs-built_in>printf</span>(<span class=hljs-string>"Error %u in WinHttpReadData.\n"</span>, GetLastError());
+                    printf(<span style=color:#A31515>&quot;Error %u in WinHttpReadData.\n&quot;</span>, GetLastError());
                 }
-                <span class=hljs-keyword>else</span>
+                <span style=color:Blue>else</span>
                 {
-                    <span class=hljs-built_in>printf</span>(<span class=hljs-string>"%s"</span>, pszOutBuffer);
+                    printf(<span style=color:#A31515>&quot;%s&quot;</span>, pszOutBuffer);
                 }
 
-                <span class=hljs-keyword>if</span> (pszOutBuffer)
+                <span style=color:Blue>if</span> (pszOutBuffer)
                 {
-                    <span class=hljs-built_in>free</span>((<span class=hljs-keyword>void</span>*)pszOutBuffer);
+                    free((<span style=color:Blue>void</span>*)pszOutBuffer);
                 }
             }
         }
-        <span class=hljs-keyword>while</span> (dwSize &gt; <span class=hljs-number>0</span>);
+        <span style=color:Blue>while</span> (dwSize &gt; 0);
     }
 
-    <span class=hljs-keyword>if</span> (!bResults)
+    <span style=color:Blue>if</span> (!bResults)
     {
-        <span class=hljs-built_in>printf</span>(<span class=hljs-string>"Error %d has occurred.\n"</span>, GetLastError());
+        printf(<span style=color:#A31515>&quot;Error %d has occurred.\n&quot;</span>, GetLastError());
     }
 
-    <span class=hljs-keyword>if</span> (hRequest) WinHttpCloseHandle(hRequest);
-    <span class=hljs-keyword>if</span> (hConnect) WinHttpCloseHandle(hConnect);
-    <span class=hljs-keyword>if</span> (hSession) WinHttpCloseHandle(hSession);
+    <span style=color:Blue>if</span> (hRequest) WinHttpCloseHandle(hRequest);
+    <span style=color:Blue>if</span> (hConnect) WinHttpCloseHandle(hConnect);
+    <span style=color:Blue>if</span> (hSession) WinHttpCloseHandle(hSession);
 
-    <span class=hljs-keyword>return</span> <span class=hljs-number>0</span>;
+    <span style=color:Blue>return</span> 0;
 }
-</code></pre><p>Kompilácia: <code>gcc -s main.c -lwinhttp -o main.exe</code>.<p>Samozrejme ide len o&nbsp;inšpiráciu, ale&nbsp;nemalo by sa zabúdať na&nbsp;to, že&nbsp;<em>WinAPI</em> je plné zaujímavých funkcií, ktoré sú nám k&nbsp;dispozícii a&nbsp;dokážu zaujímavé veci a&nbsp;to aj&nbsp;z hadiska bezpečnosti.</div><div class="col-lg-4 col-md-4 hidden-xs hidden-sm"><div class=well><h4>Vývoj</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/PostKvantovaKryptografia.html>Post-kvantová kryptografia v C#</a><li><a href=/BouncyHsm.html>Ako som robil BouncyHsm</a><li><a href=/BuildAutomation.html>Prečo používať build automation</a><li><a href=/KeyValueDB.html>Ako na Key-Value databázu</a><li><a href=/RankFunctions.html>MS SQL a RANK funkcie</a><li><a href=/MongoDbVsRavenDb.html>MongoDB vs. RavenDB</a><li><a href=/WinHttp.html>Použitie WinHTTP</a><li><a href=/BinaryContentInApi.html>ASP.NET Core API a binárny obsah</a><li><a href=/PerformaceInNet.html>Meranie performace pre dotnetistov</a><li><a href=/CngApiTips.html>Triky s Windows CNG API</a><li><a href=/DevelopingAll.html>…</a></ul></div></div></div><div class=well><h4>Všeobecné</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/EzoGenerator.html>Generátor Ezo textov</a><li><a href=/AlternativnyRecept.html>Propagácia alternatívnej medicíny</a><li><a href=/VotrelciDavnoveku.html>Votrelci dávnoveku</a><li><a href=/GeneralAll.html>…</a></ul></div></div></div><div class=well><h4>O mne</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/VyvojarskeOdkazy.html>Moje vyvojarske blogy</a><li><a href=/OMne.html>O mne</a><li><a href=/OMneOdkazy.html>Moja tvorba inde</a><li><a href=/Portfolio.html>Portólio</a></ul></div></div></div></div></div><hr><footer><div class="row no-print"><div class="col-lg-8 col-sm-8"><div class=well><h4>Našli ste chybu, alebo chcete niečo doplniť?</h4><p>Ak ste našli chybu v článu, chcete niečo dopniť, alebo sa vyjadriť k téme, môžete na <a href="https://github.com/harrison314/harrison314.github.io/issues/new?title=Volanie%20HTTP%20requestu%20zo%2016kB%20bin%C3%A1rky&amp;body=https%3A%2F%2Fharrison314.github.io%2FWinHttp.html" target=_blank>Githube otvoriť issue</a>.</div></div></div><div class=row><div class=col-lg-12><p>Copyright © harrison314 2013<span class=on-print> - https://harrison314.github.io/</span></div></div></footer></div><script src=js/jquery.js></script><script src=js/bootstrap.min.js></script><script src="js/htmx.min.js?v=1.9.9"></script>
+</pre></div></div><p>Kompilácia: <code>gcc -s main.c -lwinhttp -o main.exe</code>.<p>Samozrejme ide len o&#160;inšpiráciu, ale&#160;nemalo by sa zabúdať na&#160;to, že&#160;<em>WinAPI</em> je plné zaujímavých funkcií, ktoré sú nám k&#160;dispozícii a&#160;dokážu zaujímavé veci a&#160;to aj&#160;z hadiska bezpečnosti.</div><div class="col-lg-4 col-md-4 hidden-xs hidden-sm"><div class=well><h4>V&#xFD;voj</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/PostKvantovaKryptografia.html>Post-kvantov&#xE1; kryptografia v C#</a><li><a href=/BouncyHsm.html>Ako som robil BouncyHsm</a><li><a href=/BuildAutomation.html>Pre&#x10D;o pou&#x17E;&#xED;va&#x165; build automation</a><li><a href=/KeyValueDB.html>Ako na Key-Value datab&#xE1;zu</a><li><a href=/RankFunctions.html>MS SQL a RANK funkcie</a><li><a href=/MongoDbVsRavenDb.html>MongoDB vs. RavenDB</a><li><a href=/WinHttp.html>Pou&#x17E;itie WinHTTP</a><li><a href=/BinaryContentInApi.html>ASP.NET Core API a bin&#xE1;rny obsah</a><li><a href=/PerformaceInNet.html>Meranie performace pre dotnetistov</a><li><a href=/CngApiTips.html>Triky s Windows CNG API</a><li><a href=/DevelopingAll.html>&#8230;</a></ul></div></div></div><div class=well><h4>V&#x161;eobecn&#xE9;</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/EzoGenerator.html>Gener&#xE1;tor Ezo textov</a><li><a href=/AlternativnyRecept.html>Propag&#xE1;cia alternat&#xED;vnej medic&#xED;ny</a><li><a href=/VotrelciDavnoveku.html>Votrelci d&#xE1;vnoveku</a><li><a href=/GeneralAll.html>&#8230;</a></ul></div></div></div><div class=well><h4>O mne</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/VyvojarskeOdkazy.html>Moje vyvojarske blogy</a><li><a href=/OMne.html>O mne</a><li><a href=/OMneOdkazy.html>Moja tvorba inde</a><li><a href=/Portfolio.html>Portólio</a></ul></div></div></div></div></div><hr><footer><div class="row no-print"><div class="col-lg-8 col-sm-8"><div class=well><h4>Našli ste chybu, alebo chcete niečo doplniť?</h4><p>Ak ste našli chybu v článu, chcete niečo dopniť, alebo sa vyjadriť k téme, môžete na <a href="https://github.com/harrison314/harrison314.github.io/issues/new?title=Volanie%20HTTP%20requestu%20zo%2016kB%20bin%C3%A1rky&amp;body=https%3A%2F%2Fharrison314.github.io%2FWinHttp.html" target=_blank>Githube otvoriť issue</a>.</div></div></div><div class=row><div class=col-lg-12><p>Copyright &copy; harrison314 2013<span class=on-print> - https://harrison314.github.io/</span></div></div></footer></div><!--Blazor:{"prerenderId":"006bba92db2541709c106fc6c251f1f5"}--><script src=js/jquery.js></script><script src=js/bootstrap.min.js></script><!--Blazor-Server-Component-State:CfDJ8G7p01mvTipOj9seX7mukmtjVSN0pzTmyr4ASDTlFX7AJkJWLVP/4pTNVDqNMUCDsogDCoGok3insI8DXAoqfyTjzyztpYf6MokzoCl0gyxh3lIFZYEW3+CBHfZGuvtJO/KlPxxeQoegtGjiPPaEPdQSqBXfG0uLZCBj01/MFXHaw/Tw6QtBGOu1vqaWVSOnS2pq2NXMx+ta+JzOF17MCBUrEVX3gGBWfW12uDKH+hBPLFRlQmsJbeYj4luhC5GtvKSOVvAvs47SBE5uQsSYjp7CjWRj2HtRutrAjg+5H0fjmvo1TcWwk78kpNCGMGRoNJQDcRFWXR6sDuwlO6WVsoJn5OjZj2u3aKz5lL95v9RwdQEYfmRJJD50jczkxftqkc9XBUqulXOK2Lsq6zJYgYXCM/tQexfIJpTumP1DXxK8ei6JjxG6lySPS04X26XvHT2feKTJuZ4yL4x1rmOcSRXkZ9FgX0Uo8VARgldAPYKDTJeFSW4wdTK5dU44PinGXu2Lp81VHRDgdFOSQPwAkiQfqH0nAbKQ/dSGnE9oXv0n-->
