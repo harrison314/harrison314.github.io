@@ -5,9 +5,23 @@
     <link>https://harrison314.github.io/</link>
     <description>Blog jedného skeptického programátora.</description>
     <copyright>(c) 2013</copyright>
-    <pubDate>Fri, 29 Nov 2024 20:04:32 GMT</pubDate>
-    <lastBuildDate>Fri, 29 Nov 2024 20:04:32 GMT</lastBuildDate>
+    <pubDate>Mon, 02 Dec 2024 18:29:19 GMT</pubDate>
+    <lastBuildDate>Mon, 02 Dec 2024 18:29:19 GMT</lastBuildDate>
     <language>sk-SK</language>
+    <item>
+      <title>Riešenie The One Billion Rows Challenge</title>
+      <link>https://harrison314.github.io/1brc.html</link>
+      <description>Riešenie The One Billion Rows Challenge v .NET-e, predstavenie nástrojov na perfomace tuning a rôzne kroky pri riešení tejto úlohy.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/1brc.html</guid>
+      <pubDate>Sun, 01 Dec 2024 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Migrácia blogu na AspNetStatic</title>
+      <link>https://harrison314.github.io/MigraciaBlogu.html</link>
+      <description>Zmena notebooku ma donútila migrovať blog z Wyam na AspNetStatic.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/MigraciaBlogu.html</guid>
+      <pubDate>Thu, 28 Nov 2024 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Post-kvantová kryptografia v C#</title>
       <link>https://harrison314.github.io/PostKvantovaKryptografia.html</link>
