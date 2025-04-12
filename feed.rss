@@ -5,9 +5,16 @@
     <link>https://harrison314.github.io/</link>
     <description>Blog jedného skeptického programátora.</description>
     <copyright>(c) 2013</copyright>
-    <pubDate>Thu, 03 Apr 2025 18:01:30 GMT</pubDate>
-    <lastBuildDate>Thu, 03 Apr 2025 18:01:30 GMT</lastBuildDate>
+    <pubDate>Sat, 12 Apr 2025 17:33:39 GMT</pubDate>
+    <lastBuildDate>Sat, 12 Apr 2025 17:33:39 GMT</lastBuildDate>
     <language>sk-SK</language>
+    <item>
+      <title>Hybridné certifikáty v  C#</title>
+      <link>https://harrison314.github.io/PqcCert.html</link>
+      <description>Hybridné certifikáty s alternatívnym post-kvantovým kľúčom vytvorené v BouncyCastle a C#</description>
+      <guid isPermaLink="false">https://harrison314.github.io/PqcCert.html</guid>
+      <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Riešenie The One Billion Rows Challenge</title>
       <link>https://harrison314.github.io/1brc.html</link>
