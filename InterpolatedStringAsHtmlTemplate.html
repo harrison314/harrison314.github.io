@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html><html lang=sk><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta http-equiv=X-Xss-Protection content="1; mode=block"><meta http-equiv=X-Content-Type-Options content=nosniff><meta name=viewport content="width=device-width, initial-scale=1"><link rel=alternate type=application/rss+xml title="RSS Feed" href=feed.rss><meta name=author content=harrison314><meta name=generator content=AspNetStatic><title>Ako spravi&#x165; z interpolated strings v C# HTML &#x161;abl&#xF3;ny</title><meta property=og:title content="Ako spraviť z interpolated strings v C# HTML šablóny"><meta property=og:description content="Ako spraviť z interpolated strings v C# HTML šablóny"><meta property=og:url content=https://harrison314.github.io/InterpolatedStringAsHtmlTemplate.html><meta property=og:image content=https://harrison314.github.io/images/InterpolatedStringAsHtmlTemplate/preview.jpg><meta name=description content="Ako spraviť z interpolated strings v C# HTML šablóny"><link href=css/bootstrap.min.css rel=stylesheet><link href=css/blog-post.css rel=stylesheet><script type=text/x-mathjax-config>
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script><script async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script><link rel=stylesheet href=css/Highiler/vs.css><style>img{max-width:100%}.img-center{display:block;margin-left:auto;margin-right:auto}</style><body><nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container><div class=navbar-header><button type=button class=navbar-toggle data-toggle=collapse data-target=#bs-example-navbar-collapse-1><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href=index.html>harrison314 blog</a></div><div class="collapse navbar-collapse" id=bs-example-navbar-collapse-1><ul class="nav navbar-nav"><li><a href=/All.html>Obsah</a><li><a href=/DevelopingAll.html>Programovanie</a><li><a href=/GeneralAll.html>Všeobecné</a><li><a href=/OMne.html>O mne</a></ul></div></div></nav><div class=container><div class=row><div class="col-lg-8 col-md-8"><h1>Ako spravi&#x165; z interpolated strings v C# HTML &#x161;abl&#xF3;ny</h1><div class=publishDate>M&#xE1;j 2025</div><p>Pri pokusoch s&#160;HTMX, Minimal API a&#160;AOT kompiláciou som mal problém nájsť šablóny, ktpré by fungovali. Našiel som source generátor <a href="https://github.com/otac0n/Weave/">Weave</a>, ale&#160;ten vyzerá neudržiavaný.<p>Tak som si povedal, že&#160;interpolated strings sú súčasťou C#, tak ich skúsim ohnúť aby&#160;slúžili ako HTML šablónovací systém pre&#160;Minimal API a&#160;o svoje snaženie sa podelím. Potreboval som iteráciu a&#160;podmienky. No&#160;výsledok nie je dokončený, stále v&#160;ňom existuje možnosť XSS zraniteľnosti cez nejaký objekt, takisto lepšieho výkonu by šlo dosiahnuť vlastnou implementáciou HTML enkóderu, ktorý&#160;by akceptoval <code>Span&lt;&gt;</code> a&#160;<code>ISpanFormatable</code>.<p>Potreboval som:<ul><li>defaultný HTML escaping,<li>iteráciu/foreach,<li>podmienky,<li>možnosť renderovať &quot;raw&quot; HTML.</ul><p>Ku koncu som objavil source generátor <a href=https://github.com/DamianEdwards/RazorSlices>RazorSlices</a>, ktorý&#160;umožňuje používať Razor šablóny (aj CSS izoláciu atď.) v&#160;Minimal API a&#160;AOT kompilácii.<p>Tu je ukážka použitia mojej šablóny:<div class="lang-cs editor-colors"><div style=color:Black;background-color:White><pre>
+<span style=color:Blue>var</span> sampleTodos = <span style=color:Blue>new</span> Todo[] {
+     <span style=color:Blue>new</span>(1, <span style=color:#A31515>&quot;Walk the dog&quot;</span>),
+     <span style=color:Blue>new</span>(2, <span style=color:#A31515>&quot;Do the dishes&quot;</span>, DateOnly.FromDateTime(DateTime.Now)),
+     <span style=color:Blue>new</span>(3, <span style=color:#A31515>&quot;Do the laundry&quot;</span>, DateOnly.FromDateTime(DateTime.Now.AddDays(1))),
+     <span style=color:Blue>new</span>(4, <span style=color:#A31515>&quot;Clean the bathroom&quot;</span>),
+     <span style=color:Blue>new</span>(5, <span style=color:#A31515>&quot;Clean the car&quot;</span>, DateOnly.FromDateTime(DateTime.Now.AddDays(2)))
+ };
+
+app.MapGet(<span style=color:#A31515>&quot;/&quot;</span>, () =&gt;
+{
+    <span style=color:Blue>string</span> text = <span style=color:#A31515>&quot;&amp;nbsp;&lt;span&gt;xss&quot;</span>;
+    <span style=color:Blue>int</span> value = Random.Shared.Next();
+    <span style=color:Blue>return</span> Html.Content($<span style=color:#A31515>&quot;&quot;</span>&quot;
+    &lt;h1&gt;Hello world! {DateTime.UtcNow}&lt;/h1&gt;
+    &lt;p&gt;
+        Lorm ipsum dolor sit amet, consectetur adipiscing elit.
+    &lt;/p&gt;
+    &lt;p&gt;{text}&lt;/p&gt;
+    &lt;h2&gt;Table 1&lt;/h2&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+      {Html.Each(sampleTodos, t =&gt; $<span style=color:#A31515>&quot;&quot;</span>&quot;
+        &lt;tr&gt;
+          &lt;td&gt;{t.Id}&lt;/td&gt; 
+          &lt;td&gt;{t.Title}&lt;/td&gt;
+          &lt;td&gt;{t.IsComplete}&lt;/td&gt;
+        &lt;/tr&gt;
+        <span style=color:#A31515>&quot;&quot;</span>&quot;)}
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+    &lt;h2&gt;Random value&lt;/h2&gt;
+    &lt;p&gt;Next random value: {value}&lt;/p&gt;
+    {Html.If(value % 2 == 0)}
+        &lt;p&gt;Condition met&lt;/p&gt;
+    {Html.Else()}
+        &lt;p&gt;&lt;strong&gt;Condition not met&lt;/strong&gt;&lt;/p&gt;
+        {Html.If(value % 3 == 0)}
+            &lt;p&gt;The number <span style=color:Blue>is</span> divisible <span style=color:Blue>by</span> 3.&lt;/p&gt;
+        {Html.EndIf()}
+    {Html.EndIf()}
+    <span style=color:#A31515>&quot;&quot;</span>&quot;);
+});
+</pre></div></div><p>A samotný kód šablónovacieho systému:<div class="lang-cs editor-colors"><div style=color:Black;background-color:White><pre>
+<span style=color:Blue>public</span> <span style=color:Blue>class</span> Html
+{
+    <span style=color:Blue>public</span> <span style=color:Blue>static</span> IResult Content([StringSyntax(<span style=color:#A31515>&quot;html&quot;</span>)] <span style=color:Blue>ref</span> HtmlSafeStringHandler handler)
+    {
+        <span style=color:Blue>return</span> Results.Content(handler.ToStringAndClear(), <span style=color:#A31515>&quot;text/html&quot;</span>);
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>static</span> async Task Stream&lt;T&gt;(HttpResponse response, 
+        IAsyncEnumerable&lt;T&gt; stream,
+        Func&lt;T, HtmlSafeStringHandler&gt; renderFunction,
+        CancellationToken cancellationToken = <span style=color:Blue>default</span>)
+    {
+        response.ContentType = <span style=color:#A31515>&quot;text/html&quot;</span>;
+        await <span style=color:Blue>foreach</span> (T item <span style=color:Blue>in</span> stream.WithCancellation(cancellationToken))
+        {
+            <span style=color:Blue>string</span> html = renderFunction(item).ToStringAndClear();
+            await response.WriteAsync(html, cancellationToken);
+            await response.Body.FlushAsync(cancellationToken);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>static</span> Task Write(HttpResponse response, <span style=color:Blue>ref</span> HtmlSafeStringHandler handler, CancellationToken cancellationToken = <span style=color:Blue>default</span>)
+    {
+        <span style=color:Blue>return</span> Write(response, handler.ToStringAndClear(), cancellationToken);
+    }
+
+    <span style=color:Blue>private</span> <span style=color:Blue>static</span> async Task Write(HttpResponse response, <span style=color:Blue>string</span> html, CancellationToken cancellationToken = <span style=color:Blue>default</span>)
+    {
+        await response.WriteAsync(html, cancellationToken);
+        await response.Body.FlushAsync(cancellationToken);
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>static</span> IEnumerable&lt;RawHtml&gt; Each&lt;T&gt;(IEnumerable&lt;T&gt; items, Func&lt;T, HtmlSafeStringHandler&gt; renderFunction)
+    {
+        <span style=color:Blue>foreach</span> (T item <span style=color:Blue>in</span> items)
+        {
+            <span style=color:Blue>yield</span> <span style=color:Blue>return</span> <span style=color:Blue>new</span> RawHtml(renderFunction(item).ToStringAndClear());
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>static</span> IEnumerable&lt;RawHtml&gt; Each&lt;T&gt;(IEnumerable&lt;T&gt; items, Func&lt;T, <span style=color:Blue>int</span>, HtmlSafeStringHandler&gt; func)
+    {
+        <span style=color:Blue>int</span> index = 0;
+        <span style=color:Blue>foreach</span> (T item <span style=color:Blue>in</span> items)
+        {
+            <span style=color:Blue>yield</span> <span style=color:Blue>return</span> <span style=color:Blue>new</span> RawHtml(func(item, index).ToStringAndClear());
+            index++;
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>static</span> IEnumerable&lt;RawHtml&gt; For(<span style=color:Blue>int</span> start, <span style=color:Blue>int</span> end, Func&lt;<span style=color:Blue>int</span>, HtmlSafeStringHandler&gt; func)
+    {
+        <span style=color:Blue>for</span> (<span style=color:Blue>int</span> i&#160;= start; i&#160;&lt; end; i++)
+        {
+            <span style=color:Blue>yield</span> <span style=color:Blue>return</span> <span style=color:Blue>new</span> RawHtml(func(i).ToStringAndClear());
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>static</span> LiteralIf If(<span style=color:Blue>bool</span> condition)
+    {
+        <span style=color:Blue>return</span> <span style=color:Blue>new</span> LiteralIf(condition);
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>static</span> LiteralElse Else()
+    {
+        <span style=color:Blue>return</span> <span style=color:Blue>new</span> LiteralElse();
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>static</span> LiteralEndIf EndIf()
+    {
+        <span style=color:Blue>return</span> <span style=color:Blue>new</span> LiteralEndIf();
+    }
+}
+
+<span style=color:Blue>internal</span> <span style=color:Blue>enum</span> IfState
+{
+    Nop,
+    True,
+    False
+}
+
+<span style=color:Blue>public</span> record <span style=color:Blue>struct</span> RawHtml(<span style=color:Blue>string</span> Value)
+{
+    <span style=color:Blue>public</span> <span style=color:Blue>static</span> <span style=color:Blue>explicit</span> <span style=color:Blue>operator</span> RawHtml(<span style=color:Blue>string</span> value) =&gt; <span style=color:Blue>new</span> RawHtml(value);
+}
+
+<span style=color:Blue>public</span> <span style=color:Blue>struct</span> LiteralElse
+{
+}
+
+<span style=color:Blue>public</span> <span style=color:Blue>struct</span> LiteralEndIf
+{
+}
+
+<span style=color:Blue>public</span> record <span style=color:Blue>struct</span> LiteralIf(<span style=color:Blue>bool</span> Condition);
+
+[InterpolatedStringHandler]
+<span style=color:Blue>public</span> <span style=color:Blue>ref</span> <span style=color:Blue>struct</span> HtmlSafeStringHandler
+{
+    <span style=color:Blue>private</span> DefaultInterpolatedStringHandler innerHandler;
+
+    <span style=color:Blue>private</span> Stack&lt;IfState&gt;? conditionStack;
+
+    <span style=color:Blue>public</span> HtmlSafeStringHandler(<span style=color:Blue>int</span> literalLength, <span style=color:Blue>int</span> formattedCount)
+    {
+        <span style=color:Blue>this</span>.innerHandler = <span style=color:Blue>new</span> DefaultInterpolatedStringHandler(literalLength, formattedCount);
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendLiteral(<span style=color:Blue>string</span> value)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendLiteral(value);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(ReadOnlySpan&lt;<span style=color:Blue>char</span>&gt; value)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender() &amp;&amp; value.Length &gt; 0)
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(HttpUtility.HtmlEncode(value.ToString()));
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(<span style=color:Blue>string</span>? value)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender() &amp;&amp; !<span style=color:Blue>string</span>.IsNullOrEmpty(value))
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(HttpUtility.HtmlEncode(value));
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(<span style=color:Blue>string</span>? value, <span style=color:Blue>string</span>? format)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender() &amp;&amp; !<span style=color:Blue>string</span>.IsNullOrEmpty(value))
+        {
+            <span style=color:Blue>if</span> (format == <span style=color:#A31515>&quot;raw&quot;</span>)
+            {
+                <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value);
+            }
+            <span style=color:Blue>else</span> <span style=color:Blue>if</span> (format == <span style=color:#A31515>&quot;attr&quot;</span>)
+            {
+                <span style=color:Blue>this</span>.innerHandler.AppendFormatted(HttpUtility.HtmlAttributeEncode(value));
+            }
+            <span style=color:Blue>else</span>
+            {
+                <span style=color:Blue>this</span>.innerHandler.AppendFormatted(HttpUtility.HtmlEncode(value));
+            }
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(RawHtml value)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value.Value);
+        }
+    }
+    <span style=color:Blue>#region</span> Flow controll
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(IEnumerable&lt;RawHtml&gt; values)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>foreach</span> (RawHtml value <span style=color:Blue>in</span> values)
+            {
+                <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value.Value);
+            }
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(IEnumerable&lt;<span style=color:Blue>string</span>&gt; values)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>foreach</span> (<span style=color:Blue>string</span> value <span style=color:Blue>in</span> values)
+            {
+                <span style=color:Blue>this</span>.innerHandler.AppendFormatted(HttpUtility.HtmlEncode(value));
+            }
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(LiteralIf value)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.conditionStack == <span style=color:Blue>null</span>)
+        {
+            <span style=color:Blue>this</span>.conditionStack = <span style=color:Blue>new</span> Stack&lt;IfState&gt;();
+        }
+
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.conditionStack.Push(value.Condition ? IfState.True : IfState.False);
+        }
+        <span style=color:Blue>else</span>
+        {
+            <span style=color:Blue>this</span>.conditionStack.Push(IfState.Nop);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(LiteralElse value)
+    {
+        System.Diagnostics.Debug.Assert(<span style=color:Blue>this</span>.conditionStack != <span style=color:Blue>null</span>);
+        System.Diagnostics.Debug.Assert(<span style=color:Blue>this</span>.conditionStack.Count &gt; 0);
+
+        <span style=color:Blue>this</span>.conditionStack.Push(<span style=color:Blue>this</span>.conditionStack.Pop() <span style=color:Blue>switch</span>
+        {
+            IfState.Nop =&gt; IfState.Nop,
+            IfState.True =&gt; IfState.False,
+            IfState.False =&gt; IfState.True,
+            _ =&gt; <span style=color:Blue>throw</span> <span style=color:Blue>new</span> UnreachableException(<span style=color:#A31515>&quot;Invalid state&quot;</span>)
+        });
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(LiteralEndIf value)
+    {
+        System.Diagnostics.Debug.Assert(<span style=color:Blue>this</span>.conditionStack != <span style=color:Blue>null</span>);
+        System.Diagnostics.Debug.Assert(<span style=color:Blue>this</span>.conditionStack.Count &gt; 0);
+        <span style=color:Blue>this</span>.conditionStack.Pop();
+    }
+
+    <span style=color:Blue>#endregion</span>
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted&lt;T&gt;(T value, <span style=color:Blue>string</span>? format)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value, format);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted&lt;T&gt;(T value, <span style=color:Blue>int</span> alignment, <span style=color:Blue>string</span>? format)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value, alignment, format);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted&lt;T&gt;(T value, <span style=color:Blue>int</span> alignment)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value, alignment);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted&lt;T&gt;(T value)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(HttpUtility.HtmlEncode(value));
+        }
+    }
+
+    <span style=color:Blue>#region</span> Primite types
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(<span style=color:Blue>int</span> value, <span style=color:Blue>string</span>? format)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value, format);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(<span style=color:Blue>int</span> value, <span style=color:Blue>int</span> alignment, <span style=color:Blue>string</span>? format)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value, alignment, format);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(<span style=color:Blue>int</span> value, <span style=color:Blue>int</span> alignment)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value, alignment);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(<span style=color:Blue>int</span> value)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(<span style=color:Blue>long</span> value, <span style=color:Blue>string</span>? format)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value, format);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(<span style=color:Blue>long</span> value, <span style=color:Blue>int</span> alignment, <span style=color:Blue>string</span>? format)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value, alignment, format);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(<span style=color:Blue>long</span> value, <span style=color:Blue>int</span> alignment)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value, alignment);
+        }
+    }
+
+    <span style=color:Blue>public</span> <span style=color:Blue>void</span> AppendFormatted(<span style=color:Blue>long</span> value)
+    {
+        <span style=color:Blue>if</span> (<span style=color:Blue>this</span>.CanRender())
+        {
+            <span style=color:Blue>this</span>.innerHandler.AppendFormatted(value);
+        }
+    }
+    <span style=color:Blue>#endregion</span>
+
+    <span style=color:Blue>public</span> <span style=color:Blue>readonly</span> <span style=color:Blue>override</span> <span style=color:Blue>string</span> ToString()
+    {
+        <span style=color:Blue>return</span> <span style=color:Blue>this</span>.innerHandler.ToString();
+    }
+
+    <span style=color:Green>// Forward to the inner handler</span>
+    <span style=color:Blue>public</span> <span style=color:Blue>string</span> ToStringAndClear()
+    {
+        System.Diagnostics.Debug.Assert(<span style=color:Blue>this</span>.conditionStack == <span style=color:Blue>null</span> || <span style=color:Blue>this</span>.conditionStack.Count == 0);
+
+        <span style=color:Blue>return</span> <span style=color:Blue>this</span>.innerHandler.ToStringAndClear();
+    }
+
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    <span style=color:Blue>private</span> <span style=color:Blue>bool</span> CanRender()
+    {
+        <span style=color:Blue>return</span> <span style=color:Blue>this</span>.conditionStack == <span style=color:Blue>null</span>
+            || <span style=color:Blue>this</span>.conditionStack.Count == 0
+            || <span style=color:Blue>this</span>.conditionStack.Peek() == IfState.True;
+    }
+}
+</pre></div></div></div><div class="col-lg-4 col-md-4 hidden-xs hidden-sm"><div class=well><h4>V&#xFD;voj</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/ModerneHtml.html>Renderova&#x165; HTML na serveri nie je hanba</a><li><a href=/InterpolatedStringAsHtmlTemplate.html>Interpolated strings ako HTML &#x161;abl&#xF3;na</a><li><a href=/PqcCert.html>Hybridn&#xE9; certifik&#xE1;ty v C#</a><li><a href=/1brc.html>One Billion Rows Challenge</a><li><a href=/MigraciaBlogu.html>Migr&#xE1;cia blogu</a><li><a href=/PostKvantovaKryptografia.html>Post-kvantov&#xE1; kryptografia v C#</a><li><a href=/BouncyHsm.html>Ako som robil BouncyHsm</a><li><a href=/BuildAutomation.html>Pre&#x10D;o pou&#x17E;&#xED;va&#x165; build automation</a><li><a href=/KeyValueDB.html>Ako na Key-Value datab&#xE1;zu</a><li><a href=/RankFunctions.html>MS SQL a RANK funkcie</a><li><a href=/DevelopingAll.html>&#8230;</a></ul></div></div></div><div class=well><h4>V&#x161;eobecn&#xE9;</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/EzoGenerator.html>Gener&#xE1;tor Ezo textov</a><li><a href=/AlternativnyRecept.html>Propag&#xE1;cia alternat&#xED;vnej medic&#xED;ny</a><li><a href=/VotrelciDavnoveku.html>Votrelci d&#xE1;vnoveku</a><li><a href=/GeneralAll.html>&#8230;</a></ul></div></div></div><div class=well><h4>O mne</h4><div class=row><div class=col-lg-12><ul class=list-unstyled><li><a href=/VyvojarskeOdkazy.html>Moje vyvojarske blogy</a><li><a href=/OMne.html>O mne</a><li><a href=/OMneOdkazy.html>Moja tvorba inde</a><li><a href=/Portfolio.html>Portólio</a></ul></div></div></div></div></div><hr><footer><div class="row no-print"><div class="col-lg-8 col-sm-8"><div class=well><h4>Našli ste chybu, alebo chcete niečo doplniť?</h4><p>Ak ste našli chybu v článu, chcete niečo dopniť, alebo sa vyjadriť k téme, môžete na <a href="https://github.com/harrison314/harrison314.github.io/issues/new?title=Ako%20spravi%C5%A5%20z%20interpolated%20strings%20v%20C%23%20HTML%20%C5%A1abl%C3%B3ny&amp;body=https%3A%2F%2Fharrison314.github.io%2FInterpolatedStringAsHtmlTemplate.html" target=_blank>Githube otvoriť issue</a>.</div></div></div><div class=row><div class=col-lg-12><p>Copyright &copy; harrison314 2013<span class=on-print> - https://harrison314.github.io/</span></div></div></footer></div><script src=js/jquery.js></script><script src=js/bootstrap.min.js></script>

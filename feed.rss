@@ -5,9 +5,23 @@
     <link>https://harrison314.github.io/</link>
     <description>Blog jedného skeptického programátora.</description>
     <copyright>(c) 2013</copyright>
-    <pubDate>Sat, 12 Apr 2025 17:33:39 GMT</pubDate>
-    <lastBuildDate>Sat, 12 Apr 2025 17:33:39 GMT</lastBuildDate>
+    <pubDate>Fri, 16 May 2025 16:47:08 GMT</pubDate>
+    <lastBuildDate>Fri, 16 May 2025 16:47:08 GMT</lastBuildDate>
     <language>sk-SK</language>
+    <item>
+      <title>Renderovať HTML na serveri nie je hanba</title>
+      <link>https://harrison314.github.io/ModerneHtml.html</link>
+      <description>Renderovať HTML na serveri nie je v roku 2025 hanba. Moderné možnosti HTML, Streaming HTML, SSE, HTTP/2 s použitím knižnice HTMX – pre tvorbu serverom riadených klientskych aplikácií s minimom javascriptu.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/ModerneHtml.html</guid>
+      <pubDate>Thu, 15 May 2025 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Ako spraviť z interpolated strings v C# HTML šablóny</title>
+      <link>https://harrison314.github.io/InterpolatedStringAsHtmlTemplate.html</link>
+      <description>Ako spraviť z interpolated strings v C# HTML šablóny</description>
+      <guid isPermaLink="false">https://harrison314.github.io/InterpolatedStringAsHtmlTemplate.html</guid>
+      <pubDate>Sat, 10 May 2025 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Hybridné certifikáty v  C#</title>
       <link>https://harrison314.github.io/PqcCert.html</link>
