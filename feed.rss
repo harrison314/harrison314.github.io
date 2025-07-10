@@ -5,9 +5,16 @@
     <link>https://harrison314.github.io/</link>
     <description>Blog jedného skeptického programátora.</description>
     <copyright>(c) 2013</copyright>
-    <pubDate>Sat, 24 May 2025 10:12:58 GMT</pubDate>
-    <lastBuildDate>Sat, 24 May 2025 10:12:58 GMT</lastBuildDate>
+    <pubDate>Thu, 10 Jul 2025 18:43:59 GMT</pubDate>
+    <lastBuildDate>Thu, 10 Jul 2025 18:43:59 GMT</lastBuildDate>
     <language>sk-SK</language>
+    <item>
+      <title>Ako poslať komit emailom</title>
+      <link>https://harrison314.github.io/GitPatch.html</link>
+      <description>Návod ako je možné poslať git komit pomocou emailu, USB kľúča alebo holuba.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/GitPatch.html</guid>
+      <pubDate>Thu, 10 Jul 2025 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Renderovať HTML na serveri nie je hanba</title>
       <link>https://harrison314.github.io/ModerneHtml.html</link>
