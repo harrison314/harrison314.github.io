@@ -5,9 +5,16 @@
     <link>https://harrison314.github.io/</link>
     <description>Blog jedného skeptického programátora.</description>
     <copyright>(c) 2013</copyright>
-    <pubDate>Thu, 10 Jul 2025 18:43:59 GMT</pubDate>
-    <lastBuildDate>Thu, 10 Jul 2025 18:43:59 GMT</lastBuildDate>
+    <pubDate>Thu, 13 Nov 2025 18:16:11 GMT</pubDate>
+    <lastBuildDate>Thu, 13 Nov 2025 18:16:11 GMT</lastBuildDate>
     <language>sk-SK</language>
+    <item>
+      <title>Vlastny formát v Minimal API</title>
+      <link>https://harrison314.github.io/MessagepackFormatter.html</link>
+      <description>Ako doplniť</description>
+      <guid isPermaLink="false">https://harrison314.github.io/MessagepackFormatter.html</guid>
+      <pubDate>Thu, 13 Nov 2025 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Ako poslať komit emailom</title>
       <link>https://harrison314.github.io/GitPatch.html</link>
