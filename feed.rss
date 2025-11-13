@@ -5,13 +5,13 @@
     <link>https://harrison314.github.io/</link>
     <description>Blog jedného skeptického programátora.</description>
     <copyright>(c) 2013</copyright>
-    <pubDate>Thu, 13 Nov 2025 18:16:11 GMT</pubDate>
-    <lastBuildDate>Thu, 13 Nov 2025 18:16:11 GMT</lastBuildDate>
+    <pubDate>Thu, 13 Nov 2025 18:21:20 GMT</pubDate>
+    <lastBuildDate>Thu, 13 Nov 2025 18:21:20 GMT</lastBuildDate>
     <language>sk-SK</language>
     <item>
-      <title>Vlastny formát v Minimal API</title>
+      <title>Vlastný formát v Minimal API</title>
       <link>https://harrison314.github.io/MessagepackFormatter.html</link>
-      <description>Ako doplniť</description>
+      <description>Ako doplniť v .NET 10 a Minimal API vlastný formár tequestov a responsov. Ukázané na messagepack formáte.</description>
       <guid isPermaLink="false">https://harrison314.github.io/MessagepackFormatter.html</guid>
       <pubDate>Thu, 13 Nov 2025 00:00:00 GMT</pubDate>
     </item>
