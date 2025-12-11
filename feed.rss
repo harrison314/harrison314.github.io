@@ -5,9 +5,16 @@
     <link>https://harrison314.github.io/</link>
     <description>Blog jedného skeptického programátora.</description>
     <copyright>(c) 2013</copyright>
-    <pubDate>Thu, 13 Nov 2025 18:21:20 GMT</pubDate>
-    <lastBuildDate>Thu, 13 Nov 2025 18:21:20 GMT</lastBuildDate>
+    <pubDate>Thu, 11 Dec 2025 19:04:48 GMT</pubDate>
+    <lastBuildDate>Thu, 11 Dec 2025 19:04:48 GMT</lastBuildDate>
     <language>sk-SK</language>
+    <item>
+      <title>Pravdepodobne najlacnejší počítač, na ktorom beží .NET 10</title>
+      <link>https://harrison314.github.io/Luckfox.html</link>
+      <description>Najlacnejší počítač, na ktorom beží .NET 10 a návod, ako na ňom rozbehať .NET aplikácie.</description>
+      <guid isPermaLink="false">https://harrison314.github.io/Luckfox.html</guid>
+      <pubDate>Thu, 11 Dec 2025 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Vlastný formát v Minimal API</title>
       <link>https://harrison314.github.io/MessagepackFormatter.html</link>
